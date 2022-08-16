@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04F9D28ABD91B00FA268D /* AppDelegate.swift */; };
 		03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */; };
-		03B04FA228ABD91B00FA268D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04FA128ABD91B00FA268D /* ViewController.swift */; };
+		03B04FA228ABD91B00FA268D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04FA128ABD91B00FA268D /* MainViewController.swift */; };
 		03B04FA728ABD91C00FA268D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03B04FA628ABD91C00FA268D /* Assets.xcassets */; };
 		03B04FAA28ABD91C00FA268D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B04FA828ABD91C00FA268D /* LaunchScreen.storyboard */; };
 		D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */; };
@@ -19,7 +19,7 @@
 		03B04F9A28ABD91B00FA268D /* MMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B04F9D28ABD91B00FA268D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		03B04FA128ABD91B00FA268D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		03B04FA128ABD91B00FA268D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		03B04FA628ABD91C00FA268D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		03B04FA928ABD91C00FA268D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03B04FAB28ABD91C00FA268D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,12 +63,36 @@
 			children = (
 				03B04F9D28ABD91B00FA268D /* AppDelegate.swift */,
 				03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */,
-				03B04FA128ABD91B00FA268D /* ViewController.swift */,
+				03B04FB128ABE26500FA268D /* Presentation */,
 				03B04FA628ABD91C00FA268D /* Assets.xcassets */,
-				03B04FA828ABD91C00FA268D /* LaunchScreen.storyboard */,
 				03B04FAB28ABD91C00FA268D /* Info.plist */,
 			);
 			path = MMarket;
+			sourceTree = "<group>";
+		};
+		03B04FB128ABE26500FA268D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				03B04FB228ABE28900FA268D /* Main */,
+				03B04FA828ABD91C00FA268D /* LaunchScreen.storyboard */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		03B04FB228ABE28900FA268D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				03B04FB328ABE29800FA268D /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		03B04FB328ABE29800FA268D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03B04FA128ABD91B00FA268D /* MainViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		57E2E23A1D0FD5E375BC9D97 /* Pods */ = {
@@ -77,7 +101,6 @@
 				8F7A7B342CDE505C3EBF49F8 /* Pods-MMarket.debug.xcconfig */,
 				916449E82688729964040A54 /* Pods-MMarket.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -203,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03B04FA228ABD91B00FA268D /* ViewController.swift in Sources */,
+				03B04FA228ABD91B00FA268D /* MainViewController.swift in Sources */,
 				03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */,
 				03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */,
 			);
