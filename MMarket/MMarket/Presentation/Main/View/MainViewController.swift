@@ -8,6 +8,11 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    enum Section: CaseIterable {
+        case eventBanner
+        case main
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
