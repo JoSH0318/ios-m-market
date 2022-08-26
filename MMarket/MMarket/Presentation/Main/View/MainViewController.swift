@@ -26,6 +26,27 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: - Layout
+
+extension MainViewController {
+    private func configureLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout {(
+            sectionIndex: Int,
+            layoutEnvironment: NSCollectionLayoutEnvironment
+        ) -> NSCollectionLayoutSection? in
+            let sectionLayoutKind = Section.allCases[sectionIndex]
+            
+            switch (sectionLayoutKind) {
+            case .eventBanner:
+                return self.itemCollectionView.configureEventBannerLayout()
+            case .main:
+                return self.itemCollectionView.configureItemListLayout()
+            }
+        }
+        return layout
+    }
+}
+
 // MARK: - DataSource
 
 extension MainViewController {
