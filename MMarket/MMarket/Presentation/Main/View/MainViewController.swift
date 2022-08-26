@@ -18,6 +18,8 @@ class MainViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Page>
     
     private let itemCollectionView = ItemCollectionView()
+    private var pages = [Page]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
