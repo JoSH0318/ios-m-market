@@ -13,6 +13,9 @@ class MainViewController: UIViewController {
         case eventBanner
         case main
     }
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Page>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Page>
     override func viewDidLoad() {
         super.viewDidLoad()
     }
