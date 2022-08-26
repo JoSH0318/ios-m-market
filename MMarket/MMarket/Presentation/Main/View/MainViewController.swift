@@ -78,3 +78,14 @@ extension MainViewController {
         return dataSource
     }
 }
+
+// MARK: - SnapShot
+
+extension MainViewController {
+    private func applySnapShot() {
+        var snapShot = Snapshot()
+        snapShot.appendSections([.main])
+        snapShot.appendItems(pages)
+        dataSource.apply(snapShot, animatingDifferences: true)
+    }
+}
