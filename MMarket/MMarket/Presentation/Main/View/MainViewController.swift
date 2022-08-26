@@ -16,6 +16,8 @@ class MainViewController: UIViewController {
     
     typealias DataSource = UICollectionViewDiffableDataSource<Section, Page>
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Page>
+    
+    private let itemCollectionView = ItemCollectionView()
     override func viewDidLoad() {
         super.viewDidLoad()
     }
