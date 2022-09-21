@@ -10,7 +10,7 @@ import Foundation
 final class Endpoint {
     private let baseURL: String
     private let path: String
-    private let method: String
+    private let method: HTTPMethod
     private let header: [String: String]
     private let queries: [String: Any]
     private let body: Data?
@@ -18,7 +18,7 @@ final class Endpoint {
     init(
         baseURL: String,
         path: String,
-        method: String,
+        method: HTTPMethod,
         header: [String : String],
         queries: [String : Any],
         body: Data?
