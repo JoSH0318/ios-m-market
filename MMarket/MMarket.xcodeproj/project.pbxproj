@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E832D28DB55DE00FE1BB8 /* Endpoint.swift */; };
 		03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04F9D28ABD91B00FA268D /* AppDelegate.swift */; };
 		03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */; };
 		03B04FA228ABD91B00FA268D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04FA128ABD91B00FA268D /* MainViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		030E832D28DB55DE00FE1BB8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		03B04F9A28ABD91B00FA268D /* MMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B04F9D28ABD91B00FA268D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +56,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		030E832B28DB54A100FE1BB8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				030E832C28DB54FC00FE1BB8 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		030E832C28DB54FC00FE1BB8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				030E832D28DB55DE00FE1BB8 /* Endpoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		037B577728B4DE2C003C3133 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +112,7 @@
 			children = (
 				03B04F9D28ABD91B00FA268D /* AppDelegate.swift */,
 				03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */,
+				030E832B28DB54A100FE1BB8 /* Data */,
 				03E0542428B7B20000279039 /* Domain */,
 				03B04FB128ABE26500FA268D /* Presentation */,
 				03B04FA628ABD91C00FA268D /* Assets.xcassets */,
@@ -288,6 +307,7 @@
 				03E0542B28B7B36900279039 /* Currency.swift in Sources */,
 				03D5E2DF28AE783400D3A333 /* ItemListCell.swift in Sources */,
 				03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */,
+				030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */,
 				03B04FB828ABEC6600FA268D /* EventBannerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
