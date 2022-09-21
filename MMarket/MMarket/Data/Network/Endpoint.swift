@@ -31,6 +31,22 @@ final class Endpoint {
         self.body = body
     }
     
+    func generateRequest() throws -> URLRequest {
+        let url = try generateURL()
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.description
+        
+        header.forEach {
+            urlRequest.addValue($0.key, forHTTPHeaderField: $0.value)
+        }
+        
+        if method != .get, let body = body {
+            urlRequest.httpBody = body
+        }
+        
+        return urlRequest
+    }
+    
     private func generateURL() throws -> URL {
         let urlString = baseURL + path
         
