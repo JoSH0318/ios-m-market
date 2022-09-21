@@ -48,7 +48,7 @@ extension API {
                 header: [
                     "Content-Type": "multipart/form-data; boundary=\(boundary)",
                     "identifier": "8de44ec8-d1b8-11ec-9676-43acdce229f5"
-                  ],
+                ],
                 body: body
             )
         case .productEdition(let body, let productID):
