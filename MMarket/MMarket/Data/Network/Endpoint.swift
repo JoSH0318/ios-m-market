@@ -40,7 +40,8 @@ final class Endpoint {
             urlRequest.addValue($0.key, forHTTPHeaderField: $0.value)
         }
         
-        if method != .get, let body = body {
+        if method == .post || method == .patch,
+           let body = body {
             urlRequest.httpBody = body
         }
         
