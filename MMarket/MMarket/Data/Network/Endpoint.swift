@@ -8,7 +8,7 @@
 import Foundation
 
 final class Endpoint {
-    private let baseUrl: String
+    private let baseURL: String
     private let path: String
     private let method: String
     private let header: [String: String]
@@ -16,18 +16,33 @@ final class Endpoint {
     private let body: Data?
     
     init(
-        baseUrl: String,
+        baseURL: String,
         path: String,
         method: String,
         header: [String : String],
         queries: [String : Any],
         body: Data?
     ) {
-        self.baseUrl = baseUrl
+        self.baseURL = baseURL
         self.path = path
         self.method = method
         self.header = header
         self.queries = queries
         self.body = body
+    }
+    
+    private func generateURL() throws -> URL {
+        let urlString = baseURL + path
+        
+        var component = URLComponents(string: urlString)
+        component?.queryItems = queries.map {
+            URLQueryItem(name: $0.key, value: "\($0.value)")
+        }
+        
+        guard let url = component?.url else {
+            throw NetworkError.invaildURL
+        }
+        
+        return url
     }
 }
