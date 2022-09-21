@@ -10,6 +10,7 @@ import Foundation
 enum API {
     private enum Constant {
         static let baseURL = "https://market-training.yagom-academy.kr/"
+        static let path = "api/products/"
     }
     
     case productList(Int, Int)
@@ -26,7 +27,7 @@ extension API {
         case .productList(let pageNumber, let itemsPerPage):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: "/api/products",
+                path: Constant.path,
                 method: .get,
                 queries: [
                     "page_no": pageNumber,
@@ -36,7 +37,7 @@ extension API {
         case .productDetail(let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: "/api/products/\(productID)",
+                path: Constant.path + "\(productID)",
                 method: .get
             )
         case .productCreation(let body, let boundary):
@@ -53,7 +54,7 @@ extension API {
         case .productEdition(let body, let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: "/api/products/\(productID)",
+                path: Constant.path + "\(productID)",
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
@@ -64,7 +65,7 @@ extension API {
         case .scretKeySearch(let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: "/api/products/\(productID)/secret",
+                path: Constant.path + "\(productID)/secret",
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
@@ -74,7 +75,7 @@ extension API {
         case .productDelete(let productID, let productSecret):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: "/api/products/\(productID)/\(productSecret)",
+                path: Constant.path + "\(productID)/\(productSecret)",
                 method: .delete
             )
         }
