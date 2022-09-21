@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E832D28DB55DE00FE1BB8 /* Endpoint.swift */; };
+		030E833028DB58E800FE1BB8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E832F28DB58E800FE1BB8 /* NetworkError.swift */; };
 		03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04F9D28ABD91B00FA268D /* AppDelegate.swift */; };
 		03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */; };
 		03B04FA228ABD91B00FA268D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04FA128ABD91B00FA268D /* MainViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		030E832D28DB55DE00FE1BB8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		030E832F28DB58E800FE1BB8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		03B04F9A28ABD91B00FA268D /* MMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03B04F9D28ABD91B00FA268D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				030E832D28DB55DE00FE1BB8 /* Endpoint.swift */,
+				030E832F28DB58E800FE1BB8 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				03E0542B28B7B36900279039 /* Currency.swift in Sources */,
 				03D5E2DF28AE783400D3A333 /* ItemListCell.swift in Sources */,
 				03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */,
+				030E833028DB58E800FE1BB8 /* NetworkError.swift in Sources */,
 				030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */,
 				03B04FB828ABEC6600FA268D /* EventBannerCell.swift in Sources */,
 			);
