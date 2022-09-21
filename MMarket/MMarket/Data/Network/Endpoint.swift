@@ -19,9 +19,9 @@ final class Endpoint {
         baseURL: String,
         path: String,
         method: HTTPMethod,
-        header: [String : String],
-        queries: [String : Any],
-        body: Data?
+        header: [String : String] = [:],
+        queries: [String : Any] = [:],
+        body: Data? = nil
     ) {
         self.baseURL = baseURL
         self.path = path
