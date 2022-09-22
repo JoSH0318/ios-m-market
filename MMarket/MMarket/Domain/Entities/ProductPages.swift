@@ -10,11 +10,6 @@ import Foundation
 struct ProductPages {
     let pageNumber: Int
     let itemsPerPage: Int
-    let totalCount: Int
-    let offset: Int
-    let limit: Int
     let products: [Product]
-    let lastPage: Int
     let hasNext: Bool
-    let hasPrev: Bool
 }
