@@ -14,12 +14,12 @@ class MainViewController: UIViewController {
         case main
     }
     
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Page>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Page>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Product>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Product>
     private lazy var dataSource = makeDataSource()
     
     private let itemCollectionView = ItemCollectionView()
-    private var pages = [Page]()
+    private var pages = [Product]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
