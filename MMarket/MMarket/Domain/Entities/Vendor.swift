@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  Vendor.swift
 //  MMarket
 //
 //  Created by 조성훈 on 2022/08/25.
