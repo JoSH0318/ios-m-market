@@ -20,3 +20,16 @@ struct ProductImageDTO: Decodable {
         case issuedAt = "issued_at"
     }
 }
+
+extension ProductImageDTO {
+    func toEntity() -> ProductImage {
+        let entity = ProductImage(
+            id: self.id,
+            url: self.url,
+            thumbnailUrl: self.thumbnailUrl,
+            succeed: self.succeed,
+            issuedAt: self.issuedAt
+        )
+        return entity
+    }
+}

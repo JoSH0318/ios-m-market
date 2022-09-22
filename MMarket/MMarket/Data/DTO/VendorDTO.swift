@@ -19,3 +19,15 @@ struct VendorDTO: Decodable {
         case issuedAt = "issued_at"
     }
 }
+
+extension VendorDTO {
+    func toEntity() -> Vendor {
+        let entity = Vendor(
+            name: self.name,
+            id: self.id,
+            createdAt: self.createdAt,
+            issuedAt: self.issuedAt
+        )
+        return entity
+    }
+}

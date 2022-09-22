@@ -29,3 +29,15 @@ struct ProductPagesDTO: Decodable {
         case hasPrev = "has_prev"
     }
 }
+
+extension ProductPagesDTO {
+    func toEntity() -> ProductPages {
+        let entity = ProductPages(
+            pageNumber: self.pageNumber,
+            itemsPerPage: self.itemsPerPage,
+            products: self.products.map { $0.toEntity() },
+            hasNext: self.hasNext
+        )
+        return entity
+    }
+}

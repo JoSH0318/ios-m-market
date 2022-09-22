@@ -31,3 +31,24 @@ struct ProductDTO: Decodable {
         case issuedAt = "issued_at"
     }
 }
+
+extension ProductDTO {
+    func toEntity() -> Product {
+        let entity = Product(
+            id: self.id,
+            venderId: self.venderId ,
+            name: self.name,
+            thumbnail: self.thumbnail,
+            currency: self.currency,
+            price: self.price,
+            bargainPrice: self.bargainPrice,
+            discountedPrice: self.discountedPrice,
+            stock: self.stock,
+            images: self.images.map{ $0.toEntity() },
+            vendors: self.vendors.toEntity(),
+            createdAt: self.createdAt,
+            issuedAt: self.issuedAt
+        )
+        return entity
+    }
+}
