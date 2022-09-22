@@ -39,6 +39,15 @@ final class DefaultProductRepository: ProductRepository {
         return networkProvider.execute(endpoint: endpoint)
             .map { _ in }
     }
+    
+    func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
+        guard let formData = generateFormData(by: productRequest) else {
+            return Observable.just(Void())
+        }
+        let endpoint = APIEndpoints.productEdition(formData, productId).asEndpoint
+        return networkProvider.execute(endpoint: endpoint)
+            .map { _ in }
+    }
 }
 
 extension DefaultProductRepository {
@@ -67,6 +76,13 @@ extension DefaultProductRepository {
         }
         data.appendString("\r\n--\(boundary)--\r\n")
         
+        return data
+    }
+    
+    private func generateFormData(by productRequest: ProductRequest) -> Data? {
+        guard let jsonData = try? JSONEncoder().encode(productRequest) else { return nil }
+        var data = Data()
+        data.append(jsonData)
         return data
     }
 }
