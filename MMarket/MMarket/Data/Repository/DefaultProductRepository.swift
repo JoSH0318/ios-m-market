@@ -22,4 +22,11 @@ final class DefaultProductRepository: ProductRepository {
             .map { $0.products }
             .map { $0.map { $0.toEntity() } }
     }
+    
+    func fetchProduct(productId: Int) -> Observable<Product> {
+        let endpoint = APIEndpoints.productDetail(productId).asEndpoint
+        return networkProvider.execute(endpoint: endpoint)
+            .decode(type: ProductDTO.self, decoder: JSONDecoder())
+            .map { $0.toEntity() }
+    }
 }
