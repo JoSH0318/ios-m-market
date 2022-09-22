@@ -29,6 +29,18 @@ final class DefaultProductRepository: ProductRepository {
             .decode(type: ProductDTO.self, decoder: JSONDecoder())
             .map { $0.toEntity() }
     }
+    
+    func createProduct(productRequest: ProductRequest, images: [ImageFile]) -> Observable<Void> {
+        let boundary = UUID().uuidString
+        guard let formData = generateMultiPartForm(by: productRequest, images, boundary) else {
+            return Observable.just(Void())
+        }
+        let endpoint = APIEndpoints.productCreation(formData, boundary).asEndpoint
+        return networkProvider.execute(endpoint: endpoint)
+            .map { _ in }
+    }
+}
+
 extension DefaultProductRepository {
     private func generateMultiPartForm(
         by productRequest: ProductRequest,
