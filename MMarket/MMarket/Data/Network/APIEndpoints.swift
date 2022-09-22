@@ -1,5 +1,5 @@
 //
-//  API.swift
+//  APIEndpoints.swift
 //  MMarket
 //
 //  Created by 조성훈 on 2022/09/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum API {
+enum APIEndpoints {
     private enum Constant {
         static let baseURL = "https://market-training.yagom-academy.kr/"
         static let path = "api/products/"
@@ -21,7 +21,7 @@ enum API {
     case productDelete(Int, String)
 }
 
-extension API {
+extension APIEndpoints {
     var asEndpoint: Endpoint {
         switch self {
         case .productList(let pageNumber, let itemsPerPage):
