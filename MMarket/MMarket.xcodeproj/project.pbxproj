@@ -16,6 +16,7 @@
 		030E833F28DC5E9700FE1BB8 /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E833E28DC5E9700FE1BB8 /* ProductDTO.swift */; };
 		030E834128DC8E1200FE1BB8 /* ProductImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834028DC8E1200FE1BB8 /* ProductImageDTO.swift */; };
 		030E834328DC8E2A00FE1BB8 /* VendorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834228DC8E2A00FE1BB8 /* VendorDTO.swift */; };
+		030E834528DC933000FE1BB8 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834428DC933000FE1BB8 /* NetworkProvider.swift */; };
 		030E834728DCA83F00FE1BB8 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834628DCA83F00FE1BB8 /* ProductImage.swift */; };
 		030E834928DCA99F00FE1BB8 /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834828DCA99F00FE1BB8 /* ProductRequest.swift */; };
 		03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04F9D28ABD91B00FA268D /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 		030E833E28DC5E9700FE1BB8 /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
 		030E834028DC8E1200FE1BB8 /* ProductImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageDTO.swift; sourceTree = "<group>"; };
 		030E834228DC8E2A00FE1BB8 /* VendorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorDTO.swift; sourceTree = "<group>"; };
+		030E834428DC933000FE1BB8 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		030E834628DCA83F00FE1BB8 /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		030E834828DCA99F00FE1BB8 /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
 		03B04F9A28ABD91B00FA268D /* MMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 				030E833328DB672900FE1BB8 /* APIEndpoints.swift */,
 				030E832F28DB58E800FE1BB8 /* NetworkError.swift */,
 				030E833128DB5B8F00FE1BB8 /* HTTPMethod.swift */,
+				030E834428DC933000FE1BB8 /* NetworkProvider.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */,
 				030E834128DC8E1200FE1BB8 /* ProductImageDTO.swift in Sources */,
 				030E833428DB672900FE1BB8 /* APIEndpoints.swift in Sources */,
+				030E834528DC933000FE1BB8 /* NetworkProvider.swift in Sources */,
 				03E0542D28B7B40A00279039 /* Vendor.swift in Sources */,
 				03D5E2DF28AE783400D3A333 /* ItemListCell.swift in Sources */,
 				03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */,
