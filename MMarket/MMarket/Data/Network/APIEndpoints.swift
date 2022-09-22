@@ -34,10 +34,10 @@ extension APIEndpoints {
                     "items_per_page": itemsPerPage
                 ]
             )
-        case .productDetail(let productID):
+        case .productDetail(let productId):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productID)",
+                path: Constant.path + "\(productId)",
                 method: .get
             )
         case .productCreation(let body, let boundary):
@@ -51,10 +51,10 @@ extension APIEndpoints {
                 ],
                 body: body
             )
-        case .productEdition(let body, let productID):
+        case .productEdition(let body, let productId):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productID)",
+                path: Constant.path + "\(productId)",
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
@@ -62,20 +62,20 @@ extension APIEndpoints {
                 ],
                 body: body
             )
-        case .scretKeySearch(let productID):
+        case .scretKeySearch(let productId):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productID)/secret",
+                path: Constant.path + "\(productId)/secret",
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
                     "identifier": "8de44ec8-d1b8-11ec-9676-43acdce229f5"
                 ]
             )
-        case .productDelete(let productID, let productSecret):
+        case .productDelete(let productId, let productSecret):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productID)/\(productSecret)",
+                path: Constant.path + "\(productId)/\(productSecret)",
                 method: .delete
             )
         }
