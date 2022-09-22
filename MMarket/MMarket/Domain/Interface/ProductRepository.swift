@@ -9,10 +9,5 @@ import Foundation
 import RxSwift
 
 protocol ProductRepository {
-    func fetchAll(endpoint: Endpoint) -> Observable<[Product]>
-    func fetchProduct(endpoint: Endpoint) -> Observable<Product>
-    func createProduct(endpoint: Endpoint) -> Observable<Void>
-    func updateProduct(endpoint: Endpoint) -> Observable<Void>
-    func searchSecretKey(endpoint: Endpoint)
-    func deleteProduct(endpoint: Endpoint) -> Observable<Void>
+    func fetchAll(pageNumber: Int, itemsPerPage: Int) -> Observable<[Product]>
 }
