@@ -13,7 +13,7 @@ struct ProductPagesDTO: Decodable {
     let totalCount: Int
     let offset: Int
     let limit: Int
-    let product: [ProductDTO]
+    let products: [ProductDTO]
     let lastPage: Int
     let hasNext: Bool
     let hasPrev: Bool
@@ -23,7 +23,7 @@ struct ProductPagesDTO: Decodable {
         case pageNumber = "page_no"
         case itemsPerPage = "items_per_page"
         case totalCount = "total_count"
-        case product = "pages"
+        case products = "pages"
         case lastPage = "last_page"
         case hasNext = "has_next"
         case hasPrev = "has_prev"
