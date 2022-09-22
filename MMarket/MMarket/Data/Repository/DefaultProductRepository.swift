@@ -29,4 +29,11 @@ final class DefaultProductRepository: ProductRepository {
             .decode(type: ProductDTO.self, decoder: JSONDecoder())
             .map { $0.toEntity() }
     }
+extension Data {
+  mutating func appendString(_ string: String) {
+    guard let data = string.data(using: .utf8) else {
+      return
+    }
+    self.append(data)
+  }
 }
