@@ -42,7 +42,7 @@ final class DefaultProductRepository: ProductRepository {
     
     func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
         guard let formData = generateFormData(by: productRequest) else {
-            return Observable.just(Void())
+            return Observable.single(.error(NetworkError.invalidData))()
         }
         let endpoint = APIEndpoints.productEdition(formData, productId).asEndpoint
         return networkProvider.execute(endpoint: endpoint)
