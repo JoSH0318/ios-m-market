@@ -33,7 +33,7 @@ final class DefaultProductRepository: ProductRepository {
     func createProduct(productRequest: ProductRequest, images: [ImageFile]) -> Observable<Void> {
         let boundary = UUID().uuidString
         guard let formData = generateMultiPartForm(by: productRequest, images, boundary) else {
-            return Observable.just(Void())
+            return Observable.single(.error(NetworkError.invalidData))()
         }
         let endpoint = APIEndpoints.productCreation(formData, boundary).asEndpoint
         return networkProvider.execute(endpoint: endpoint)
