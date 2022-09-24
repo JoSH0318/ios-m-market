@@ -30,60 +30,60 @@ final class DefaultProductRepository: ProductRepository {
             .map { $0.toEntity() }
     }
     
-    func createProduct(productRequest: ProductRequest, images: [ImageFile]) -> Observable<Void> {
+    func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void> {
         let boundary = UUID().uuidString
-        guard let formData = generateMultiPartForm(by: productRequest, images, boundary) else {
-            return Observable.single(.error(NetworkError.invalidData))()
-        }
-        let endpoint = APIEndpoints.productCreation(formData, boundary).asEndpoint
+        let formData = generateFormData(by: productRequest)
+        let imageFormDatas = generateImageFormDatas(by: images)
+        let body = HTTPBodyBuilder.create(uuid: boundary)
+            .append(formData)
+            .append(imageFormDatas)
+            .apply()
+        let endpoint = APIEndpoints.productCreation(body, boundary).asEndpoint
         return networkProvider.execute(endpoint: endpoint)
             .map { _ in }
     }
     
     func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
-        guard let formData = generateFormData(by: productRequest) else {
-            return Observable.single(.error(NetworkError.invalidData))()
-        }
-        let endpoint = APIEndpoints.productEdition(formData, productId).asEndpoint
+        let formData = generateFormData(by: productRequest)
+        let body = HTTPBodyBuilder.create()
+            .append(formData)
+            .apply()
+        let endpoint = APIEndpoints.productEdition(body, productId).asEndpoint
         return networkProvider.execute(endpoint: endpoint)
             .map { _ in }
     }
 }
 
 extension DefaultProductRepository {
-    private func generateMultiPartForm(
-        by productRequest: ProductRequest,
-        _ images: [ImageFile],
-        _ boundary: String
-    ) -> Data? {
-        guard let jsonData = try? JSONEncoder().encode(productRequest) else { return nil }
-        var data = Data()
-        
-        data.appendString("\r\n--\(boundary)\r\n")
-        data.appendString("Content-Disposition: form-data; name=\"params\"\r\n")
-        data.appendString("Content-Type: application/json\r\n")
-        data.appendString("\r\n")
-        data.append(jsonData)
-        data.appendString("\r\n")
-        
-        for image in images {
-          data.appendString("--\(boundary)\r\n")
-          data.appendString("Content-Disposition: form-data; name=\"images\"; filename=\"\(image.fileName)\"\r\n")
-          data.appendString("Content-Type: image/\(image.type)\r\n")
-          data.appendString("\r\n")
-          data.append(image.data)
-          data.appendString("\r\n")
-        }
-        data.appendString("\r\n--\(boundary)--\r\n")
-        
-        return data
+    private func generateFormData(by productRequest: ProductRequest) -> RequestDataInfo {
+        let jsonData = try? JSONEncoder().encode(productRequest)
+        let formData = RequestDataInfo(
+            name: "params",
+            fileName: nil,
+            type: .json,
+            data: jsonData
+        )
+        return formData
     }
     
-    private func generateFormData(by productRequest: ProductRequest) -> Data? {
-        guard let jsonData = try? JSONEncoder().encode(productRequest) else { return nil }
-        var data = Data()
-        data.append(jsonData)
-        return data
+    private func generateImageFormDatas(by images: [Data]) -> [RequestDataInfo] {
+        let imageFormDatas = images.map {
+            RequestDataInfo(
+                name: "images",
+                fileName: generateFileName(),
+                type: .jpeg,
+                data: $0
+            )
+        }
+        return imageFormDatas
+    }
+    
+    private func generateFileName() -> String {
+      let date = Date()
+      let dateFormatter = DateFormatter()
+      dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+      let fileName = "\(dateFormatter.string(from: date)).jpeg"
+      return fileName
     }
 }
 
