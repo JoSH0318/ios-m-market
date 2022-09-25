@@ -67,6 +67,12 @@ final class HTTPBodyBuilder {
         return self
     }
     
+    func append(_ password: String) -> HTTPBodyBuilder {
+        guard let requestData = "{\"secret\": \"\(password)\"}".data(using: .utf8) else { return self }
+        data.append(requestData)
+        return self
+    }
+    
     func apply() -> Data {
         if let boundary = boundary {
             self.data.appendString("\r\n--\(boundary)--\r\n")
