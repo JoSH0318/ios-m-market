@@ -15,7 +15,7 @@ final class DefaultProductRepository: ProductRepository {
         self.networkProvider = networkProvider
     }
     
-    func fetchAll(pageNumber: Int, itemsPerPage: Int) -> Observable<[ProductDTO]> {
+    func fetchAll(by pageNumber: Int, _ itemsPerPage: Int) -> Observable<[ProductDTO]> {
         let endpoint = APIEndpoints
             .productList(pageNumber, itemsPerPage)
             .asEndpoint
@@ -26,7 +26,7 @@ final class DefaultProductRepository: ProductRepository {
             .map { $0.products }
     }
     
-    func fetchProduct(productId: Int) -> Observable<ProductDTO> {
+    func fetchProduct(by productId: Int) -> Observable<ProductDTO> {
         let endpoint = APIEndpoints
             .productDetail(productId)
             .asEndpoint
@@ -36,7 +36,7 @@ final class DefaultProductRepository: ProductRepository {
             .decode(type: ProductDTO.self, decoder: JSONDecoder())
     }
     
-    func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void> {
+    func createProduct(by productRequest: ProductRequest, _ images: [Data]) -> Observable<Void> {
         let boundary = UUID().uuidString
         let formData = generateFormData(by: productRequest)
         let imageFormDatas = generateImageFormDatas(by: images)
@@ -53,7 +53,7 @@ final class DefaultProductRepository: ProductRepository {
             .map { _ in }
     }
     
-    func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
+    func updateProduct(by productRequest: ProductRequest, _ productId: Int) -> Observable<Void> {
         let formData = generateFormData(by: productRequest)
         let body = HTTPBodyBuilder
             .create()
@@ -68,7 +68,7 @@ final class DefaultProductRepository: ProductRepository {
             .map { _ in }
     }
     
-    func inquireProductSecret(password: String, productId: Int) -> Observable<Data> {
+    func inquireProductSecret(by password: String, _ productId: Int) -> Observable<Data> {
         let body = HTTPBodyBuilder
             .create()
             .append(password)
@@ -82,7 +82,7 @@ final class DefaultProductRepository: ProductRepository {
             .map { $0 }
     }
     
-    func deleteProduct(secret: String, productId: Int) -> Observable<Void> {
+    func deleteProduct(by secret: String, _ productId: Int) -> Observable<Void> {
         let endpoint = APIEndpoints
             .productDelete(secret, productId)
             .asEndpoint

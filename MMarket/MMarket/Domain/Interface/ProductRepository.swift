@@ -9,10 +9,10 @@ import Foundation
 import RxSwift
 
 protocol ProductRepository {
-    func fetchAll(pageNumber: Int, itemsPerPage: Int) -> Observable<[ProductDTO]>
-    func fetchProduct(productId: Int) -> Observable<ProductDTO>
-    func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void>
-    func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void>
-    func inquireProductSecret(password: String, productId: Int) -> Observable<Data>
-    func deleteProduct(secret: String, productId: Int) -> Observable<Void>
+    func fetchAll(by pageNumber: Int, _ itemsPerPage: Int) -> Observable<[ProductDTO]>
+    func fetchProduct(by productId: Int) -> Observable<ProductDTO>
+    func createProduct(by productRequest: ProductRequest, _ images: [Data]) -> Observable<Void>
+    func updateProduct(by productRequest: ProductRequest, _ productId: Int) -> Observable<Void>
+    func inquireProductSecret(by password: String, _ productId: Int) -> Observable<Data>
+    func deleteProduct(by secret: String, _ productId: Int) -> Observable<Void>
 }

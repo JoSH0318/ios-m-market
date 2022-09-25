@@ -28,33 +28,33 @@ final class DefaultProductUseCase: ProductUseCase {
 extension DefaultProductUseCase {
     func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<[Product]> {
         return repository
-            .fetchAll(pageNumber: pageNumber, itemsPerPage: itemsPerPage)
+            .fetchAll(by: pageNumber, itemsPerPage)
             .map { $0.map { $0.toEntity() } }
     }
     
     func fetchProduct(productId: Int) -> Observable<Product> {
         return repository
-            .fetchProduct(productId: productId)
+            .fetchProduct(by: productId)
             .map { $0.toEntity() }
     }
     
     func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void> {
-        return repository.createProduct(productRequest: productRequest, images: images)
+        return repository.createProduct(by: productRequest, images)
     }
     
     func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
-        return repository.updateProduct(productRequest: productRequest, productId: productId)
+        return repository.updateProduct(by: productRequest, productId)
     }
     
     func inquireProductSecret(password: String, productId: Int) -> Observable<String> {
         return repository
-            .inquireProductSecret(password: password, productId: productId)
+            .inquireProductSecret(by: password, productId)
             .compactMap { data in
                 String(data: data, encoding: .utf8)
             }
     }
     
     func deleteProduct(secret: String, productId: Int) -> Observable<Void> {
-        return repository.deleteProduct(secret: secret, productId: productId)
+        return repository.deleteProduct(by: secret, productId)
     }
 }
