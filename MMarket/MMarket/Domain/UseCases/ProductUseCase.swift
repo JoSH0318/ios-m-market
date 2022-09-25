@@ -43,7 +43,7 @@ extension DefaultProductUseCase {
     }
     
     func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
-        return repository.updateProduct(by: productRequest, productId)
+        return repository.patchProduct(by: productRequest, productId)
     }
     
     func inquireProductSecret(password: String, productId: Int) -> Observable<String> {

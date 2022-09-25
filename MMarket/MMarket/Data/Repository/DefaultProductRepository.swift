@@ -53,7 +53,7 @@ final class DefaultProductRepository: ProductRepository {
             .map { _ in }
     }
     
-    func updateProduct(by productRequest: ProductRequest, _ productId: Int) -> Observable<Void> {
+    func patchProduct(by productRequest: ProductRequest, _ productId: Int) -> Observable<Void> {
         let formData = generateFormData(by: productRequest)
         let body = HTTPBodyBuilder
             .create()

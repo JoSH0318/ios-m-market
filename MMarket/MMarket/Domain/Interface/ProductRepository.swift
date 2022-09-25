@@ -12,7 +12,7 @@ protocol ProductRepository {
     func fetchAll(by pageNumber: Int, _ itemsPerPage: Int) -> Observable<[ProductDTO]>
     func fetchProduct(by productId: Int) -> Observable<ProductDTO>
     func createProduct(by productRequest: ProductRequest, _ images: [Data]) -> Observable<Void>
-    func updateProduct(by productRequest: ProductRequest, _ productId: Int) -> Observable<Void>
+    func patchProduct(by productRequest: ProductRequest, _ productId: Int) -> Observable<Void>
     func inquireProductSecret(by password: String, _ productId: Int) -> Observable<Data>
     func deleteProduct(by secret: String, _ productId: Int) -> Observable<Void>
 }
