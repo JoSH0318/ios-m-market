@@ -15,7 +15,7 @@ final class DefaultProductRepository: ProductRepository {
         self.networkProvider = networkProvider
     }
     
-    func fetchAll(by pageNumber: Int, _ itemsPerPage: Int) -> Observable<[ProductDTO]> {
+    func fetchAll(by pageNumber: Int, _ itemsPerPage: Int) -> Observable<ProductPagesDTO> {
         let endpoint = APIEndpoints
             .productList(pageNumber, itemsPerPage)
             .asEndpoint
@@ -23,7 +23,6 @@ final class DefaultProductRepository: ProductRepository {
         return networkProvider
             .execute(endpoint: endpoint)
             .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
-            .map { $0.products }
     }
     
     func fetchProduct(by productId: Int) -> Observable<ProductDTO> {

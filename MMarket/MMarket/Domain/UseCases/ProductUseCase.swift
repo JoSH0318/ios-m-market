@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol ProductUseCase {
-    func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<[Product]>
+    func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<ProductPages>
     func fetchProduct(productId: Int) -> Observable<Product>
     func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void>
     func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void>
@@ -26,10 +26,10 @@ final class DefaultProductUseCase: ProductUseCase {
 }
 
 extension DefaultProductUseCase {
-    func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<[Product]> {
+    func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<ProductPages> {
         return repository
             .fetchAll(by: pageNumber, itemsPerPage)
-            .map { $0.map { $0.toEntity() } }
+            .map { $0.toEntity() }
     }
     
     func fetchProduct(productId: Int) -> Observable<Product> {
