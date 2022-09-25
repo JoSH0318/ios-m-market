@@ -38,6 +38,7 @@ extension ProductPagesDTO {
             products: self.products.map { $0.toEntity() },
             hasNext: self.hasNext
         )
+        
         return entity
     }
 }

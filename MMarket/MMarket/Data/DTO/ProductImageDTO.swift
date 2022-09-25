@@ -30,6 +30,7 @@ extension ProductImageDTO {
             succeed: self.succeed,
             issuedAt: self.issuedAt
         )
+        
         return entity
     }
 }

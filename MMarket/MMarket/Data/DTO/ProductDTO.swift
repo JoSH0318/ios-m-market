@@ -49,6 +49,7 @@ extension ProductDTO {
             createdAt: self.createdAt,
             issuedAt: self.issuedAt
         )
+        
         return entity
     }
 }

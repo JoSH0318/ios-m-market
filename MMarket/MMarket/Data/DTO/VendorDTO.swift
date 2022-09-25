@@ -28,6 +28,7 @@ extension VendorDTO {
             createdAt: self.createdAt,
             issuedAt: self.issuedAt
         )
+        
         return entity
     }
 }
