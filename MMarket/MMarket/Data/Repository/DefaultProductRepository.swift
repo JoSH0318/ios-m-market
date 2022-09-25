@@ -120,12 +120,12 @@ extension DefaultProductRepository {
     }
     
     private func generateFileName() -> String {
-      let date = Date()
-      let dateFormatter = DateFormatter()
-      dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-      let fileName = "\(dateFormatter.string(from: date)).jpeg"
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let fileName = "\(dateFormatter.string(from: date)).jpeg"
         
-      return fileName
+        return fileName
     }
 }
 
