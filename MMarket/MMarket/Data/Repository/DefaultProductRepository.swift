@@ -73,7 +73,7 @@ final class DefaultProductRepository: ProductRepository {
             .append(password)
             .apply()
         let endpoint = APIEndpoints
-            .scretKeySearch(body, productId)
+            .secretKeyInquiry(body, productId)
             .asEndpoint
         
         return networkProvider
