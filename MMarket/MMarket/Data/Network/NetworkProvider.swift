@@ -43,6 +43,7 @@ final class DefaultNetworkProvider: NetworkProvider {
                     single(.failure(NetworkError.invalidData))
                     return
                 }
+                
                 single(.success(data))
             }
             task?.resume()

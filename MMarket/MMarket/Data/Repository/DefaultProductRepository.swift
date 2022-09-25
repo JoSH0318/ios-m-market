@@ -17,6 +17,7 @@ final class DefaultProductRepository: ProductRepository {
     
     func fetchAll(pageNumber: Int, itemsPerPage: Int) -> Observable<[Product]> {
         let endpoint = APIEndpoints.productList(pageNumber, itemsPerPage).asEndpoint
+        
         return networkProvider.execute(endpoint: endpoint)
             .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
             .map { $0.products }
@@ -25,6 +26,7 @@ final class DefaultProductRepository: ProductRepository {
     
     func fetchProduct(productId: Int) -> Observable<Product> {
         let endpoint = APIEndpoints.productDetail(productId).asEndpoint
+        
         return networkProvider.execute(endpoint: endpoint)
             .decode(type: ProductDTO.self, decoder: JSONDecoder())
             .map { $0.toEntity() }
@@ -39,6 +41,7 @@ final class DefaultProductRepository: ProductRepository {
             .append(imageFormDatas)
             .apply()
         let endpoint = APIEndpoints.productCreation(body, boundary).asEndpoint
+        
         return networkProvider.execute(endpoint: endpoint)
             .map { _ in }
     }
@@ -49,6 +52,7 @@ final class DefaultProductRepository: ProductRepository {
             .append(formData)
             .apply()
         let endpoint = APIEndpoints.productEdition(body, productId).asEndpoint
+        
         return networkProvider
             .execute(endpoint: endpoint)
             .map { _ in }
@@ -59,12 +63,14 @@ final class DefaultProductRepository: ProductRepository {
             .append(password)
             .apply()
         let endpoint = APIEndpoints.scretKeySearch(body, productId).asEndpoint
+        
         return networkProvider.execute(endpoint: endpoint)
             .map { $0 }
     }
     
     func deleteProduct(secret: String, productId: Int) -> Observable<Void> {
         let endpoint = APIEndpoints.productDelete(secret, productId).asEndpoint
+        
         return networkProvider.execute(endpoint: endpoint)
             .map { _ in }
     }
@@ -79,6 +85,7 @@ extension DefaultProductRepository {
             type: .json,
             data: jsonData
         )
+        
         return formData
     }
     
@@ -91,6 +98,7 @@ extension DefaultProductRepository {
                 data: $0
             )
         }
+        
         return imageFormDatas
     }
     
@@ -99,6 +107,7 @@ extension DefaultProductRepository {
       let dateFormatter = DateFormatter()
       dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
       let fileName = "\(dateFormatter.string(from: date)).jpeg"
+        
       return fileName
     }
 }

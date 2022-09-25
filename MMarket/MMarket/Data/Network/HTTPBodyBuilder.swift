@@ -42,7 +42,9 @@ final class HTTPBodyBuilder {
     
     @discardableResult
     func append(_ dataInfo: RequestDataInfo) -> HTTPBodyBuilder {
-        guard let requestData = dataInfo.data, let jsonData = try? JSONEncoder().encode(requestData) else {
+        guard let requestData = dataInfo.data,
+              let jsonData = try? JSONEncoder().encode(requestData)
+        else {
             return self
         }
         
@@ -55,6 +57,7 @@ final class HTTPBodyBuilder {
             data.appendString("\r\n")
             data.appendString("Content-Type: \(dataInfo.type.description)\r\n\r\n")
         }
+        
         data.append(jsonData)
         
         return self
@@ -64,12 +67,14 @@ final class HTTPBodyBuilder {
         dataInfos.forEach {
             append($0)
         }
+        
         return self
     }
     
     func append(_ password: String) -> HTTPBodyBuilder {
         guard let requestData = "{\"secret\": \"\(password)\"}".data(using: .utf8) else { return self }
         data.append(requestData)
+        
         return self
     }
     
@@ -77,6 +82,7 @@ final class HTTPBodyBuilder {
         if let boundary = boundary {
             self.data.appendString("\r\n--\(boundary)--\r\n")
         }
+        
         return self.data
     }
 }
