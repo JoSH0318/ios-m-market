@@ -18,7 +18,7 @@ enum APIEndpoints {
     case productCreation(Data, String)
     case productEdition(Data, Int)
     case scretKeySearch(Data, Int)
-    case productDelete(Int, String)
+    case productDelete(String, Int)
 }
 
 extension APIEndpoints {
@@ -73,7 +73,7 @@ extension APIEndpoints {
                 ],
                 body: body
             )
-        case .productDelete(let productId, let productSecret):
+        case .productDelete(let productSecret, let productId):
             return Endpoint(
                 baseURL: Constant.baseURL,
                 path: Constant.path + "\(productId)/\(productSecret)",

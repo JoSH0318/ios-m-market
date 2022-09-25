@@ -64,7 +64,7 @@ final class DefaultProductRepository: ProductRepository {
     }
     
     func deleteProduct(secret: String, productId: Int) -> Observable<Void> {
-        let endpoint = APIEndpoints.productDelete(productId, secret).asEndpoint
+        let endpoint = APIEndpoints.productDelete(secret, productId).asEndpoint
         return networkProvider.execute(endpoint: endpoint)
             .map { _ in }
     }
