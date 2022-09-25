@@ -21,9 +21,3 @@ struct ProductRequest: Encodable {
         case discountedPrice = "discounted_price"
     }
 }
-
-struct ImageFile {
-    let fileName: String
-    let type: String = "jpeg"
-    let data: Data
-}
