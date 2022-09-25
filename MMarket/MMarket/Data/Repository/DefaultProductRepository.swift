@@ -62,6 +62,12 @@ final class DefaultProductRepository: ProductRepository {
         return networkProvider.execute(endpoint: endpoint)
             .map { $0 }
     }
+    
+    func deleteProduct(secret: String, productId: Int) -> Observable<Void> {
+        let endpoint = APIEndpoints.productDelete(productId, secret).asEndpoint
+        return networkProvider.execute(endpoint: endpoint)
+            .map { _ in }
+    }
 }
 
 extension DefaultProductRepository {
