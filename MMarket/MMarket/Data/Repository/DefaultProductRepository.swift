@@ -49,8 +49,18 @@ final class DefaultProductRepository: ProductRepository {
             .append(formData)
             .apply()
         let endpoint = APIEndpoints.productEdition(body, productId).asEndpoint
-        return networkProvider.execute(endpoint: endpoint)
+        return networkProvider
+            .execute(endpoint: endpoint)
             .map { _ in }
+    }
+    
+    func inquireProductSecret(password: String, productId: Int) -> Observable<Data> {
+        let body = HTTPBodyBuilder.create()
+            .append(password)
+            .apply()
+        let endpoint = APIEndpoints.scretKeySearch(body, productId).asEndpoint
+        return networkProvider.execute(endpoint: endpoint)
+            .map { $0 }
     }
 }
 
