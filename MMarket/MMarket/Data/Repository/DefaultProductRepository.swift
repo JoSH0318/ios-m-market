@@ -15,32 +15,39 @@ final class DefaultProductRepository: ProductRepository {
         self.networkProvider = networkProvider
     }
     
-    func fetchAll(pageNumber: Int, itemsPerPage: Int) -> Observable<[Product]> {
-        let endpoint = APIEndpoints.productList(pageNumber, itemsPerPage).asEndpoint
+    func fetchAll(pageNumber: Int, itemsPerPage: Int) -> Observable<[ProductDTO]> {
+        let endpoint = APIEndpoints
+            .productList(pageNumber, itemsPerPage)
+            .asEndpoint
         
-        return networkProvider.execute(endpoint: endpoint)
+        return networkProvider
+            .execute(endpoint: endpoint)
             .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
             .map { $0.products }
-            .map { $0.map { $0.toEntity() } }
     }
     
-    func fetchProduct(productId: Int) -> Observable<Product> {
-        let endpoint = APIEndpoints.productDetail(productId).asEndpoint
+    func fetchProduct(productId: Int) -> Observable<ProductDTO> {
+        let endpoint = APIEndpoints
+            .productDetail(productId)
+            .asEndpoint
         
-        return networkProvider.execute(endpoint: endpoint)
+        return networkProvider
+            .execute(endpoint: endpoint)
             .decode(type: ProductDTO.self, decoder: JSONDecoder())
-            .map { $0.toEntity() }
     }
     
     func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void> {
         let boundary = UUID().uuidString
         let formData = generateFormData(by: productRequest)
         let imageFormDatas = generateImageFormDatas(by: images)
-        let body = HTTPBodyBuilder.create(uuid: boundary)
+        let body = HTTPBodyBuilder
+            .create(uuid: boundary)
             .append(formData)
             .append(imageFormDatas)
             .apply()
-        let endpoint = APIEndpoints.productCreation(body, boundary).asEndpoint
+        let endpoint = APIEndpoints
+            .productCreation(body, boundary)
+            .asEndpoint
         
         return networkProvider.execute(endpoint: endpoint)
             .map { _ in }
@@ -48,10 +55,13 @@ final class DefaultProductRepository: ProductRepository {
     
     func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
         let formData = generateFormData(by: productRequest)
-        let body = HTTPBodyBuilder.create()
+        let body = HTTPBodyBuilder
+            .create()
             .append(formData)
             .apply()
-        let endpoint = APIEndpoints.productEdition(body, productId).asEndpoint
+        let endpoint = APIEndpoints
+            .productEdition(body, productId)
+            .asEndpoint
         
         return networkProvider
             .execute(endpoint: endpoint)
@@ -59,19 +69,26 @@ final class DefaultProductRepository: ProductRepository {
     }
     
     func inquireProductSecret(password: String, productId: Int) -> Observable<Data> {
-        let body = HTTPBodyBuilder.create()
+        let body = HTTPBodyBuilder
+            .create()
             .append(password)
             .apply()
-        let endpoint = APIEndpoints.scretKeySearch(body, productId).asEndpoint
+        let endpoint = APIEndpoints
+            .scretKeySearch(body, productId)
+            .asEndpoint
         
-        return networkProvider.execute(endpoint: endpoint)
+        return networkProvider
+            .execute(endpoint: endpoint)
             .map { $0 }
     }
     
     func deleteProduct(secret: String, productId: Int) -> Observable<Void> {
-        let endpoint = APIEndpoints.productDelete(secret, productId).asEndpoint
+        let endpoint = APIEndpoints
+            .productDelete(secret, productId)
+            .asEndpoint
         
-        return networkProvider.execute(endpoint: endpoint)
+        return networkProvider
+            .execute(endpoint: endpoint)
             .map { _ in }
     }
 }

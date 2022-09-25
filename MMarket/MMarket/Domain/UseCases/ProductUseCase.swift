@@ -27,11 +27,15 @@ final class DefaultProductUseCase: ProductUseCase {
 
 extension DefaultProductUseCase {
     func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<[Product]> {
-        return repository.fetchAll(pageNumber: pageNumber, itemsPerPage: itemsPerPage)
+        return repository
+            .fetchAll(pageNumber: pageNumber, itemsPerPage: itemsPerPage)
+            .map { $0.map { $0.toEntity() } }
     }
     
     func fetchProduct(productId: Int) -> Observable<Product> {
-        return repository.fetchProduct(productId: productId)
+        return repository
+            .fetchProduct(productId: productId)
+            .map { $0.toEntity() }
     }
     
     func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void> {
