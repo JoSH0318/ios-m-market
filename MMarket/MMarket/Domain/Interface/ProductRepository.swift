@@ -13,4 +13,6 @@ protocol ProductRepository {
     func fetchProduct(productId: Int) -> Observable<Product>
     func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void>
     func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void>
+    func inquireProductSecret(password: String, productId: Int) -> Observable<Data>
+    func deleteProduct(secret: String, productId: Int) -> Observable<Void>
 }
