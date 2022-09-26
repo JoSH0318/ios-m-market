@@ -8,5 +8,9 @@
 import Foundation
 
 struct MainViewModel {
+    private let productUseCase: ProductUseCase
     
+    init(productUseCase: ProductUseCase) {
+        self.productUseCase = productUseCase
+    }
 }
