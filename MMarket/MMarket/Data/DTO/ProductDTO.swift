@@ -18,15 +18,16 @@ struct ProductDTO: Decodable {
     let discountedPrice: Int
     let stock: Int
     let images: [ProductImageDTO]
-    let vendors: VendorDTO
+    let vendor: VendorDTO
     let createdAt: String
     let issuedAt: String
     
     private enum CodingKeys: String, CodingKey {
-        case id, name, thumbnail, currency, price, stock, images, vendors
+        case id, name, thumbnail, currency, price, stock, images
         case venderId = "vendor_id"
         case bargainPrice = "bargain_price"
         case discountedPrice = "discounted_price"
+        case vendor = "vendors"
         case createdAt = "created_at"
         case issuedAt = "issued_at"
     }
