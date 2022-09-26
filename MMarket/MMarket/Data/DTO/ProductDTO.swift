@@ -46,7 +46,7 @@ extension ProductDTO {
             discountedPrice: self.discountedPrice,
             stock: self.stock,
             images: self.images.map{ $0.toEntity() },
-            vendors: self.vendors.toEntity(),
+            vendor: self.vendor.toEntity(),
             createdAt: self.createdAt,
             issuedAt: self.issuedAt
         )

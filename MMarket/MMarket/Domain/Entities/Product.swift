@@ -18,7 +18,7 @@ struct Product: Hashable {
     let discountedPrice: Int
     let stock: Int
     let images: [ProductImage]
-    let vendors: Vendor
+    let vendor: Vendor
     let createdAt: String
     let issuedAt: String
     
