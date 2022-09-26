@@ -99,10 +99,10 @@
 			children = (
 				030E832D28DB55DE00FE1BB8 /* Endpoint.swift */,
 				030E833328DB672900FE1BB8 /* APIEndpoints.swift */,
-				030E832F28DB58E800FE1BB8 /* NetworkError.swift */,
 				030E833128DB5B8F00FE1BB8 /* HTTPMethod.swift */,
-				030E834428DC933000FE1BB8 /* NetworkProvider.swift */,
 				0361F47228DF5DB40010EC31 /* HTTPBodyBuilder.swift */,
+				030E834428DC933000FE1BB8 /* NetworkProvider.swift */,
+				030E832F28DB58E800FE1BB8 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
