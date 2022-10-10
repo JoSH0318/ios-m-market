@@ -16,7 +16,7 @@ class MainViewController: UIViewController {
     
     private lazy var dataSource = generateDataSource()
     
-    private let itemCollectionView = ItemCollectionView()
+    private let itemCollectionView = ProductCollectionView()
     private var pages = [Product]()
     
     override func viewDidLoad() {

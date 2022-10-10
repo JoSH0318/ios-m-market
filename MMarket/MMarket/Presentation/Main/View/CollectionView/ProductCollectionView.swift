@@ -1,5 +1,5 @@
 //
-//  ItemCollectionView.swift
+//  ProductCollectionView.swift
 //  MMarket
 //
 //  Created by 조성훈 on 2022/08/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ItemCollectionView: UICollectionView {
+class ProductCollectionView: UICollectionView {
     func configureEventBannerLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
