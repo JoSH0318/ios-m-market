@@ -12,15 +12,9 @@ import RxCocoa
 import RxDataSources
 
 class MainViewController: UIViewController {
+    private typealias DataSource = RxCollectionViewSectionedReloadDataSource<ProductSectionModel>
     
-    enum Section: CaseIterable {
-        case eventBanner
-        case main
-    }
-    
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Product>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Product>
-    private lazy var dataSource = makeDataSource()
+    private lazy var dataSource = generateDataSource()
     
     private let itemCollectionView = ItemCollectionView()
     private var pages = [Product]()
@@ -33,63 +27,36 @@ class MainViewController: UIViewController {
 // MARK: - Layout
 
 extension MainViewController {
-    private func configureLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout {(
-            sectionIndex: Int,
-            layoutEnvironment: NSCollectionLayoutEnvironment
-        ) -> NSCollectionLayoutSection? in
-            let sectionLayoutKind = Section.allCases[sectionIndex]
-            
-            switch (sectionLayoutKind) {
-            case .eventBanner:
-                return self.itemCollectionView.configureEventBannerLayout()
-            case .main:
-                return self.itemCollectionView.configureItemListLayout()
-            }
-        }
-        return layout
-    }
+    private func configureLayout() {}
 }
 
 // MARK: - DataSource
 
 extension MainViewController {
-    private func makeDataSource() -> DataSource {
-        let dataSource = DataSource(
-            collectionView: itemCollectionView
-        ) { collectionView, indexPath, itemIdentifier in
-            let sectionType = Section.allCases[indexPath.section]
-            
-            switch sectionType {
-            case .eventBanner:
-                guard let cell = collectionView.dequeueReusableCell(
+    private func generateDataSource() -> DataSource {
+        return DataSource { dataSource, collectionView, indexPath, item in
+            switch dataSource[indexPath] {
+            case .eventBannerItem(image: let image):
+                guard let cell: EventBannerCell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: EventBannerCell.idenfier,
                     for: indexPath
                 ) as? EventBannerCell else {
-                    return nil
+                    return UICollectionViewCell()
                 }
+                cell.bind(image: image)
+                
                 return cell
-            case .main:
-                guard let cell = collectionView.dequeueReusableCell(
+            case .productListItem(product: let product):
+                guard let cell: ItemListCell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: ItemListCell.idenfier,
                     for: indexPath
                 ) as? ItemListCell else {
-                    return nil
+                    return UICollectionViewCell()
                 }
+                cell.bind(product: product)
+                
                 return cell
             }
         }
-        return dataSource
-    }
-}
-
-// MARK: - SnapShot
-
-extension MainViewController {
-    private func applySnapShot() {
-        var snapShot = Snapshot()
-        snapShot.appendSections([.main])
-        snapShot.appendItems(pages)
-        dataSource.apply(snapShot, animatingDifferences: true)
     }
 }
