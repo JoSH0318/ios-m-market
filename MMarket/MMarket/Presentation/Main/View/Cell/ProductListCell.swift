@@ -1,5 +1,5 @@
 //
-//  ItemListCell.swift
+//  ProductListCell.swift
 //  MMarket
 //
 //  Created by 조성훈 on 2022/08/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ItemListCell: UICollectionViewCell {
+class ProductListCell: UICollectionViewCell {
     
     private enum FontSize {
         static let title = 16.0

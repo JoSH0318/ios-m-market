@@ -47,10 +47,10 @@ extension MainViewController {
                 
                 return cell
             case .productListItem(product: let product):
-                guard let cell: ItemListCell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: ItemListCell.idenfier,
+                guard let cell: ProductListCell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: ProductListCell.idenfier,
                     for: indexPath
-                ) as? ItemListCell else {
+                ) as? ProductListCell else {
                     return UICollectionViewCell()
                 }
                 cell.bind(product: product)

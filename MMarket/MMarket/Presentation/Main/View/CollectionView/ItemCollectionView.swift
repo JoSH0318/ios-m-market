@@ -70,8 +70,8 @@ class ItemCollectionView: UICollectionView {
             forCellWithReuseIdentifier: EventBannerCell.idenfier
         )
         self.register(
-            ItemListCell.self,
-            forCellWithReuseIdentifier: ItemListCell.idenfier
+            ProductListCell.self,
+            forCellWithReuseIdentifier: ProductListCell.idenfier
         )
     }
 }
