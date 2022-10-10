@@ -80,10 +80,20 @@ class ItemListCell: UICollectionViewCell {
         return stackView
     }()
     
+    func bind(product: Product) {
+        nameLabel.text = product.name
+        stockLabel.text = product.stock.description
+        bargainPriceLabel.text = product.bargainPrice.description
+        priceLabel.text = product.price.description
+        dateLabel.text = product.createdAt.description
+        
+        configure()
+    }
+    
     private func configure() {
         self.contentView.addSubview(thumbnailImageView)
         self.contentView.addSubview(totalStackView)
-        
+
         thumbnailImageView.snp.makeConstraints {
             $0.leading.top.bottom.equalTo(self.contentView)
             $0.trailing.equalTo(totalStackView.snp.leading)
