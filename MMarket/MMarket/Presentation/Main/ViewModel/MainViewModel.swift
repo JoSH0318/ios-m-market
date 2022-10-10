@@ -43,9 +43,13 @@ final class MainViewModel {
             )
             .map { images, products in
                 var sections: [ProductSectionModel] = []
-                sections.append(.eventBanner(items: images))
-                sections.append(.productList(items: products))
-                
+                var eventBannerItems: [ProductSectionItem] = []
+                var productListItems: [ProductSectionItem] = []
+                images.forEach { eventBannerItems.append(.eventBannerItem(image: $0)) }
+                products.forEach { productListItems.append(.productListItem(product: $0))}
+                sections.append(.eventBannerSection(items: eventBannerItems))
+                sections.append(.productListSection(items: productListItems))
+
                 return sections
             }
     }
