@@ -14,7 +14,6 @@ class ProductCollectionView: UICollectionView {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalWidth(0.5)
@@ -23,7 +22,6 @@ class ProductCollectionView: UICollectionView {
             layoutSize: groupSize,
             subitems: [item]
         )
-        
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
@@ -31,6 +29,7 @@ class ProductCollectionView: UICollectionView {
             bottom: 20,
             trailing: 0
         )
+        
         return section
     }
     
@@ -40,7 +39,6 @@ class ProductCollectionView: UICollectionView {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalWidth(0.5)
@@ -49,22 +47,18 @@ class ProductCollectionView: UICollectionView {
             layoutSize: groupSize,
             subitems: [item]
         )
-        
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
     
     func configure() {
-        guard let safeArea = self.superview?.safeAreaLayoutGuide else {
-            return
-        }
+        guard let safeArea = self.superview?.safeAreaLayoutGuide else { return }
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        
         self.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalTo(safeArea)
         }
-        
         self.register(
             EventBannerCell.self,
             forCellWithReuseIdentifier: EventBannerCell.idenfier
