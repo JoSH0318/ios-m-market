@@ -9,28 +9,33 @@ import Foundation
 import RxDataSources
 
 enum ProductSectionModel {
-    case eventBanner(items: [UIImage])
-    case productList(items: [Product])
+    case eventBannerSection(items: [ProductSectionItem])
+    case productListSection(items: [ProductSectionItem])
 }
 
-protocol ProductSectionItem {}
+enum ProductSectionItem {
+    case eventBannerItem(image: UIImage)
+    case productListItem(product: Product)
+}
 
 extension ProductSectionModel: SectionModelType {
     typealias Item = ProductSectionItem
     
     var items: [Item] {
         switch self {
-        case .eventBanner(let items):
-            return items
-        case .productList(let items):
-            return items
+        case .eventBannerSection(let items):
+            return items.map { $0 }
+        case .productListSection(let items):
+            return items.map { $0 }
         }
     }
     
     init(original: ProductSectionModel, items: [ProductSectionItem]) {
-        self = original
+        switch original {
+        case .eventBannerSection(items: _ ):
+            self = .eventBannerSection(items: items)
+        case .productListSection(items: _ ):
+            self = .productListSection(items: items)
+        }
     }
 }
-
-extension Product: ProductSectionItem {}
-extension UIImage: ProductSectionItem {}
