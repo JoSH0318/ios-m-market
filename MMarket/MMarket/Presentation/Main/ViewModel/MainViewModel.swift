@@ -38,9 +38,10 @@ final class MainViewModel {
             .fetchAllProducts(pageNumber: pageNumber, itemsPerPage: itemsPerPage)
             .filter { $0.hasNext }
             .map { $0.products }
-            .withUnretained(self)
-            .subscribe(onNext: { vm, products in
-                vm.productsSubject.accept(vm.productsSubject.value + products)
+            .subscribe(onNext: { [weak self] products in
+                guard let self = self else { return }
+                
+                self.productsSubject.accept(self.productsSubject.value + products)
             })
             .disposed(by: disposeBag)
     }
