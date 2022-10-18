@@ -27,6 +27,12 @@ final class MainViewModel {
         self.productUseCase = productUseCase
     }
     
+    // MARK: - Output
+    
+    var products: Observable<[Product]> {
+        return productsSubject.asObservable()
+    }
+    
     func fetchProductList(pageNumber: Int, itemsPerPage: Int = 20) {
         productUseCase
             .fetchAllProducts(pageNumber: pageNumber, itemsPerPage: itemsPerPage)
@@ -37,11 +43,5 @@ final class MainViewModel {
                 vm.productsSubject.accept(vm.productsSubject.value + products)
             })
             .disposed(by: disposeBag)
-    }
-    
-    // MARK: - Output
-    
-    var products: Observable<[Product]> {
-        return productsSubject.asObservable()
     }
 }
