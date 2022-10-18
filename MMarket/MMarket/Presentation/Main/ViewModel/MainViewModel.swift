@@ -12,32 +12,36 @@ import RxRelay
 protocol MainViewModelInput {}
 
 protocol MainViewModelOutput {
-    var sections: Observable<[Product]> { get }
+    var products: Observable<[Product]> { get }
 }
 
 protocol MainViewModelable: MainViewModelInput, MainViewModelOutput {}
 
 final class MainViewModel {
     private let productUseCase: ProductUseCase
-    private var sectionsSubject = BehaviorRelay<[Product]>(value: [])
     private(set) var currentPage: Int = 1
+    private let disposeBag = DisposeBag()
+    private var productsSubject = BehaviorRelay<[Product]>(value: [])
     
     init(productUseCase: ProductUseCase) {
         self.productUseCase = productUseCase
     }
     
-    private func fetchProductList(pageNumber: Int, itemsPerPage: Int = 20) -> Observable<[Product]> {
-        return productUseCase
+    func fetchProductList(pageNumber: Int, itemsPerPage: Int = 20) {
+        productUseCase
             .fetchAllProducts(pageNumber: pageNumber, itemsPerPage: itemsPerPage)
             .filter { $0.hasNext }
-            .do { self.currentPage = $0.pageNumber }
             .map { $0.products }
-            .catchAndReturn([])
+            .withUnretained(self)
+            .subscribe(onNext: { vm, products in
+                vm.productsSubject.accept(vm.productsSubject.value + products)
+            })
+            .disposed(by: disposeBag)
     }
     
     // MARK: - Output
     
-    var sections: Observable<[Product]> {
-        return sectionsSubject.asObservable()
+    var products: Observable<[Product]> {
+        return productsSubject.asObservable()
     }
 }
