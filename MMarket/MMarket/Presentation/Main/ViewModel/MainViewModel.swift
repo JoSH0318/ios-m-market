@@ -12,13 +12,14 @@ import RxRelay
 protocol MainViewModelInput {}
 
 protocol MainViewModelOutput {
-    var sections: Observable<[ProductSectionModel]> { get }
+    var sections: Observable<[Product]> { get }
 }
 
 protocol MainViewModelable: MainViewModelInput, MainViewModelOutput {}
 
 final class MainViewModel {
     private let productUseCase: ProductUseCase
+    private var sectionsSubject = BehaviorRelay<[Product]>(value: [])
     private(set) var currentPage: Int = 1
     
     init(productUseCase: ProductUseCase) {
@@ -31,26 +32,12 @@ final class MainViewModel {
             .filter { $0.hasNext }
             .do { self.currentPage = $0.pageNumber }
             .map { $0.products }
+            .catchAndReturn([])
     }
     
     // MARK: - Output
     
-    var sections: Observable<[ProductSectionModel]> {
-        return Observable
-            .combineLatest(
-                Observable.just([UIImage()]),
-                self.fetchProductList(pageNumber: currentPage)
-            )
-            .map { images, products in
-                var sections: [ProductSectionModel] = []
-                var eventBannerItems: [ProductSectionItem] = []
-                var productListItems: [ProductSectionItem] = []
-                images.forEach { eventBannerItems.append(.eventBannerItem(image: $0)) }
-                products.forEach { productListItems.append(.productListItem(product: $0))}
-                sections.append(.eventBannerSection(items: eventBannerItems))
-                sections.append(.productListSection(items: productListItems))
-
-                return sections
-            }
+    var sections: Observable<[Product]> {
+        return sectionsSubject.asObservable()
     }
 }
