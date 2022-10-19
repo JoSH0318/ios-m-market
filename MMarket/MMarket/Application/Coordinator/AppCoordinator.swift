@@ -11,10 +11,24 @@ final class AppCoordinator: Coordinator {
     var navigationController: UINavigationController
     var parentCoordinators: Coordinator?
     var childCoordinators: [Coordinator] = []
+    private let useCase: ProductUseCase = DefaultProductUseCase(
+        repository: DefaultProductRepository(
+            networkProvider: DefaultNetworkProvider()
+        )
+    )
+    
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
-    func start() {}
+    func start() {
+        let mainCoordinator = MainCoordinator(
+            navigationController: self.navigationController,
+            parentCoordinators: self,
+            useCase: self.useCase
+        )
+        self.childCoordinators.append(mainCoordinator)
+        mainCoordinator.start()
+    }
 }
