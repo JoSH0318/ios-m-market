@@ -20,6 +20,8 @@
 		030E834728DCA83F00FE1BB8 /* ProductImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834628DCA83F00FE1BB8 /* ProductImage.swift */; };
 		030E834928DCA99F00FE1BB8 /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834828DCA99F00FE1BB8 /* ProductRequest.swift */; };
 		030E834C28DCB02400FE1BB8 /* DefaultProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030E834B28DCB02400FE1BB8 /* DefaultProductRepository.swift */; };
+		03320D54290046FA0030C853 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03320D53290046FA0030C853 /* Coordinator.swift */; };
+		03320D562900477C0030C853 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03320D552900477C0030C853 /* AppCoordinator.swift */; };
 		0350C8FE28E1FE0A007CCE4D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0350C8FD28E1FE0A007CCE4D /* MainViewModel.swift */; };
 		0361F47328DF5DB40010EC31 /* HTTPBodyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0361F47228DF5DB40010EC31 /* HTTPBodyBuilder.swift */; };
 		0361F47628E075DB0010EC31 /* ProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0361F47528E075DB0010EC31 /* ProductUseCase.swift */; };
@@ -52,6 +54,8 @@
 		030E834628DCA83F00FE1BB8 /* ProductImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage.swift; sourceTree = "<group>"; };
 		030E834828DCA99F00FE1BB8 /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
 		030E834B28DCB02400FE1BB8 /* DefaultProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultProductRepository.swift; sourceTree = "<group>"; };
+		03320D53290046FA0030C853 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		03320D552900477C0030C853 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0350C8FD28E1FE0A007CCE4D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		0361F47228DF5DB40010EC31 /* HTTPBodyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPBodyBuilder.swift; sourceTree = "<group>"; };
 		0361F47528E075DB0010EC31 /* ProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUseCase.swift; sourceTree = "<group>"; };
@@ -136,6 +140,25 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		03320D51290046CB0030C853 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				03320D52290046E40030C853 /* Coordinator */,
+				03B04F9D28ABD91B00FA268D /* AppDelegate.swift */,
+				03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		03320D52290046E40030C853 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				03320D53290046FA0030C853 /* Coordinator.swift */,
+				03320D552900477C0030C853 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
 		0350C8FC28E1FDE1007CCE4D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,8 +221,7 @@
 		03B04F9C28ABD91B00FA268D /* MMarket */ = {
 			isa = PBXGroup;
 			children = (
-				03B04F9D28ABD91B00FA268D /* AppDelegate.swift */,
-				03B04F9F28ABD91B00FA268D /* SceneDelegate.swift */,
+				03320D51290046CB0030C853 /* Application */,
 				0361F47728E0B3640010EC31 /* Util */,
 				030E832B28DB54A100FE1BB8 /* Data */,
 				03E0542428B7B20000279039 /* Domain */,
@@ -399,6 +421,7 @@
 				0350C8FE28E1FE0A007CCE4D /* MainViewModel.swift in Sources */,
 				030E834928DCA99F00FE1BB8 /* ProductRequest.swift in Sources */,
 				0361F47A28E0B3870010EC31 /* Data.swift in Sources */,
+				03320D54290046FA0030C853 /* Coordinator.swift in Sources */,
 				03E0542728B7B28400279039 /* ProductPages.swift in Sources */,
 				030E833F28DC5E9700FE1BB8 /* ProductDTO.swift in Sources */,
 				03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */,
@@ -410,6 +433,7 @@
 				03D5E2DF28AE783400D3A333 /* ProductListCell.swift in Sources */,
 				03B04FA028ABD91B00FA268D /* SceneDelegate.swift in Sources */,
 				030E833A28DB93C600FE1BB8 /* ProductRepository.swift in Sources */,
+				03320D562900477C0030C853 /* AppCoordinator.swift in Sources */,
 				030E833028DB58E800FE1BB8 /* NetworkError.swift in Sources */,
 				030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */,
 				030E833D28DC5DF600FE1BB8 /* ProductPagesDTO.swift in Sources */,
