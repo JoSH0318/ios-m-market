@@ -11,8 +11,11 @@ import RxRelay
 import RxCocoa
 
 class MainViewController: UIViewController {
-    private let itemCollectionView = ProductCollectionView()
-    private var pages = [Product]()
+    private let mainView = MainView()
+    
+    override func loadView() {
+        view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
