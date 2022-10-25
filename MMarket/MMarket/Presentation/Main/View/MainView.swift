@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainView: UIView {
-    private lazy var productListCollectionView = UICollectionView(
+    private(set) lazy var productListCollectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: configureProductListLayout()
     )
@@ -44,11 +44,10 @@ final class MainView: UIView {
     }
     
     private func configure() {
-        guard let safeArea = self.superview?.safeAreaLayoutGuide else { return }
+        self.addSubview(productListCollectionView)
         
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.snp.makeConstraints {
-            $0.top.bottom.left.right.equalTo(safeArea)
+        self.productListCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         self.productListCollectionView.register(
