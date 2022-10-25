@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     private let mainView = MainView()
     private var viewModel: MainViewModel
     private var coordinator: Coordinator
+    private let disposeBag = DisposeBag()
     
     init(
         viewModel: MainViewModel,
@@ -29,11 +30,24 @@ class MainViewController: UIViewController {
     }
     
     override func loadView() {
-        view = mainView
+        view = MainView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bind()
+    }
+    
+    private func bind() {
+        viewModel.products
+            .bind(to: mainView.productListCollectionView.rx.items(
+                cellIdentifier: ProductListCell.idenfier,
+                cellType: ProductListCell.self
+            )) { _, item, cell in
+                cell.bind(product: item)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
