@@ -25,6 +25,11 @@ class EventBannerCell: UICollectionViewCell {
         return stackView
     }()
     
+    func bind(image: UIImage) {
+        eventImageView.image = image
+        configure()
+    }
+    
     private func configure() {
         contentView.addSubview(eventImageStackView)
         eventImageStackView.addArrangedSubview(eventImageView)

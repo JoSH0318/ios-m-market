@@ -1,5 +1,5 @@
 //
-//  ItemListCell.swift
+//  ProductListCell.swift
 //  MMarket
 //
 //  Created by 조성훈 on 2022/08/18.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ItemListCell: UICollectionViewCell {
+class ProductListCell: UICollectionViewCell {
     
     private enum FontSize {
         static let title = 16.0
@@ -80,10 +80,20 @@ class ItemListCell: UICollectionViewCell {
         return stackView
     }()
     
+    func bind(product: Product) {
+        nameLabel.text = product.name
+        stockLabel.text = product.stock.description
+        bargainPriceLabel.text = product.bargainPrice.description
+        priceLabel.text = product.price.description
+        dateLabel.text = product.createdAt.description
+        
+        configure()
+    }
+    
     private func configure() {
         self.contentView.addSubview(thumbnailImageView)
         self.contentView.addSubview(totalStackView)
-        
+
         thumbnailImageView.snp.makeConstraints {
             $0.leading.top.bottom.equalTo(self.contentView)
             $0.trailing.equalTo(totalStackView.snp.leading)
