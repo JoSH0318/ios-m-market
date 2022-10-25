@@ -25,6 +25,7 @@ final class MainViewModel {
     
     init(productUseCase: ProductUseCase) {
         self.productUseCase = productUseCase
+        fetchProductList(pageNumber: currentPage)
     }
     
     // MARK: - Output
