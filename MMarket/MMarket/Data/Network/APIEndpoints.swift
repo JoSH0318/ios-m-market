@@ -9,8 +9,9 @@ import Foundation
 
 enum APIEndpoints {
     private enum Constant {
-        static let baseURL = "https://market-training.yagom-academy.kr/"
+        static let baseURL = "https://openmarket.yagom-academy.kr/"
         static let path = "api/products/"
+        static let identifier = "a1cc0fd2-4abe-11ed-a200-e3abc55dd13d"
     }
     
     case productList(Int, Int)
@@ -30,8 +31,8 @@ extension APIEndpoints {
                 path: Constant.path,
                 method: .get,
                 queries: [
-                    "page_no": pageNumber,
-                    "items_per_page": itemsPerPage
+                    "page_no": "\(pageNumber)",
+                    "items_per_page": "\(itemsPerPage)"
                 ]
             )
         case .productDetail(let productId):
@@ -47,7 +48,7 @@ extension APIEndpoints {
                 method: .post,
                 header: [
                     "Content-Type": "multipart/form-data; boundary=\(boundary)",
-                    "identifier": "8de44ec8-d1b8-11ec-9676-43acdce229f5"
+                    "identifier": Constant.identifier
                 ],
                 body: body
             )
@@ -58,7 +59,7 @@ extension APIEndpoints {
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
-                    "identifier": "8de44ec8-d1b8-11ec-9676-43acdce229f5"
+                    "identifier": Constant.identifier
                 ],
                 body: body
             )
@@ -69,7 +70,7 @@ extension APIEndpoints {
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
-                    "identifier": "8de44ec8-d1b8-11ec-9676-43acdce229f5"
+                    "identifier": Constant.identifier
                 ],
                 body: body
             )
