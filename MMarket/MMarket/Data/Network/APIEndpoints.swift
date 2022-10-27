@@ -9,12 +9,13 @@ import Foundation
 
 enum APIEndpoints {
     private enum Constant {
-        static let baseURL = "https://openmarket.yagom-academy.kr/"
-        static let path = "api/products/"
+        static let baseURL = "https://openmarket.yagom-academy.kr"
+        static let path = "/api/products/"
         static let identifier = "a1cc0fd2-4abe-11ed-a200-e3abc55dd13d"
     }
     
     case productList(Int, Int)
+    case searchedProducts(String)
     case productDetail(Int)
     case productCreation(Data, String)
     case productEdition(Data, Int)
@@ -35,6 +36,15 @@ extension APIEndpoints {
                     "items_per_page": itemsPerPage
                 ]
             )
+        case .searchedProducts(let searchValue):
+            return Endpoint(
+                baseURL: Constant.baseURL,
+                path: Constant.path,
+                method: .get,
+                queries: [
+                    "search_value": searchValue
+                ]
+        )
         case .productDetail(let productId):
             return Endpoint(
                 baseURL: Constant.baseURL,
@@ -44,7 +54,7 @@ extension APIEndpoints {
         case .productCreation(let body, let boundary):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: "/api/products",
+                path: Constant.path,
                 method: .post,
                 header: [
                     "Content-Type": "multipart/form-data; boundary=\(boundary)",
