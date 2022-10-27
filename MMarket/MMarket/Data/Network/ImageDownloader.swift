@@ -49,7 +49,7 @@ final class ImageDownloader {
     }
     
     @discardableResult
-    func requestImageAPI(
+    private func requestImageAPI(
         with url: URL,
         completion: @escaping (Result<UIImage, NetworkError>) -> Void
     ) -> URLSessionDataTask? {
