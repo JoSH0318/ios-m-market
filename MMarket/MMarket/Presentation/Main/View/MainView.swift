@@ -24,15 +24,19 @@ final class MainView: UIView {
     }
     
     private func configureProductListLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { _, _ in
+        return UICollectionViewCompositionalLayout { _, env in
+            let width = (env.container.effectiveContentSize.width)
+            let height = width * 0.4
+            
             let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
+                widthDimension: .absolute(width),
+                heightDimension: .absolute(height)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalWidth(0.5)
+                heightDimension: .absolute(height)
             )
             let group = NSCollectionLayoutGroup.vertical(
                 layoutSize: groupSize,
