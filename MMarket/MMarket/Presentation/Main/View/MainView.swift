@@ -5,7 +5,7 @@
 //  Created by 조성훈 on 2022/08/18.
 //
 
-import UIKit
+import SnapKit
 
 final class MainView: UIView {
     private(set) lazy var productListCollectionView = UICollectionView(
