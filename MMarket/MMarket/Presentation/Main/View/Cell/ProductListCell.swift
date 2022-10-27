@@ -92,8 +92,8 @@ class ProductListCell: UICollectionViewCell {
     }()
     
     func bind(product: Product) {
-        ImageDownloader.shared.requestImage(urlString: product.thumbnail) { image in
-            self.thumbnailImageView.image = image
+        ImageDownloader.shared.requestImage(urlString: product.thumbnail) { [weak self] image in
+            self?.thumbnailImageView.image = image
         }
         nameLabel.text = product.name
         stockLabel.text = product.stock.description
