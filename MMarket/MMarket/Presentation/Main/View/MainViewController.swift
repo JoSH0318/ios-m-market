@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     }
     
     override func loadView() {
-        view = MainView()
+        view = mainView
     }
     
     override func viewDidLoad() {
