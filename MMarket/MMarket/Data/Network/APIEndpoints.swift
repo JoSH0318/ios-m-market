@@ -31,8 +31,8 @@ extension APIEndpoints {
                 path: Constant.path,
                 method: .get,
                 queries: [
-                    "page_no": "\(pageNumber)",
-                    "items_per_page": "\(itemsPerPage)"
+                    "page_no": pageNumber,
+                    "items_per_page": itemsPerPage
                 ]
             )
         case .productDetail(let productId):
