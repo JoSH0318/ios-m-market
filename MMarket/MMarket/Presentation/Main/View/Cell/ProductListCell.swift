@@ -81,13 +81,14 @@ class ProductListCell: UICollectionViewCell {
     }()
     
     func bind(product: Product) {
+        ImageDownloader.shared.requestImage(urlString: product.thumbnail) { image in
+            self.thumbnailImageView.image = image
+        }
         nameLabel.text = product.name
         stockLabel.text = product.stock.description
         bargainPriceLabel.text = product.bargainPrice.description
         priceLabel.text = product.price.description
         dateLabel.text = product.createdAt.description
-        
-        configure()
     }
     
     private func configure() {

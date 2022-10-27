@@ -25,6 +25,16 @@ final class DefaultProductRepository: ProductRepository {
             .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
     }
     
+    func searchProducts(by searchValue: String) -> Observable<ProductPagesDTO> {
+        let endpoint = APIEndpoints
+            .searchedProducts(searchValue)
+            .asEndpoint
+        
+        return networkProvider
+            .execute(endpoint: endpoint)
+            .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
+    }
+    
     func fetchProduct(by productId: Int) -> Observable<ProductDTO> {
         let endpoint = APIEndpoints
             .productDetail(productId)
