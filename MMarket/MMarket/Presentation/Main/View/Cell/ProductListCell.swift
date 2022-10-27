@@ -107,12 +107,14 @@ class ProductListCell: UICollectionViewCell {
         self.contentView.addSubview(totalStackView)
 
         thumbnailImageView.snp.makeConstraints {
-            $0.leading.top.bottom.equalTo(self.contentView)
+            $0.leading.top.bottom.equalToSuperview()
             $0.trailing.equalTo(totalStackView.snp.leading)
+            $0.height.equalToSuperview()
+            $0.width.equalTo(thumbnailImageView.snp.height)
         }
         
         totalStackView.snp.makeConstraints {
-            $0.top.bottom.leading.equalTo(self.contentView)
+            $0.top.bottom.trailing.equalTo(self.contentView)
         }
         
         priceStackView.addArrangedSubview(bargainPriceLabel)
