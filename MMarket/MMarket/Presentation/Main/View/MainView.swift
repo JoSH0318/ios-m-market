@@ -15,7 +15,8 @@ final class MainView: UIView {
     
     init() {
         super.init(frame: .zero)
-        configure()
+        
+        configureLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -43,7 +44,7 @@ final class MainView: UIView {
         }
     }
     
-    private func configure() {
+    private func configureLayout() {
         self.addSubview(productListCollectionView)
         
         self.productListCollectionView.snp.makeConstraints {

@@ -14,6 +14,16 @@ class ProductListCell: UICollectionViewCell {
         static let body = 15.0
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configureLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     static var idenfier: String {
         return String(describing: self)
     }
@@ -91,7 +101,7 @@ class ProductListCell: UICollectionViewCell {
         dateLabel.text = product.createdAt.description
     }
     
-    private func configure() {
+    private func configureLayout() {
         self.contentView.addSubview(thumbnailImageView)
         self.contentView.addSubview(totalStackView)
 
