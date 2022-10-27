@@ -31,7 +31,8 @@ class ProductListCell: UICollectionViewCell {
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
     
