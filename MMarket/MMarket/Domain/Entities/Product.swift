@@ -11,14 +11,15 @@ struct Product: Hashable {
     let id: Int
     let venderId: Int
     let name: String
+    var description: String?
     let thumbnail: String
     let currency: String
     let price: Int
     let bargainPrice: Int
     let discountedPrice: Int
     let stock: Int
-    let images: [ProductImage]
-    let vendor: Vendor
+    var images: [ProductImage]?
+    var vendor: Vendor?
     let createdAt: String
     let issuedAt: String
     
