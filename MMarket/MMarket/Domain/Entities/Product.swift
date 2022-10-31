@@ -12,7 +12,7 @@ struct Product: Hashable {
     let venderId: Int
     let name: String
     var description: String?
-    let thumbnail: String
+    let thumbnailURL: String
     let currency: String
     let price: Int
     let bargainPrice: Int

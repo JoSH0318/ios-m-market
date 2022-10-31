@@ -91,7 +91,7 @@ class ProductListCell: UICollectionViewCell {
     }
     
     func bind(product: Product) {
-        thumbnailImageView.setImage(with: product.thumbnail)
+        thumbnailImageView.setImage(with: product.thumbnailURL)
         nameLabel.text = product.name
         stockLabel.text = product.stock.description
         bargainPriceLabel.text = product.bargainPrice.description

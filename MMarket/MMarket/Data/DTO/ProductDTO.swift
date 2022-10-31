@@ -41,7 +41,7 @@ extension ProductDTO {
             venderId: self.venderId ,
             name: self.name,
             description: self.description,
-            thumbnail: self.thumbnail,
+            thumbnailURL: self.thumbnail,
             currency: self.currency,
             price: self.price,
             bargainPrice: self.bargainPrice,
