@@ -77,7 +77,6 @@ class ProductListCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
