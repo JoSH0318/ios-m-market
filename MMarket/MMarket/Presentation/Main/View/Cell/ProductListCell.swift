@@ -14,16 +14,6 @@ class ProductListCell: UICollectionViewCell {
         static let body = 15.0
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     static var idenfier: String {
         return String(describing: self)
     }
@@ -91,6 +81,15 @@ class ProductListCell: UICollectionViewCell {
         return stackView
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        configureLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     func bind(product: Product) {
         thumbnailImageView.setImage(with: product.thumbnail)
