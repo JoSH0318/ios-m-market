@@ -18,7 +18,6 @@ protocol ProductListCellViewModelOutput {
     var price: String { get }
     var bargainPrice: String { get }
     var discountedPercent: String { get }
-    var date: String { get }
 }
 
 protocol ProductListCellViewModelable: ProductListCellViewModelInput, ProductListCellViewModelOutput {}
@@ -64,10 +63,6 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
         let discountedPercent = Int((product.discountedPrice / product.price * 100).rounded())
         
         return "\(discountedPercent)%"
-    }
-    
-    var date: String {
-        return product.createdAt
     }
 
     init(product: Product) {

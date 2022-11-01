@@ -65,14 +65,6 @@ class ProductListCell: UICollectionViewCell {
         return label
     }()
     
-    private let dateLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.body, weight: .bold)
-        label.textColor = .systemGray3
-        return label
-    }()
-    
     private let discountStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.alignment = .leading
@@ -99,6 +91,7 @@ class ProductListCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        contentView.layer.addBottomBorder()
         configureLayout()
     }
     
@@ -113,7 +106,6 @@ class ProductListCell: UICollectionViewCell {
         discountedPercentLabel.text = viewModel.discountedPercent
         priceLabel.attributedText = viewModel.price.strikeThrough()
         bargainPriceLabel.text = viewModel.bargainPrice
-        dateLabel.text = viewModel.date
     }
     
     private func configureLayout() {
@@ -141,6 +133,5 @@ class ProductListCell: UICollectionViewCell {
         totalStackView.addArrangedSubview(nameLabel)
         totalStackView.addArrangedSubview(priceStackView)
         totalStackView.addArrangedSubview(stockLabel)
-        totalStackView.addArrangedSubview(dateLabel)
     }
 }
