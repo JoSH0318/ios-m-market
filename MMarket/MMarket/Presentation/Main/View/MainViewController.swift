@@ -45,7 +45,7 @@ class MainViewController: UIViewController {
                 cellIdentifier: ProductListCell.idenfier,
                 cellType: ProductListCell.self
             )) { _, item, cell in
-                cell.bind(product: item)
+                cell.bind(with: ProductListCellViewModel(product: item))
             }
             .disposed(by: disposeBag)
     }

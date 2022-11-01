@@ -14,6 +14,7 @@ class ProductListCell: UICollectionViewCell {
         static let body = 15.0
     }
     
+    private var viewModel: ProductListCellViewModel?
     static var idenfier: String {
         return String(describing: self)
     }
@@ -90,13 +91,13 @@ class ProductListCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func bind(product: Product) {
-        thumbnailImageView.setImage(with: product.thumbnailURL)
-        nameLabel.text = product.name
-        stockLabel.text = product.stock.description
-        bargainPriceLabel.text = product.bargainPrice.description
-        priceLabel.text = product.price.description
-        dateLabel.text = product.createdAt.description
+    func bind(with viewModel: ProductListCellViewModel) {
+        thumbnailImageView.setImage(with: viewModel.thumbnailURL)
+        nameLabel.text = viewModel.name
+        stockLabel.text = viewModel.stock
+        bargainPriceLabel.text = viewModel.bargainPrice
+        priceLabel.text = viewModel.price
+        dateLabel.text = viewModel.date
     }
     
     private func configureLayout() {
