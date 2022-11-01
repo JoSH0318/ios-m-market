@@ -11,7 +11,7 @@ class ProductListCell: UICollectionViewCell {
     
     private enum FontSize {
         static let title = 16.0
-        static let body = 15.0
+        static let body = 12.0
     }
     
     private var viewModel: ProductListCellViewModel?
@@ -45,15 +45,23 @@ class ProductListCell: UICollectionViewCell {
     private let bargainPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.title)
+        label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
         return label
     }()
     
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.body, weight: .bold)
-        label.textColor = .systemRed
+        label.font = .systemFont(ofSize: FontSize.body)
+        label.textColor = .systemGray3
+        return label
+    }()
+    
+    private let discountedPercentLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: FontSize.body)
+        label.textColor = .systemGray3
         return label
     }()
     
@@ -65,11 +73,17 @@ class ProductListCell: UICollectionViewCell {
         return label
     }()
     
+    private let discountStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .leading
+        stackView.spacing = 4
+        return stackView
+    }()
+    
     private let priceStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.spacing = 8
         return stackView
     }()
     
@@ -77,7 +91,8 @@ class ProductListCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .leading
-        stackView.spacing = 8
+        stackView.distribution = .equalCentering
+        stackView.spacing = 10
         return stackView
     }()
     
@@ -95,8 +110,9 @@ class ProductListCell: UICollectionViewCell {
         thumbnailImageView.setImage(with: viewModel.thumbnailURL)
         nameLabel.text = viewModel.name
         stockLabel.text = viewModel.stock
+        discountedPercentLabel.text = viewModel.discountedPercent
+        priceLabel.attributedText = viewModel.price.strikeThrough()
         bargainPriceLabel.text = viewModel.bargainPrice
-        priceLabel.text = viewModel.price
         dateLabel.text = viewModel.date
     }
     
@@ -117,12 +133,14 @@ class ProductListCell: UICollectionViewCell {
             $0.trailing.equalTo(self.contentView).offset(-16)
         }
         
+        discountStackView.addArrangedSubview(discountedPercentLabel)
+        discountStackView.addArrangedSubview(priceLabel)
+        priceStackView.addArrangedSubview(discountStackView)
         priceStackView.addArrangedSubview(bargainPriceLabel)
-        priceStackView.addArrangedSubview(priceLabel)
         
         totalStackView.addArrangedSubview(nameLabel)
-        totalStackView.addArrangedSubview(stockLabel)
         totalStackView.addArrangedSubview(priceStackView)
+        totalStackView.addArrangedSubview(stockLabel)
         totalStackView.addArrangedSubview(dateLabel)
     }
 }
