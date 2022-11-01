@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol ProductListCellViewModelInput {
     func prepareForReuse()
@@ -37,15 +36,15 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
     }
 
     var stock: String {
-        return formattedString(by: product.stock)
+        return formattedString(from: product.stock)
     }
 
     var bargainPrice: String {
-        return formattedString(by: product.bargainPrice)
+        return formattedString(from: product.bargainPrice)
     }
 
     var price: String {
-        return formattedString(by: product.price)
+        return formattedString(from: product.price)
     }
 
     var date: String {
@@ -62,11 +61,19 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
 
     }
 
-    private func formattedString(by number: Double) -> String {
-        return ""
+    private func formattedString(from number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        
+        guard let numberString = formatter.string(from: number as NSNumber) else { return "" }
+        
+        let currency = product.currency == "KRW" ? "￦" : "$"
+            
+        return "\(currency) \(numberString)"
     }
     
-    private func formattedString(by number: Int) -> String {
+    private func formattedString(from number: Int) -> String {
         return ""
     }
 }
