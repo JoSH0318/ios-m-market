@@ -15,8 +15,9 @@ protocol ProductListCellViewModelOutput {
     var thumbnailURL: String { get }
     var name: String { get }
     var stock: String { get }
-    var bargainPrice: String { get }
     var price: String { get }
+    var bargainPrice: String { get }
+    var discountedPercent: String { get }
     var date: String { get }
 }
 
@@ -36,17 +37,35 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
     }
 
     var stock: String {
-        return formattedString(from: product.stock)
+        guard product.stock != 0 else {
+            return "품절"
+        }
+        
+        return "재고수량 " + formattedString(from: product.stock)
     }
-
+    
+    var price: String {
+        guard product.discountedPrice != 0 else {
+            return ""
+        }
+        
+        return formattedString(from: product.price)
+    }
+    
     var bargainPrice: String {
         return formattedString(from: product.bargainPrice)
     }
 
-    var price: String {
-        return formattedString(from: product.price)
+    var discountedPercent: String {
+        guard product.price != product.bargainPrice else {
+            return ""
+        }
+        
+        let discountedPercent = Int((product.discountedPrice / product.price * 100).rounded())
+        
+        return "\(discountedPercent)%"
     }
-
+    
     var date: String {
         return product.createdAt
     }
@@ -66,14 +85,16 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 0
         
-        guard let numberString = formatter.string(from: number as NSNumber) else { return "" }
+        guard let numberString = formatter.string(from: number as NSNumber) else {
+            return ""
+        }
         
-        let currency = product.currency == "KRW" ? "￦" : "$"
-            
-        return "\(currency) \(numberString)"
+        let formattedString = product.currency == "KRW" ? "\(numberString) 원" : "$ \(numberString)"
+        
+        return formattedString
     }
     
     private func formattedString(from number: Int) -> String {
-        return ""
+        return "\(number)"
     }
 }
