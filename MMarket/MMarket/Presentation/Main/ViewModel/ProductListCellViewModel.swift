@@ -25,41 +25,45 @@ protocol ProductListCellViewModelable: ProductListCellViewModelInput, ProductLis
 
 final class ProductListCellViewModel: ProductListCellViewModelable {
     private let product: Product
-    
+
     // MARK: - Output
-    
+
     var thumbnailURL: String {
         return product.thumbnailURL
     }
-    
+
     var name: String {
         return product.name
     }
-    
+
     var stock: String {
         return formattedString(by: product.stock)
     }
-    
+
     var bargainPrice: String {
         return formattedString(by: product.bargainPrice)
     }
-    
+
     var price: String {
         return formattedString(by: product.price)
     }
-    
+
     var date: String {
         return product.createdAt
     }
-    
+
     init(product: Product) {
         self.product = product
     }
-    
+
     // MARK: - Input
     
     func prepareForReuse() {
-        
+
+    }
+
+    private func formattedString(by number: Double) -> String {
+        return ""
     }
     
     private func formattedString(by number: Int) -> String {
