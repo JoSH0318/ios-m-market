@@ -36,6 +36,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureNavigationBar()
         bind()
     }
     
@@ -55,6 +56,10 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
     private func configureLayout() {}
+    private func configureNavigationBar() {
+        navigationItem.title = "M-Market"
+        navigationController?.navigationBar.backgroundColor = .systemGray5
+    }
 }
 
 // MARK: - DataSource
