@@ -25,8 +25,8 @@ final class MainView: UIView {
     
     private func configureProductListLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, env in
-            let width = (env.container.effectiveContentSize.width)
-            let height = width * 0.4
+            let width = (env.container.effectiveContentSize.width) * 0.5
+            let height = width * 1.5
             
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .absolute(width),
@@ -38,7 +38,7 @@ final class MainView: UIView {
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .absolute(height)
             )
-            let group = NSCollectionLayoutGroup.vertical(
+            let group = NSCollectionLayoutGroup.horizontal(
                 layoutSize: groupSize,
                 subitems: [item]
             )

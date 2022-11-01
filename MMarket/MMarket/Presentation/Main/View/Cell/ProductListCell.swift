@@ -46,6 +46,7 @@ class ProductListCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
+        
         return label
     }()
     
@@ -59,39 +60,36 @@ class ProductListCell: UICollectionViewCell {
     
     private let discountedPercentLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.body)
-        label.textColor = .systemGray3
+        label.textAlignment = .right
+        label.font = .systemFont(ofSize: FontSize.title)
+        label.textColor = .systemRed
         return label
     }()
     
-    private let discountStackView: UIStackView = {
+    private let totalPriceStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.alignment = .leading
+        stackView.axis = .vertical
         stackView.spacing = 4
         return stackView
     }()
     
-    private let priceStackView: UIStackView = {
+    private let bargainPriceStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .leading
         return stackView
     }()
     
     private let totalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .leading
         stackView.distribution = .equalCentering
-        stackView.spacing = 10
+        stackView.spacing = 8
         return stackView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.layer.addBottomBorder()
+        self.contentView.layer.addBottomBorder()
         configureLayout()
     }
     
@@ -114,24 +112,24 @@ class ProductListCell: UICollectionViewCell {
 
         thumbnailImageView.snp.makeConstraints {
             $0.leading.top.equalToSuperview().offset(16)
-            $0.bottom.equalToSuperview().offset(-16)
-            $0.trailing.equalTo(totalStackView.snp.leading).offset(-16)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.bottom.equalTo(totalStackView.snp.top).offset(-16)
             $0.width.equalTo(thumbnailImageView.snp.height)
         }
         
         totalStackView.snp.makeConstraints {
-            $0.top.equalTo(self.contentView).offset(24)
-            $0.bottom.equalTo(self.contentView).offset(-24)
+            $0.leading.equalTo(self.contentView).offset(16)
+            $0.bottom.equalTo(self.contentView).offset(-16)
             $0.trailing.equalTo(self.contentView).offset(-16)
         }
         
-        discountStackView.addArrangedSubview(discountedPercentLabel)
-        discountStackView.addArrangedSubview(priceLabel)
-        priceStackView.addArrangedSubview(discountStackView)
-        priceStackView.addArrangedSubview(bargainPriceLabel)
+        bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
+        bargainPriceStackView.addArrangedSubview(discountedPercentLabel)
+        totalPriceStackView.addArrangedSubview(bargainPriceStackView)
+        totalPriceStackView.addArrangedSubview(priceLabel)
         
         totalStackView.addArrangedSubview(nameLabel)
-        totalStackView.addArrangedSubview(priceStackView)
+        totalStackView.addArrangedSubview(totalPriceStackView)
         totalStackView.addArrangedSubview(stockLabel)
     }
 }
