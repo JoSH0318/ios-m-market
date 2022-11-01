@@ -10,9 +10,9 @@ import UIKit
 extension CALayer {
     func addBottomBorder() {
         let border = CALayer()
-        let borderWidth = 0.5
-        border.frame = CGRect(x: 10, y: frame.height - borderWidth,
-                              width: frame.width, height: borderWidth)
+        let borderWidth = 0.25
+        border.frame = CGRect(x: 16, y: frame.height - borderWidth,
+                              width: frame.width - 32, height: borderWidth)
         border.backgroundColor = UIColor.lightGray.cgColor
         self.addSublayer(border)
     }
