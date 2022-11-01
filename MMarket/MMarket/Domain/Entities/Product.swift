@@ -14,9 +14,9 @@ struct Product: Hashable {
     var description: String?
     let thumbnailURL: String
     let currency: String
-    let price: Int
-    let bargainPrice: Int
-    let discountedPrice: Int
+    let price: Double
+    let bargainPrice: Double
+    let discountedPrice: Double
     let stock: Int
     var images: [ProductImage]?
     var vendor: Vendor?

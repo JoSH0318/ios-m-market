@@ -19,14 +19,9 @@ struct ProductPagesDTO: Decodable {
     let hasPrev: Bool
     
     private enum CodingKeys: String, CodingKey {
-        case offset, limit
+        case offset, limit, itemsPerPage, totalCount, lastPage, hasNext, hasPrev
         case pageNumber = "pageNo"
-        case itemsPerPage = "itemsPerPage"
-        case totalCount = "totalCount"
         case products = "pages"
-        case lastPage = "lastPage"
-        case hasNext = "hasNext"
-        case hasPrev = "hasPrev"
     }
 }
 
