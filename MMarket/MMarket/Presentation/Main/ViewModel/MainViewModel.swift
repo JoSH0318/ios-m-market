@@ -9,15 +9,18 @@ import Foundation
 import RxSwift
 import RxRelay
 
-protocol MainViewModelInput {}
+protocol MainViewModelInput {
+    func didTapCell(_ product: Product)
+}
 
 protocol MainViewModelOutput {
     var products: Observable<[Product]> { get }
+    var showDetailView: PublishRelay<Product> { get }
 }
 
 protocol MainViewModelable: MainViewModelInput, MainViewModelOutput {}
 
-final class MainViewModel {
+final class MainViewModel: MainViewModelable {
     private let productUseCase: ProductUseCase
     private(set) var currentPage: Int = 1
     private let disposeBag = DisposeBag()
@@ -32,6 +35,14 @@ final class MainViewModel {
     
     var products: Observable<[Product]> {
         return productsSubject.asObservable()
+    }
+    
+    var showDetailView = PublishRelay<Product>()
+    
+    // MARK: - Input
+    
+    func didTapCell(_ product: Product) {
+        showDetailView.accept(product)
     }
     
     func fetchProductList(pageNumber: Int, itemsPerPage: Int = 20) {
