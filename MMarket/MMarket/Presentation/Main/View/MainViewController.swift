@@ -51,14 +51,16 @@ final class MainViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.productListCollectionView.rx.modelSelected(Product.self)
-            .bind { [weak self] item in
-                self?.viewModel.didTapCell(item)
+            .withUnretained(self)
+            .bind { vc, item in
+                vc.viewModel.didTapCell(item)
             }
             .disposed(by: disposeBag)
         
         viewModel.showDetailView
-            .bind { [weak self] product in
-                self?.coordinator.showDetailView(productID: product.id)
+            .withUnretained(self)
+            .bind { vc, product in
+                vc.coordinator.showDetailView(productID: product.id)
             }
             .disposed(by: disposeBag)
     }
