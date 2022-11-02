@@ -49,6 +49,17 @@ class MainViewController: UIViewController {
                 cell.bind(with: ProductListCellViewModel(product: item))
             }
             .disposed(by: disposeBag)
+        
+        mainView.productListCollectionView.rx.modelSelected(Product.self)
+            .bind { [weak self] item in
+                self?.viewModel.didTapCell(item)
+            }
+            .disposed(by: disposeBag)
+        
+//        viewModel.showDetailView
+//            .bind { [weak self] product in
+//                <#code#>
+//            }
     }
 }
 
