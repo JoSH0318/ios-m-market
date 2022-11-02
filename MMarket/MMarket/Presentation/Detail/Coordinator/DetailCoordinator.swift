@@ -23,5 +23,15 @@ final class DetailCoordinator: Coordinator {
         self.useCase = useCase
     }
     
-    func start() {}
+    func start(productID: Int) {
+        let detailViewModel = DetailViewModel(
+            productUseCase: useCase,
+            productID: productID
+        )
+        let detailViewController = DetailViewController(
+            viewModel: detailViewModel,
+            coordinator: self
+        )
+        self.navigationController.pushViewController(detailViewController, animated: true)
+    }
 }
