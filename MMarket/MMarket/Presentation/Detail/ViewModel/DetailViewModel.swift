@@ -28,7 +28,7 @@ final class DetailViewModel: DetailViewModelable {
     
     var product: Observable<Product>?
     
-    var productImagesURL: Observable<[String]?>?
+    var productImagesURL: Observable<[String]>?
     
     init(productUseCase: ProductUseCase, productID: Int) {
         self.productUseCase = productUseCase
@@ -37,7 +37,6 @@ final class DetailViewModel: DetailViewModelable {
         self.fetchProduct(by: productID)
     }
     
-    
     // MARK: - Input
     
     func fetchProduct(by productID: Int) {
@@ -45,7 +44,7 @@ final class DetailViewModel: DetailViewModelable {
             .withUnretained(self)
             .subscribe { viewModel, product in
                 viewModel.product = .just(product)
-                viewModel.productImagesURL = .just(product.images?.map { $0.url })
+                viewModel.productImagesURL = .just(product.images?.map { $0.url } ?? [])
             }
             .disposed(by: disposeBag)
     }
