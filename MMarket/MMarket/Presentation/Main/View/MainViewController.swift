@@ -10,7 +10,7 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     private let mainView = MainView()
     private var viewModel: MainViewModel
     private var coordinator: Coordinator
