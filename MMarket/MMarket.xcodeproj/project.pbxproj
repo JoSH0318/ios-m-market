@@ -299,8 +299,8 @@
 			isa = PBXGroup;
 			children = (
 				03D44F48291199D80059BE72 /* Coordinator */,
-				03D44F4B29119AB50059BE72 /* ViewModel */,
 				03D44F4E29119AD70059BE72 /* View */,
+				03D44F4B29119AB50059BE72 /* ViewModel */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
