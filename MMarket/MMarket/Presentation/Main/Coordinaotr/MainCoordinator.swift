@@ -28,4 +28,14 @@ final class MainCoordinator: Coordinator {
         let mainViewController = MainViewController(viewModel: mainViewModel, coordinator: self)
         self.navigationController.pushViewController(mainViewController, animated: true)
     }
+    
+    func showDetailView(productID: Int) {
+        let detailCoordinator = DetailCoordinator(
+            navigationController: self.navigationController,
+            parentCoordinators: self,
+            useCase: useCase
+        )
+        self.childCoordinators.append(detailCoordinator)
+        detailCoordinator.start(productID: productID)
+    }
 }
