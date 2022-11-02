@@ -56,10 +56,11 @@ final class MainViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-//        viewModel.showDetailView
-//            .bind { [weak self] product in
-//                <#code#>
-//            }
+        viewModel.showDetailView
+            .bind { [weak self] product in
+                self?.coordinator.showDetailView(productID: product.id)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
