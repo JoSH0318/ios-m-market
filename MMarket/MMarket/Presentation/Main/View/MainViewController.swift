@@ -13,7 +13,7 @@ import RxCocoa
 final class MainViewController: UIViewController {
     private let mainView = MainView()
     private var viewModel: MainViewModel
-    private var coordinator: Coordinator
+    private var coordinator: MainCoordinator
     private let disposeBag = DisposeBag()
     
     init(
