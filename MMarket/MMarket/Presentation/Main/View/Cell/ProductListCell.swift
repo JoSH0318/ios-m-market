@@ -106,8 +106,8 @@ final class ProductListCell: UICollectionViewCell {
     }
     
     private func configureLayout() {
-        self.contentView.addSubview(thumbnailImageView)
-        self.contentView.addSubview(totalStackView)
+        contentView.addSubview(thumbnailImageView)
+        contentView.addSubview(totalStackView)
 
         thumbnailImageView.snp.makeConstraints {
             $0.leading.top.equalToSuperview().offset(16)

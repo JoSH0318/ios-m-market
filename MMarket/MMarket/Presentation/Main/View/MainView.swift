@@ -49,13 +49,13 @@ final class MainView: UIView {
     }
     
     private func configureLayout() {
-        self.addSubview(productListCollectionView)
+        addSubview(productListCollectionView)
         
-        self.productListCollectionView.snp.makeConstraints {
+        productListCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        self.productListCollectionView.register(
+        productListCollectionView.register(
             ProductListCell.self,
             forCellWithReuseIdentifier: ProductListCell.idenfier
         )
