@@ -14,7 +14,6 @@ final class DetailViewImagesCell: UICollectionViewCell {
         static let body = 12.0
     }
     
-    private var viewModel: ProductListCellViewModel?
     static var idenfier: String {
         return String(describing: self)
     }
