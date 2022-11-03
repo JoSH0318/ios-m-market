@@ -118,6 +118,15 @@ final class DetailView: UIView {
         return flowLayout
     }
     
+    func setContents(with detailProduct: DetailViewModelItem) {
+        nameLabel.text = detailProduct.name
+        stockLabel.text = detailProduct.stock
+        bargainPriceLabel.text = detailProduct.bargainPrice
+        priceLabel.text = detailProduct.price
+        discountRateLabel.text = detailProduct.discountRate
+        descriptionLabel.text = detailProduct.description
+    }
+    
     private func configureLayout() {
         addSubview(scrollView)
         scrollView.addSubview(imagesCollectionView)
