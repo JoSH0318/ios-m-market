@@ -18,6 +18,12 @@ final class DetailViewImagesCell: UICollectionViewCell {
         return String(describing: self)
     }
     
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,11 +34,6 @@ final class DetailViewImagesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        return imageView
-    }()
     
     private func configureLayout() {
         self.contentView.addSubview(imageView)
