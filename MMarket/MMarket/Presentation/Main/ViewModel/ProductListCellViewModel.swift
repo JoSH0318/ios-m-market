@@ -17,7 +17,7 @@ protocol ProductListCellViewModelOutput {
     var stock: String { get }
     var price: String { get }
     var bargainPrice: String { get }
-    var discountedPercent: String { get }
+    var discountRate: String { get }
 }
 
 protocol ProductListCellViewModelable: ProductListCellViewModelInput, ProductListCellViewModelOutput {}
@@ -55,7 +55,7 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
         return formattedString(from: product.bargainPrice)
     }
 
-    var discountedPercent: String {
+    var discountRate: String {
         guard product.price != product.bargainPrice else {
             return ""
         }
