@@ -56,8 +56,7 @@ final class DetailViewModel: DetailViewModelable {
         productUseCase.fetchProduct(productId: productID)
             .withUnretained(self)
             .subscribe { viewModel, product in
-                viewModel.product = .just(product)
-                viewModel.productImagesURL = .just(product.images?.map { $0.url } ?? [])
+                viewModel.productSubject.onNext(product)
             }
             .disposed(by: disposeBag)
     }
