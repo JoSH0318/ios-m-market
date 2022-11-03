@@ -84,7 +84,7 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
             return ""
         }
         
-        let formattedString = product.currency == "KRW" ? "\(numberString) 원" : "$ \(numberString)"
+        let formattedString = product.currency == "KRW" ? "\(numberString) 원" : "\(numberString) USD"
         
         return formattedString
     }
