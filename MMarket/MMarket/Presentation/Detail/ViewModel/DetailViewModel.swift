@@ -27,9 +27,21 @@ final class DetailViewModel: DetailViewModelable {
     
     // MARK: - Output
     
-    var product: Observable<Product>?
+    var productDetailInfo: Observable<Product> {
+        return productSubject.asObservable()
+    }
     
-    var productImagesURL: Observable<[String]>?
+    var productImagesURL: Observable<[String]> {
+        return productSubject
+            .compactMap { product in
+                product.images?.compactMap { $0.url }
+            }
+    }
+    
+    var productImagesCount: Observable<Int> {
+        return productImagesURL
+            .map { $0.count }
+    }
     
     init(productUseCase: ProductUseCase, productID: Int) {
         self.productUseCase = productUseCase
