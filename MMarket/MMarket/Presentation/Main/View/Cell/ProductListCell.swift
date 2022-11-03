@@ -88,7 +88,7 @@ final class ProductListCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.contentView.layer.addBottomBorder()
+        contentView.layer.addBottomBorder()
         configureLayout()
     }
     
@@ -117,9 +117,9 @@ final class ProductListCell: UICollectionViewCell {
         }
         
         totalStackView.snp.makeConstraints {
-            $0.leading.equalTo(self.contentView).offset(16)
-            $0.bottom.equalTo(self.contentView).offset(-16)
-            $0.trailing.equalTo(self.contentView).offset(-16)
+            $0.leading.equalTo(contentView).offset(16)
+            $0.bottom.equalTo(contentView).offset(-16)
+            $0.trailing.equalTo(contentView).offset(-16)
         }
         
         bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
