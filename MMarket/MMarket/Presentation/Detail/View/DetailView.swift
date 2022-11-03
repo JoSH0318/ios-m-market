@@ -10,8 +10,8 @@ import SnapKit
 final class DetailView: UIView {
     
     private enum FontSize {
-        static let title = 16.0
-        static let body = 12.0
+        static let title = 20.0
+        static let body = 16.0
     }
     
     private var viewModel: ProductListCellViewModel?
@@ -44,6 +44,7 @@ final class DetailView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
     }()
     
@@ -60,12 +61,13 @@ final class DetailView: UIView {
         label.textAlignment = .right
         label.font = .systemFont(ofSize: FontSize.title)
         label.textColor = .systemRed
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
     }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .right
+        label.textAlignment = .left
         label.font = .systemFont(ofSize: FontSize.title)
         label.numberOfLines = 0
         return label
@@ -105,14 +107,10 @@ final class DetailView: UIView {
     private func configureCollectionFlowLayout() -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        flowLayout.minimumLineSpacing = 8
-        flowLayout.minimumInteritemSpacing = 13
-        
         flowLayout.itemSize = CGSize(
             width: UIScreen.main.bounds.width,
             height: UIScreen.main.bounds.height
         )
-        
         flowLayout.scrollDirection = .horizontal
         
         return flowLayout
@@ -151,7 +149,8 @@ final class DetailView: UIView {
         }
         
         totalStackView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.bottom.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-20)
         }
         
         scrollView.snp.makeConstraints {
