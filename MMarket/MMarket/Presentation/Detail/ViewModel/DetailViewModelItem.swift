@@ -1,5 +1,5 @@
 //
-//  DetailProductInfo.swift
+//  DetailViewModelItem.swift
 //  MMarket
 //
 //  Created by 조성훈 on 2022/11/03.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DetailProductInfo {
+struct DetailViewModelItem {
     let thumbnailURL: String
     let name: String
     let currency: String
@@ -17,7 +17,7 @@ struct DetailProductInfo {
     let stock: String
     var description: String?
     
-    init(product: Product) {
+    init(by product: Product) {
         thumbnailURL = product.thumbnailURL
         name = product.name
         currency = product.currency == "KRW" ? "원" : "USD"
