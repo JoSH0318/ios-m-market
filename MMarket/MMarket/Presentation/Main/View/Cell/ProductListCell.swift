@@ -57,7 +57,7 @@ final class ProductListCell: UICollectionViewCell {
         return label
     }()
     
-    private let discountedPercentLabel: UILabel = {
+    private let discountRateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.font = .systemFont(ofSize: FontSize.title)
@@ -100,7 +100,7 @@ final class ProductListCell: UICollectionViewCell {
         thumbnailImageView.setImage(with: viewModel.thumbnailURL)
         nameLabel.text = viewModel.name
         stockLabel.text = viewModel.stock
-        discountedPercentLabel.text = viewModel.discountedPercent
+        discountRateLabel.text = viewModel.discountRate
         priceLabel.attributedText = viewModel.price.strikeThrough()
         bargainPriceLabel.text = viewModel.bargainPrice
     }
@@ -123,7 +123,7 @@ final class ProductListCell: UICollectionViewCell {
         }
         
         bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
-        bargainPriceStackView.addArrangedSubview(discountedPercentLabel)
+        bargainPriceStackView.addArrangedSubview(discountRateLabel)
         totalPriceStackView.addArrangedSubview(bargainPriceStackView)
         totalPriceStackView.addArrangedSubview(priceLabel)
         
