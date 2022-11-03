@@ -94,6 +94,7 @@ final class DetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        backgroundColor = .systemBackground
         configureLayout()
     }
     
@@ -103,7 +104,7 @@ final class DetailView: UIView {
     
     private func configureCollectionFlowLayout() -> UICollectionViewFlowLayout {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumLineSpacing = 8
         flowLayout.minimumInteritemSpacing = 13
         
@@ -118,6 +119,7 @@ final class DetailView: UIView {
     }
     
     private func configureLayout() {
+        addSubview(scrollView)
         scrollView.addSubview(imagesCollectionView)
         scrollView.addSubview(totalStackView)
         
@@ -134,11 +136,22 @@ final class DetailView: UIView {
         
         imagesCollectionView.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalTo(imagesCollectionView.snp.width)
             $0.bottom.equalTo(totalStackView.snp.top).offset(-16)
         }
         
         totalStackView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        imagesCollectionView.register(
+            DetailViewImagesCell.self,
+            forCellWithReuseIdentifier: DetailViewImagesCell.idenfier
+        )
     }
 }
