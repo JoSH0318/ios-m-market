@@ -39,7 +39,7 @@ final class DetailViewImagesCell: UICollectionViewCell {
     }
     
     private func configureLayout() {
-        self.contentView.addSubview(imageView)
+        contentView.addSubview(imageView)
         
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
