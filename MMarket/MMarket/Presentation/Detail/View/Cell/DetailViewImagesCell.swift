@@ -34,6 +34,9 @@ final class DetailViewImagesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setImage(with imageURL: String) {
+        imageView.setImage(with: imageURL)
+    }
     
     private func configureLayout() {
         self.contentView.addSubview(imageView)
