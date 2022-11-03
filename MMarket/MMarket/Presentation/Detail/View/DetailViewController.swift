@@ -33,5 +33,27 @@ final class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bind()
+    }
+    
+    private func bind() {
+        viewModel.productImagesURL
+            .observe(on: MainScheduler.instance)
+            .bind(to: detailView.imagesCollectionView.rx.items(
+                cellIdentifier: DetailViewImagesCell.idenfier,
+                cellType: DetailViewImagesCell.self
+            )) { _, item, cell in
+                cell.setImage(with: item)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.productDetailInfo
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe { vc, product in
+                vc.detailView.setContents(with: DetailViewModelItem(by: product))
+            }
+            .disposed(by: disposeBag)
     }
 }
