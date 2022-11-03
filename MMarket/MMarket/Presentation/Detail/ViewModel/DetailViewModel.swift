@@ -23,6 +23,7 @@ final class DetailViewModel: DetailViewModelable {
     private let productUseCase: ProductUseCase
     private let productID: Int
     private let disposeBag = DisposeBag()
+    private let productSubject = PublishSubject<Product>()
     
     // MARK: - Output
     
