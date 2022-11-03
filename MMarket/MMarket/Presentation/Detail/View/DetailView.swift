@@ -55,7 +55,7 @@ final class DetailView: UIView {
         return label
     }()
     
-    private let discountedPercentLabel: UILabel = {
+    private let discountRateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.font = .systemFont(ofSize: FontSize.title)
@@ -124,7 +124,7 @@ final class DetailView: UIView {
         scrollView.addSubview(totalStackView)
         
         bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
-        bargainPriceStackView.addArrangedSubview(discountedPercentLabel)
+        bargainPriceStackView.addArrangedSubview(discountRateLabel)
         
         totalPriceStackView.addArrangedSubview(bargainPriceStackView)
         totalPriceStackView.addArrangedSubview(priceLabel)
