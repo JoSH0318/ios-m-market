@@ -14,7 +14,9 @@ protocol DetailViewModelInput {
 }
 
 protocol DetailViewModelOutput {
-
+    var productDetailInfo: Observable<Product> { get }
+    var productImagesURL: Observable<[String]> { get }
+    var productImagesCount: Observable<Int> { get }
 }
 
 protocol DetailViewModelable: DetailViewModelInput, DetailViewModelOutput {}
