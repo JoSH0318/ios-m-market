@@ -8,29 +8,60 @@
 import Foundation
 
 struct DetailViewModelItem {
-    let thumbnailURL: String
-    let name: String
-    let currency: String
-    let bargainPrice: String
-    let price: String
-    let discountRate: String
-    let stock: String
-    var description: String?
+    let product: Product
+    
+    var thumbnailURL: String {
+        return product.thumbnailURL
+    }
+    
+    var name: String {
+        return product.name
+    }
+    
+    var bargainPrice: String {
+        return formattedString(from: product.bargainPrice)
+    }
+    
+    var price: String {
+        return formattedString(from: product.price)
+    }
+    
+    var discountRate: String {
+        return calculateDiscountRate()
+    }
+    
+    var stock: String {
+        return product.stock == 0 ? "품절" : "재고수량: \(product.stock)"
+    }
+    
+    var description: String? {
+        return product.description
+    }
     
     init(by product: Product) {
-        thumbnailURL = product.thumbnailURL
-        name = product.name
-        currency = product.currency == "KRW" ? "원" : "USD"
-        bargainPrice = "\(product.bargainPrice) \(currency)"
-        price = "\(product.price) \(currency)"
-        stock = product.stock == 0 ? "품절" : "재고수량: \(product.stock)"
-        description = product.description
+        self.product = product
+    }
+    
+    private func formattedString(from number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
         
-        if product.price == product.bargainPrice {
-            discountRate = ""
-        } else {
-            let discountedPercent = Int((product.discountedPrice / product.price * 100).rounded())
-            discountRate = "\(discountedPercent)%"
+        guard let numberString = formatter.string(from: number as NSNumber) else {
+            return ""
         }
+        
+        let formattedString = product.currency == "KRW" ? "\(numberString) 원" : "\(numberString) USD"
+        
+        return formattedString
+    }
+    
+    private func calculateDiscountRate() -> String {
+        guard product.price != product.bargainPrice else {
+            return ""
+        }
+        
+        let discountedPercent = Int((product.discountedPrice / product.price * 100).rounded())
+        return "\(discountedPercent)%"
     }
 }
