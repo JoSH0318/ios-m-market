@@ -25,6 +25,28 @@ final class DetailView: UIView {
         return String(describing: self)
     }
     
+    private let userImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "person.circle.fill")
+        imageView.tintColor = .lightGray
+        return imageView
+    }()
+    
+    private let userNameLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: FontSize.body, weight: .bold)
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
+        return label
+    }()
+    
+    private let userInformationStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .center
+        stackView.spacing = 8
+        return stackView
+    }()
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -116,6 +138,7 @@ final class DetailView: UIView {
     }
     
     func setContents(with detailProduct: DetailViewModelItem) {
+        userNameLabel.text = detailProduct.userName
         nameLabel.text = detailProduct.name
         stockLabel.text = detailProduct.stock
         bargainPriceLabel.text = detailProduct.bargainPrice
@@ -129,16 +152,27 @@ final class DetailView: UIView {
         scrollView.addSubview(imagesCollectionView)
         scrollView.addSubview(totalStackView)
         
+        userInformationStackView.addArrangedSubview(userImageView)
+        userInformationStackView.addArrangedSubview(userNameLabel)
+        
         bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
         bargainPriceStackView.addArrangedSubview(discountRateLabel)
         
         totalPriceStackView.addArrangedSubview(bargainPriceStackView)
         totalPriceStackView.addArrangedSubview(priceLabel)
         
+        totalStackView.addArrangedSubview(userInformationStackView)
+        totalStackView.addArrangedSubview(DividerLineView(height: 0.5))
         totalStackView.addArrangedSubview(nameLabel)
         totalStackView.addArrangedSubview(stockLabel)
         totalStackView.addArrangedSubview(totalPriceStackView)
+        totalStackView.addArrangedSubview(DividerLineView(height: 0.5))
         totalStackView.addArrangedSubview(descriptionLabel)
+        
+        userImageView.snp.makeConstraints {
+            $0.height.equalTo(userNameLabel.snp.height).offset(8)
+            $0.width.equalTo(userImageView.snp.height)
+        }
         
         imagesCollectionView.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview()
