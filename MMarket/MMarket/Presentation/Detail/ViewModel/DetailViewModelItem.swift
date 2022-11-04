@@ -14,6 +14,13 @@ struct DetailViewModelItem {
         return product.thumbnailURL
     }
     
+    var userName: String? {
+        guard let vendor = product.vendor else {
+            return " "
+        }
+        return vendor.name
+    }
+    
     var name: String {
         return product.name
     }
