@@ -68,7 +68,6 @@ final class ProductListCell: UICollectionViewCell {
     private let totalPriceStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 4
         return stackView
     }()
     
