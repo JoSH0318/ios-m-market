@@ -120,7 +120,7 @@ final class DetailView: UIView {
         nameLabel.text = detailProduct.name
         stockLabel.text = detailProduct.stock
         bargainPriceLabel.text = detailProduct.bargainPrice
-        priceLabel.text = detailProduct.price
+        priceLabel.attributedText = detailProduct.price.strikeThrough()
         discountRateLabel.text = detailProduct.discountRate
         descriptionLabel.text = detailProduct.description
     }
