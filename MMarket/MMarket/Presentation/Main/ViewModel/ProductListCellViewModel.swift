@@ -88,8 +88,4 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
         
         return formattedString
     }
-    
-    private func formattedString(from number: Int) -> String {
-        return "\(number)"
-    }
 }
