@@ -40,7 +40,7 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
             return "품절"
         }
         
-        return "재고수량 " + formattedString(from: product.stock)
+        return "재고수량: " + "\(product.stock)"
     }
     
     var price: String {
