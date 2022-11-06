@@ -34,4 +34,9 @@ final class DetailCoordinator: Coordinator {
         )
         self.navigationController.pushViewController(detailViewController, animated: true)
     }
+    
+    func popDetailView() {
+        navigationController.popViewController(animated: true)
+        parentCoordinators?.removeChildCoordinator(child: self)
+    }
 }
