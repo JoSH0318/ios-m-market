@@ -37,6 +37,8 @@
 		03B04FBA28AE6FE300FA268D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04FB928AE6FE300FA268D /* MainView.swift */; };
 		03D374B52915352F00AA0F58 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374B42915352F00AA0F58 /* RegisterViewModel.swift */; };
 		03D374B729153C5C00AA0F58 /* DividerLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374B629153C5C00AA0F58 /* DividerLineView.swift */; };
+		03D374BA2915444F00AA0F58 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374B92915444F00AA0F58 /* RegisterCoordinator.swift */; };
+		03D374BD291562A500AA0F58 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BC291562A500AA0F58 /* RegisterViewController.swift */; };
 		03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BE291562B700AA0F58 /* RegisterView.swift */; };
 		03D44F40290FF81F0059BE72 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F3F290FF81F0059BE72 /* UIImageView.swift */; };
 		03D44F42291056420059BE72 /* ProductListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F41291056420059BE72 /* ProductListCellViewModel.swift */; };
@@ -88,6 +90,8 @@
 		03B04FB928AE6FE300FA268D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		03D374B42915352F00AA0F58 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		03D374B629153C5C00AA0F58 /* DividerLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerLineView.swift; sourceTree = "<group>"; };
+		03D374B92915444F00AA0F58 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
+		03D374BC291562A500AA0F58 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		03D374BE291562B700AA0F58 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		03D44F3F290FF81F0059BE72 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		03D44F41291056420059BE72 /* ProductListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellViewModel.swift; sourceTree = "<group>"; };
@@ -323,6 +327,14 @@
 				03D374B42915352F00AA0F58 /* RegisterViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		03D374B82915443300AA0F58 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				03D374B92915444F00AA0F58 /* RegisterCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		03D374BB2915628A00AA0F58 /* View */ = {
@@ -565,6 +577,7 @@
 				03D44F5029119AE70059BE72 /* DetailView.swift in Sources */,
 				030E833A28DB93C600FE1BB8 /* ProductRepository.swift in Sources */,
 				03320D562900477C0030C853 /* AppCoordinator.swift in Sources */,
+				03D374BA2915444F00AA0F58 /* RegisterCoordinator.swift in Sources */,
 				030E833028DB58E800FE1BB8 /* NetworkError.swift in Sources */,
 				03D44F4A29119A0F0059BE72 /* DetailCoordinator.swift in Sources */,
 				03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */,
