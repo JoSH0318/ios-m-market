@@ -28,7 +28,7 @@ final class DetailView: UIView {
     private let userImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person.circle.fill")
-        imageView.tintColor = .lightGray
+        imageView.tintColor = .darkGray
         return imageView
     }()
     
