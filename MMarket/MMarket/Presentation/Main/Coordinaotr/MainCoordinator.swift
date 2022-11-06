@@ -38,4 +38,14 @@ final class MainCoordinator: Coordinator {
         self.childCoordinators.append(detailCoordinator)
         detailCoordinator.start(productID: productID)
     }
+    
+    func showRegisterView() {
+        let registerCoordinator = RegisterCoordinator(
+            navigationController: self.navigationController,
+            parentCoordinators: self,
+            useCase: useCase
+        )
+        self.childCoordinators.append(registerCoordinator)
+        registerCoordinator.start()
+    }
 }
