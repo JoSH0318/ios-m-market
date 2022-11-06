@@ -9,11 +9,11 @@ import Foundation
 
 struct ProductRequest: Encodable {
     let name: String
-    let price: Int
-    let discountedPrice: Int
-    let stock: Int
+    let price: Double
+    let discountedPrice: Double
+    let stock: Int?
     let currency: String
-    let descriptions: String
+    let descriptions: String?
     let secret: String
     
     private enum CodingKeys: String, CodingKey {
