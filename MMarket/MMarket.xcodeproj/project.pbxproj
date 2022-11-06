@@ -36,6 +36,7 @@
 		03B04FAA28ABD91C00FA268D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03B04FA828ABD91C00FA268D /* LaunchScreen.storyboard */; };
 		03B04FBA28AE6FE300FA268D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B04FB928AE6FE300FA268D /* MainView.swift */; };
 		03D374B729153C5C00AA0F58 /* DividerLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374B629153C5C00AA0F58 /* DividerLineView.swift */; };
+		03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BE291562B700AA0F58 /* RegisterView.swift */; };
 		03D44F40290FF81F0059BE72 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F3F290FF81F0059BE72 /* UIImageView.swift */; };
 		03D44F42291056420059BE72 /* ProductListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F41291056420059BE72 /* ProductListCellViewModel.swift */; };
 		03D44F4429111DE20059BE72 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F4329111DE20059BE72 /* CALayer.swift */; };
@@ -85,6 +86,7 @@
 		03B04FAB28ABD91C00FA268D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03B04FB928AE6FE300FA268D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		03D374B629153C5C00AA0F58 /* DividerLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerLineView.swift; sourceTree = "<group>"; };
+		03D374BE291562B700AA0F58 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		03D44F3F290FF81F0059BE72 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		03D44F41291056420059BE72 /* ProductListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellViewModel.swift; sourceTree = "<group>"; };
 		03D44F4329111DE20059BE72 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			children = (
 				03B04FB228ABE28900FA268D /* Main */,
 				03D44F47291199CD0059BE72 /* Detail */,
+				03D374B2291534A000AA0F58 /* Register */,
 				03B04FA828ABD91C00FA268D /* LaunchScreen.storyboard */,
 			);
 			path = Presentation;
@@ -298,6 +301,25 @@
 				03B04FB928AE6FE300FA268D /* MainView.swift */,
 				03B04FA128ABD91B00FA268D /* MainViewController.swift */,
 				038C3CA928B9054000D591BA /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		03D374B2291534A000AA0F58 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				03D374B82915443300AA0F58 /* Coordinator */,
+				03D374BB2915628A00AA0F58 /* View */,
+				03D374B3291534B200AA0F58 /* ViewModel */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		03D374BB2915628A00AA0F58 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03D374BE291562B700AA0F58 /* RegisterView.swift */,
+				03D374BC291562A500AA0F58 /* RegisterViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -522,6 +544,7 @@
 				03320D59290058AF0030C853 /* MainCoordinator.swift in Sources */,
 				0361F47628E075DB0010EC31 /* ProductUseCase.swift in Sources */,
 				030E834128DC8E1200FE1BB8 /* ProductImageDTO.swift in Sources */,
+				03D374BD291562A500AA0F58 /* RegisterViewController.swift in Sources */,
 				030E833428DB672900FE1BB8 /* APIEndpoints.swift in Sources */,
 				034CD38B2908485300CF5C08 /* ImageDownloader.swift in Sources */,
 				030E834528DC933000FE1BB8 /* NetworkProvider.swift in Sources */,
@@ -533,6 +556,7 @@
 				03320D562900477C0030C853 /* AppCoordinator.swift in Sources */,
 				030E833028DB58E800FE1BB8 /* NetworkError.swift in Sources */,
 				03D44F4A29119A0F0059BE72 /* DetailCoordinator.swift in Sources */,
+				03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */,
 				030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */,
 				030E833D28DC5DF600FE1BB8 /* ProductPagesDTO.swift in Sources */,
 				03D44F592913E8F40059BE72 /* DetailViewModelItem.swift in Sources */,
