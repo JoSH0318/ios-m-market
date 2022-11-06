@@ -63,6 +63,13 @@ final class MainViewController: UIViewController {
                 vc.coordinator.showDetailView(productID: product.id)
             }
             .disposed(by: disposeBag)
+        
+        mainView.registerButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: { vc, _ in
+                vc.coordinator.showRegisterView()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
