@@ -40,6 +40,7 @@
 		03D374BA2915444F00AA0F58 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374B92915444F00AA0F58 /* RegisterCoordinator.swift */; };
 		03D374BD291562A500AA0F58 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BC291562A500AA0F58 /* RegisterViewController.swift */; };
 		03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BE291562B700AA0F58 /* RegisterView.swift */; };
+		03D374C12917DBD100AA0F58 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C02917DBD100AA0F58 /* AlertBuilder.swift */; };
 		03D44F40290FF81F0059BE72 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F3F290FF81F0059BE72 /* UIImageView.swift */; };
 		03D44F42291056420059BE72 /* ProductListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F41291056420059BE72 /* ProductListCellViewModel.swift */; };
 		03D44F4429111DE20059BE72 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F4329111DE20059BE72 /* CALayer.swift */; };
@@ -93,6 +94,7 @@
 		03D374B92915444F00AA0F58 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
 		03D374BC291562A500AA0F58 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		03D374BE291562B700AA0F58 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		03D374C02917DBD100AA0F58 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		03D44F3F290FF81F0059BE72 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		03D44F41291056420059BE72 /* ProductListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellViewModel.swift; sourceTree = "<group>"; };
 		03D44F4329111DE20059BE72 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				03D374B629153C5C00AA0F58 /* DividerLineView.swift */,
+				03D374C02917DBD100AA0F58 /* AlertBuilder.swift */,
 				0361F47828E0B3740010EC31 /* Extension */,
 			);
 			path = Util;
@@ -552,6 +555,7 @@
 				0361F47328DF5DB40010EC31 /* HTTPBodyBuilder.swift in Sources */,
 				030E833228DB5B8F00FE1BB8 /* HTTPMethod.swift in Sources */,
 				034CD38D290985C500CF5C08 /* ImageCacheManager.swift in Sources */,
+				03D374C12917DBD100AA0F58 /* AlertBuilder.swift in Sources */,
 				03B04FBA28AE6FE300FA268D /* MainView.swift in Sources */,
 				03D44F5329120F720059BE72 /* DetailViewImagesCell.swift in Sources */,
 				0350C8FE28E1FE0A007CCE4D /* MainViewModel.swift in Sources */,
