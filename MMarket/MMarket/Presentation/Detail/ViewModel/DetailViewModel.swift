@@ -23,7 +23,6 @@ protocol DetailViewModelable: DetailViewModelInput, DetailViewModelOutput {}
 
 final class DetailViewModel: DetailViewModelable {
     private let productUseCase: ProductUseCase
-    private let productID: Int
     private let disposeBag = DisposeBag()
     private let productSubject = PublishSubject<Product>()
     
@@ -47,7 +46,6 @@ final class DetailViewModel: DetailViewModelable {
     
     init(productUseCase: ProductUseCase, productID: Int) {
         self.productUseCase = productUseCase
-        self.productID = productID
         
         self.fetchProduct(by: productID)
     }
