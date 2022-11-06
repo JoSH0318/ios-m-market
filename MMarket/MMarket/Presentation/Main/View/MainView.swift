@@ -13,7 +13,7 @@ final class MainView: UIView {
         collectionViewLayout: configureProductListLayout()
     )
     
-    let registerButton: UIButton = {
+    private(set) var registerButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         button.tintColor = .systemBlue
@@ -37,7 +37,7 @@ final class MainView: UIView {
         super.layoutSubviews()
         
         registerButton.layer.cornerRadius = registerButton.frame.width * 0.5
-      }
+    }
     
     private func configureProductListLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, env in
