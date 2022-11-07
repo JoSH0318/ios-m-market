@@ -116,14 +116,7 @@ final class RegisterView: UIView {
         stockTextField.placeholder = "재고 수량"
     }
     
-    func setProductRequest() -> ProductRequest? {
-        guard let name = nameTextField.text,
-              let price = Double(priceTextField.text!),
-              let discountedPrice = Double(descriptionTextView.text!)
-        else {
-            return nil
-        }
-        
+    func setProductRequest() -> ProductRequest {
         var currency = "KRW"
         
         if currencySegmentedControl.selectedSegmentIndex == 1 {
@@ -131,12 +124,12 @@ final class RegisterView: UIView {
         }
         
         return ProductRequest(
-            name: name,
-            price: price,
-            discountedPrice: discountedPrice,
-            stock: Int(stockTextField.text!),
+            name: nameTextField.text,
+            price: Int(priceTextField.text ?? ""),
+            discountedPrice: Int(discountedPriceTextField.text ?? ""),
+            stock: Int(stockTextField.text ?? ""),
             currency: currency,
-            descriptions: description,
+            description: descriptionTextView.text,
             secret: "xcnbof13rg2"
         )
     }
