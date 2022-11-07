@@ -42,9 +42,7 @@ final class HTTPBodyBuilder {
     
     @discardableResult
     func append(_ dataInfo: RequestDataInfo) -> HTTPBodyBuilder {
-        guard let requestData = dataInfo.data,
-              let jsonData = try? JSONEncoder().encode(requestData)
-        else {
+        guard let requestData = dataInfo.data else {
             return self
         }
         
@@ -52,13 +50,14 @@ final class HTTPBodyBuilder {
             data.appendString("\r\n--\(boundary)\r\n")
             data.appendString("Content-Disposition: form-data; name=\"\(dataInfo.name)\"")
             if let fileName = dataInfo.fileName {
-                data.appendString("; filename=\"\(fileName)\"\r\n")
+                data.appendString("; filename=\"\(fileName)\"")
             }
             data.appendString("\r\n")
             data.appendString("Content-Type: \(dataInfo.type.description)\r\n\r\n")
         }
         
-        data.append(jsonData)
+        data.append(requestData)
+        data.appendString("\r\n")
         
         return self
     }
