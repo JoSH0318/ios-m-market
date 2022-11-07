@@ -22,12 +22,32 @@ final class RegisterView: UIView {
         return stackView
     }()
     
+    private let nameStackView = UIStackView()
+    
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.text = "상품명"
+        return label
+    }()
+    
     private let nameTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .white
         textField.keyboardType = .default
         return textField
+    }()
+    
+    private let currencyStackView = UIStackView()
+    
+    private let currencyLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.text = "가격 단위"
+        return label
     }()
     
     private let currencySegmentedControl: UISegmentedControl = {
@@ -37,13 +57,34 @@ final class RegisterView: UIView {
         return segmentedControl
     }()
     
+    private let priceStackView = UIStackView()
+    
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.text = "상품 원가"
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
+        return label
+    }()
+    
     private let priceTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .white
         textField.keyboardType = .numberPad
-        textField.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return textField
+    }()
+    
+    private let discountedPriceStackView = UIStackView()
+    
+    private let discountedPriceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.text = "상품 판매가"
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
+        return label
     }()
     
     private let discountedPriceTextField: UITextField = {
@@ -54,6 +95,17 @@ final class RegisterView: UIView {
         return textField
     }()
     
+    private let stockStackView = UIStackView()
+    
+    private let stockLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.text = "재고수량"
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
+        return label
+    }()
+    
     private let stockTextField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
@@ -62,11 +114,19 @@ final class RegisterView: UIView {
         return textField
     }()
     
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.text = "상품 상세 정보"
+        return label
+    }()
+    
     private let descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.layer.cornerRadius = 5
-        textView.layer.borderWidth = 1
-        textView.layer.borderColor = UIColor(named: "MainGrayColor")?.cgColor
+        textView.layer.borderWidth = 0.5
+        textView.layer.borderColor = UIColor.systemGray3.cgColor
         textView.backgroundColor = .white
         textView.keyboardType = .default
         textView.isScrollEnabled = false
@@ -75,15 +135,10 @@ final class RegisterView: UIView {
         return textView
     }()
     
-    private let priceStackView: UIStackView = {
-        let stackView = UIStackView()
-        return stackView
-    }()
-    
-    private let totalStackView: UIStackView = {
+    private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -96,19 +151,13 @@ final class RegisterView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .systemBackground
-        configureLayout()
-        setContentsOfRegisterView()
+        
+        configureView()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setContentsOfRegisterView() {
-        nameTextField.placeholder = "글 제목"
-        priceTextField.placeholder = "가격"
-        discountedPriceTextField.placeholder = "할인 가격"
-        stockTextField.placeholder = "재고 수량"
     }
     
     func setProductRequest() -> ProductRequest {
@@ -136,6 +185,7 @@ final class RegisterView: UIView {
         imageView.layer.cornerRadius = 8
         imageView.backgroundColor = .systemBackground
         imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
         imageView.image = image
         imageView.snp.makeConstraints {
             $0.width.equalTo(imageView.snp.height)
@@ -147,30 +197,48 @@ final class RegisterView: UIView {
         imageStackView.addArrangedSubview(addImageButton)
     }
     
-    private func configureLayout() {
+    private func configureView() {
         addSubview(mainScrollView)
         mainScrollView.addSubview(imageScrollView)
-        mainScrollView.addSubview(totalStackView)
+        mainScrollView.addSubview(mainStackView)
         
         imageScrollView.addSubview(imageStackView)
         
+        nameStackView.addArrangedSubview(nameLabel)
+        nameStackView.addArrangedSubview(nameTextField)
+        
+        currencyStackView.addArrangedSubview(currencyLabel)
+        currencyStackView.addArrangedSubview(currencySegmentedControl)
+        
+        priceStackView.addArrangedSubview(priceLabel)
         priceStackView.addArrangedSubview(priceTextField)
-        priceStackView.addArrangedSubview(currencySegmentedControl)
         
-        totalStackView.addArrangedSubview(imageScrollView)
-        totalStackView.addArrangedSubview(nameTextField)
-        totalStackView.addArrangedSubview(priceStackView)
-        totalStackView.addArrangedSubview(discountedPriceTextField)
-        totalStackView.addArrangedSubview(stockTextField)
-        totalStackView.addArrangedSubview(descriptionTextView)
+        discountedPriceStackView.addArrangedSubview(discountedPriceLabel)
+        discountedPriceStackView.addArrangedSubview(discountedPriceTextField)
         
+        stockStackView.addArrangedSubview(stockLabel)
+        stockStackView.addArrangedSubview(stockTextField)
+        
+        mainStackView.addArrangedSubview(imageScrollView)
+        mainStackView.addArrangedSubview(DividerLineView())
+        mainStackView.addArrangedSubview(nameStackView)
+        mainStackView.addArrangedSubview(currencyStackView)
+        mainStackView.addArrangedSubview(priceStackView)
+        mainStackView.addArrangedSubview(discountedPriceStackView)
+        mainStackView.addArrangedSubview(stockStackView)
+        mainStackView.addArrangedSubview(DividerLineView())
+        mainStackView.addArrangedSubview(descriptionLabel)
+        mainStackView.addArrangedSubview(descriptionTextView)
+    }
+    
+    private func configureConstraints() {
         mainScrollView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(8)
+            $0.top.bottom.equalTo(safeAreaLayoutGuide)
             $0.leading.equalTo(safeAreaLayoutGuide).offset(16)
-            $0.trailing.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
+            $0.trailing.equalTo(safeAreaLayoutGuide).offset(-16)
         }
         
-        totalStackView.snp.makeConstraints {
+        mainStackView.snp.makeConstraints {
             $0.edges.equalTo(mainScrollView.contentLayoutGuide)
             $0.width.equalToSuperview()
             $0.height.equalTo(mainScrollView.frameLayoutGuide)
@@ -178,13 +246,30 @@ final class RegisterView: UIView {
         
         imageScrollView.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview()
-            $0.height.equalTo(self.snp.height).multipliedBy(0.13)
+            $0.height.equalTo(self.snp.height).multipliedBy(0.1)
         }
         
         imageStackView.snp.makeConstraints {
             $0.leading.top.equalToSuperview().offset(16)
-            $0.trailing.bottom.equalToSuperview().offset(-16)
-            $0.height.equalToSuperview().offset(-32)
+            $0.trailing.equalToSuperview().offset(-16)
+            $0.bottom.equalToSuperview()
+            $0.height.equalToSuperview().offset(-16)
+        }
+        
+        nameTextField.snp.makeConstraints {
+            $0.width.equalToSuperview().multipliedBy(0.7)
+        }
+        currencySegmentedControl.snp.makeConstraints {
+            $0.width.equalToSuperview().multipliedBy(0.7)
+        }
+        priceTextField.snp.makeConstraints {
+            $0.width.equalToSuperview().multipliedBy(0.7)
+        }
+        discountedPriceTextField.snp.makeConstraints {
+            $0.width.equalToSuperview().multipliedBy(0.7)
+        }
+        stockTextField.snp.makeConstraints {
+            $0.width.equalToSuperview().multipliedBy(0.7)
         }
     }
 }
