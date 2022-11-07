@@ -8,29 +8,37 @@
 import UIKit
 
 final class AlertBuilder {
-    var title: String?
-    var message: String?
-    var type: UIAlertController.Style = .alert
-    var actions: [UIAlertAction] = []
-
-    static var shared = AlertBuilder()
+    struct AlertComponents {
+        var title: String?
+        var message: String?
+        var type: UIAlertController.Style = .alert
+        var actions: [UIAlertAction] = []
+    }
+    
+    static private let alertBuilder = AlertBuilder()
+    static private var components = AlertComponents()
+    
+    static var shared: AlertBuilder {
+        self.components = AlertComponents()
+        return alertBuilder
+    }
     
     private init() { }
     
     func setTitle(_ title: String) -> AlertBuilder {
-        self.title = title
+        Self.components.title = title
         
         return self
     }
     
     func setMessage(_ message: String?) -> AlertBuilder {
-        self.message = message
+        Self.components.message = message
         
         return self
     }
     
     func setType(_ type: UIAlertController.Style) -> AlertBuilder {
-        self.type = type
+        Self.components.type = type
         
         return self
     }
@@ -40,19 +48,22 @@ final class AlertBuilder {
             return self
         }
         
-        actions.forEach { self.actions.append($0) }
+        actions.forEach { Self.components.actions.append($0) }
         
         return self
     }
     
     func apply() -> UIAlertController {
         let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: type
+            title: AlertBuilder.components.title,
+            message: AlertBuilder.components.message,
+            preferredStyle: AlertBuilder.components.type
         )
         
-        actions.forEach { alert.addAction($0) }
+        AlertBuilder
+            .components
+            .actions
+            .forEach { alert.addAction($0) }
         
         return alert
     }
