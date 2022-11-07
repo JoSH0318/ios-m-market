@@ -101,7 +101,11 @@ extension MainViewController {
     }
     
     private func configureNavigationBar() {
-        navigationItem.title = "M-Market"
+        navigationItem.title = "M-MARKET"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(
+            name: "BM DoHyeon OTF",
+            size: 20
+        ) as Any]
         navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 }
