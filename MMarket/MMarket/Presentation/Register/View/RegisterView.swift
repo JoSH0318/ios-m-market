@@ -134,6 +134,19 @@ final class RegisterView: UIView {
         )
     }
     
+    func setImages(_ image: UIImage) {
+        let imageView = UIImageView()
+        imageView.image = image
+        imageView.snp.makeConstraints {
+            $0.width.equalTo(imageView.snp.height)
+        }
+        imageStackView.addArrangedSubview(imageView)
+    }
+    
+    func hideAddImageButton() {
+        addImageButton.isHidden = true
+    }
+    
     private func configureLayout() {
         addSubview(mainScrollView)
         mainScrollView.addSubview(imageScrollView)
