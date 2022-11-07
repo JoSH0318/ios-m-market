@@ -42,6 +42,7 @@
 		03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BE291562B700AA0F58 /* RegisterView.swift */; };
 		03D374C12917DBD100AA0F58 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C02917DBD100AA0F58 /* AlertBuilder.swift */; };
 		03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */; };
+		03D374C629195BE900AA0F58 /* BMHANNAAir_ttf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */; };
 		03D44F40290FF81F0059BE72 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F3F290FF81F0059BE72 /* UIImageView.swift */; };
 		03D44F42291056420059BE72 /* ProductListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F41291056420059BE72 /* ProductListCellViewModel.swift */; };
 		03D44F4429111DE20059BE72 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F4329111DE20059BE72 /* CALayer.swift */; };
@@ -97,6 +98,7 @@
 		03D374BE291562B700AA0F58 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		03D374C02917DBD100AA0F58 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMDOHYEON_otf.otf; sourceTree = "<group>"; };
+		03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAAir_ttf.ttf; sourceTree = "<group>"; };
 		03D44F3F290FF81F0059BE72 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		03D44F41291056420059BE72 /* ProductListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellViewModel.swift; sourceTree = "<group>"; };
 		03D44F4329111DE20059BE72 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */,
+				03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D374C629195BE900AA0F58 /* BMHANNAAir_ttf.ttf in Resources */,
 				03B04FAA28ABD91C00FA268D /* LaunchScreen.storyboard in Resources */,
 				03B04FA728ABD91C00FA268D /* Assets.xcassets in Resources */,
 				03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */,
