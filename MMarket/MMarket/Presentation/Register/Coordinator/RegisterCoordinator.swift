@@ -38,4 +38,29 @@ final class RegisterCoordinator: Coordinator {
         navigationController.popViewController(animated: true)
         parentCoordinators?.removeChildCoordinator(child: self)
     }
+    
+    func showAlert(with title: String) {
+        let confirmAction = UIAlertAction(title: "확인", style: .default)  { [weak self] _ in
+            self?.removeRegisterView()
+        }
+        let alert = AlertBuilder.shared
+            .setType(.alert)
+            .setTitle(title)
+            .setActions([confirmAction])
+            .apply()
+        
+        navigationController.present(alert, animated: true)
+    }
+    
+    func showErrorAlert() {
+        let action = UIAlertAction(title: "확인", style: .cancel)
+        let alert = AlertBuilder.shared
+            .setType(.alert)
+            .setTitle("입력하지 않은 정보가 있습니다.")
+            .setMessage("다시 한번 확인해주세요.")
+            .setActions([action])
+            .apply()
+        
+        navigationController.present(alert, animated: true)
+    }
 }
