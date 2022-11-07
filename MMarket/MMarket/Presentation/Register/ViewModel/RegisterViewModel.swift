@@ -15,6 +15,7 @@ protocol RegisterViewModelInput {
 
 protocol RegisterViewModelOutput {
     var postProdct: Observable<Void> { get }
+    var productImages: [Data] { get }
 }
 
 protocol RegisterViewModelable: RegisterViewModelInput, RegisterViewModelOutput {}
@@ -22,7 +23,9 @@ protocol RegisterViewModelable: RegisterViewModelInput, RegisterViewModelOutput 
 final class RegisterViewModel: RegisterViewModelable {
     private let productUseCase: ProductUseCase
     private let disposeBag = DisposeBag()
-    private let postSubject = PublishRelay<Void>()
+    private let postRelay = PublishRelay<Void>()
+    private let imageRelay = BehaviorRelay<[Data]>(value: [])
+    private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
     
     init(productUseCase: ProductUseCase) {
         self.productUseCase = productUseCase
@@ -31,7 +34,19 @@ final class RegisterViewModel: RegisterViewModelable {
     // MARK: - Output
     
     var postProdct: Observable<Void> {
-        return postSubject.asObservable()
+        return postRelay.asObservable()
+    }
+    
+    var productImages: [Data] {
+        return imageRelay.value
+    }
+    
+    var imagesCount: Int {
+        return imageRelay.value.count
+    }
+    
+    var error: Observable<Error> {
+        return errorRelay.asObservable()
     }
     
     // MARK: - Input
