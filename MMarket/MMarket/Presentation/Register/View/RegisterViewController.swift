@@ -78,8 +78,9 @@ final class RegisterViewController: UIViewController {
     private func bind() {
         backBarButton.rx.tap
             .withUnretained(self)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { vc, _ in
-                vc.coordinator.popRegisterView()
+                vc.coordinator.removeRegisterView()
             })
             .disposed(by: disposeBag)
         
@@ -87,14 +88,32 @@ final class RegisterViewController: UIViewController {
             .withUnretained(self)
             .subscribe(onNext: { vc, _ in
                 let productRequest = vc.registerView.setProductRequest()
-//                vc.viewModel.didTapPostButton(productRequest, images: <#T##[Data]#>)
+                let imagesData = vc.viewModel.productImages
+                vc.viewModel.didTapPostButton(productRequest, images: imagesData)
+            })
+            .disposed(by: disposeBag)
+        
+        registerView.addImageButton.rx.tap
+            .withUnretained(self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { vc, _ in
+                vc.coordinator.showPhotoLibrary(to: vc.imagePicker)
             })
             .disposed(by: disposeBag)
         
         viewModel.postProdct
             .withUnretained(self)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { vc, _ in
-                vc.coordinator.popRegisterView()
+                vc.coordinator.showAlert(with: "제품을 등록했습니다.")
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.error
+            .withUnretained(self)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { vc, error in
+                vc.coordinator.showErrorAlert()
             })
             .disposed(by: disposeBag)
     }
