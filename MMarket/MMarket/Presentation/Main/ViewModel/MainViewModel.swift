@@ -52,7 +52,7 @@ final class MainViewModel: MainViewModelable {
             .map { $0.products }
             .withUnretained(self)
             .subscribe(onNext: { viewModel, products in
-                viewModel.productsSubject.accept(viewModel.productsSubject.value + products)
+                viewModel.productsSubject.accept(products)
             })
             .disposed(by: disposeBag)
     }
