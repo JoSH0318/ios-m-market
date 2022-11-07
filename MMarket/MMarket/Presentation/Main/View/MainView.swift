@@ -42,7 +42,7 @@ final class MainView: UIView {
     private func configureProductListLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, env in
             let width = (env.container.effectiveContentSize.width) * 0.5
-            let height = width * 1.5
+            let height = width * 1.3
             
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .absolute(width),
