@@ -21,7 +21,7 @@ final class ProductListCell: UICollectionViewCell {
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 16
+        imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -45,7 +45,7 @@ final class ProductListCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
-        
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
     }()
     
@@ -68,6 +68,7 @@ final class ProductListCell: UICollectionViewCell {
     private let totalPriceStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.setContentHuggingPriority(.init(rawValue: 1), for: .vertical)
         return stackView
     }()
     
@@ -80,14 +81,12 @@ final class ProductListCell: UICollectionViewCell {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalCentering
-        stackView.spacing = 8
         return stackView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentView.layer.addBottomBorder()
         configureLayout()
     }
     
@@ -109,16 +108,16 @@ final class ProductListCell: UICollectionViewCell {
         contentView.addSubview(totalStackView)
 
         thumbnailImageView.snp.makeConstraints {
-            $0.leading.top.equalToSuperview().offset(16)
+            $0.top.equalToSuperview().offset(8)
+            $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalTo(totalStackView.snp.top).offset(-16)
+            $0.bottom.equalTo(totalStackView.snp.top).offset(-8)
             $0.width.equalTo(thumbnailImageView.snp.height)
         }
         
         totalStackView.snp.makeConstraints {
             $0.leading.equalTo(contentView).offset(16)
-            $0.bottom.equalTo(contentView).offset(-16)
-            $0.trailing.equalTo(contentView).offset(-16)
+            $0.bottom.trailing.equalTo(contentView).offset(-8)
         }
         
         bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
@@ -128,6 +127,6 @@ final class ProductListCell: UICollectionViewCell {
         
         totalStackView.addArrangedSubview(nameLabel)
         totalStackView.addArrangedSubview(totalPriceStackView)
-        totalStackView.addArrangedSubview(stockLabel)
+//        totalStackView.addArrangedSubview(stockLabel)
     }
 }
