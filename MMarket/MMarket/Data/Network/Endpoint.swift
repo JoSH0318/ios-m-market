@@ -37,7 +37,7 @@ final class Endpoint {
         urlRequest.httpMethod = method.description
         
         header.forEach {
-            urlRequest.addValue($0.key, forHTTPHeaderField: $0.value)
+            urlRequest.addValue($0.value, forHTTPHeaderField: $0.key)
         }
         
         if method == .post || method == .patch,
