@@ -36,6 +36,13 @@ final class RegisterViewController: UIViewController {
         return barButtonItem
     }()
     
+    private let imagePicker: UIImagePickerController = {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        return imagePicker
+    }()
+    
     private let registerView = RegisterView()
     private var viewModel: RegisterViewModel
     private var coordinator: RegisterCoordinator
@@ -65,6 +72,7 @@ final class RegisterViewController: UIViewController {
         
         configureNavigationBar()
         bind()
+        imagePicker.delegate = self
     }
     
     private func bind() {
@@ -101,5 +109,43 @@ extension RegisterViewController {
         navigationItem.rightBarButtonItem = completionBarButton
         navigationItem.title = "M-Market"
         navigationController?.navigationBar.backgroundColor = .systemGray5
+    }
+}
+
+//MARK: - ImagePickerController
+
+extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    private func presentAlbum() {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: false, completion: nil)
+    }
+    
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo
+        info: [UIImagePickerController.InfoKey : Any]
+    ) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            guard let resizedPickerImage = resize(image: image, newWidth: 300) else {
+                return
+            }
+            registerView.setImages(image)
+            viewModel.selectImage(resizedPickerImage)
+        }
+        if viewModel.imagesCount == 5 {
+            registerView.hideAddImageButton()
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    private func resize(image: UIImage, newWidth: CGFloat) -> UIImage? {
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
     }
 }
