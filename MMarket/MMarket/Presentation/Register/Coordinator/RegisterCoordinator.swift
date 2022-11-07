@@ -34,7 +34,7 @@ final class RegisterCoordinator: Coordinator {
         self.navigationController.pushViewController(registerViewController, animated: true)
     }
     
-    func popRegisterView() {
+    func removeRegisterView() {
         navigationController.popViewController(animated: true)
         parentCoordinators?.removeChildCoordinator(child: self)
     }
