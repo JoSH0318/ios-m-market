@@ -32,7 +32,11 @@ final class RegisterViewController: UIViewController {
             action: nil
         )
         barButtonItem.title = "완료"
-        barButtonItem.tintColor = .darkGray
+        barButtonItem.setTitleTextAttributes(
+            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold)],
+            for: .normal
+        )
+        barButtonItem.tintColor = UIColor(named: "MainBeigeColor")
         return barButtonItem
     }()
     
