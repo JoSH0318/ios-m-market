@@ -57,7 +57,6 @@ final class RegisterViewModel: RegisterViewModelable {
             .subscribe { viewModel, _ in
                 
             } onError: { error in
-                print(request)
                 self.errorRelay.accept(error)
             } onCompleted: {
                 self.postRelay.accept(())
