@@ -41,6 +41,7 @@
 		03D374BD291562A500AA0F58 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BC291562A500AA0F58 /* RegisterViewController.swift */; };
 		03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BE291562B700AA0F58 /* RegisterView.swift */; };
 		03D374C12917DBD100AA0F58 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C02917DBD100AA0F58 /* AlertBuilder.swift */; };
+		03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */; };
 		03D44F40290FF81F0059BE72 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F3F290FF81F0059BE72 /* UIImageView.swift */; };
 		03D44F42291056420059BE72 /* ProductListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F41291056420059BE72 /* ProductListCellViewModel.swift */; };
 		03D44F4429111DE20059BE72 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F4329111DE20059BE72 /* CALayer.swift */; };
@@ -95,6 +96,7 @@
 		03D374BC291562A500AA0F58 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		03D374BE291562B700AA0F58 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		03D374C02917DBD100AA0F58 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
+		03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMDOHYEON_otf.otf; sourceTree = "<group>"; };
 		03D44F3F290FF81F0059BE72 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		03D44F41291056420059BE72 /* ProductListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellViewModel.swift; sourceTree = "<group>"; };
 		03D44F4329111DE20059BE72 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 		03B04F9C28ABD91B00FA268D /* MMarket */ = {
 			isa = PBXGroup;
 			children = (
+				03D374C22919384600AA0F58 /* Font */,
 				03320D51290046CB0030C853 /* Application */,
 				0361F47728E0B3640010EC31 /* Util */,
 				030E832B28DB54A100FE1BB8 /* Data */,
@@ -347,6 +350,14 @@
 				03D374BC291562A500AA0F58 /* RegisterViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		03D374C22919384600AA0F58 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		03D44F47291199CD0059BE72 /* Detail */ = {
@@ -495,6 +506,7 @@
 			files = (
 				03B04FAA28ABD91C00FA268D /* LaunchScreen.storyboard in Resources */,
 				03B04FA728ABD91C00FA268D /* Assets.xcassets in Resources */,
+				03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
