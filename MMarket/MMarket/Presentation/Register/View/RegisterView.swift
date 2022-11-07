@@ -16,19 +16,9 @@ final class RegisterView: UIView {
     
     private let imageScrollView = UIScrollView()
     
-    let addImageButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "camera"), for: .normal)
-        button.tintColor = .darkGray
-        button.backgroundColor = .systemBackground
-        button.clipsToBounds = true
-        return button
-    }()
-    
     private let imageStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = 20
         return stackView
     }()
     
@@ -141,6 +131,10 @@ final class RegisterView: UIView {
     
     func setImages(_ image: UIImage) {
         let imageView = UIImageView()
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor(named: "MainGrayColor")?.cgColor
+        imageView.layer.cornerRadius = 8
+        imageView.backgroundColor = .systemBackground
         imageView.contentMode = .scaleAspectFit
         imageView.image = image
         imageView.snp.makeConstraints {
@@ -149,8 +143,8 @@ final class RegisterView: UIView {
         imageStackView.addArrangedSubview(imageView)
     }
     
-    func hideAddImageButton() {
-        addImageButton.isHidden = true
+    func setAddButton(_ addImageButton: UIButton) {
+        imageStackView.addArrangedSubview(addImageButton)
     }
     
     private func configureLayout() {
@@ -159,7 +153,6 @@ final class RegisterView: UIView {
         mainScrollView.addSubview(totalStackView)
         
         imageScrollView.addSubview(imageStackView)
-        imageStackView.addArrangedSubview(addImageButton)
         
         priceStackView.addArrangedSubview(priceTextField)
         priceStackView.addArrangedSubview(currencySegmentedControl)
@@ -172,7 +165,8 @@ final class RegisterView: UIView {
         totalStackView.addArrangedSubview(descriptionTextView)
         
         mainScrollView.snp.makeConstraints {
-            $0.leading.top.equalTo(safeAreaLayoutGuide).offset(16)
+            $0.top.equalTo(safeAreaLayoutGuide).offset(8)
+            $0.leading.equalTo(safeAreaLayoutGuide).offset(16)
             $0.trailing.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
         }
         
@@ -184,17 +178,13 @@ final class RegisterView: UIView {
         
         imageScrollView.snp.makeConstraints {
             $0.leading.top.trailing.equalToSuperview()
-            $0.height.equalTo(self.snp.height).multipliedBy(0.17)
+            $0.height.equalTo(self.snp.height).multipliedBy(0.13)
         }
         
         imageStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.height.equalToSuperview()
-        }
-        
-        addImageButton.snp.makeConstraints {
-            $0.height.equalToSuperview()
-            $0.width.equalTo(addImageButton.snp.height)
+            $0.leading.top.equalToSuperview().offset(16)
+            $0.trailing.bottom.equalToSuperview().offset(-16)
+            $0.height.equalToSuperview().offset(-32)
         }
     }
 }

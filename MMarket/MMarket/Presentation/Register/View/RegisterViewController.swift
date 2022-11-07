@@ -5,12 +5,24 @@
 //  Created by 조성훈 on 2022/11/05.
 //
 
-import UIKit
+import SnapKit
 import RxSwift
 import RxRelay
 import RxCocoa
 
 final class RegisterViewController: UIViewController {
+    
+    private let addImageButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 8
+        button.layer.borderColor = UIColor(named: "MainGrayColor")?.cgColor
+        button.setBackgroundImage(UIImage(systemName: "camera"), for: .normal)
+        button.tintColor = UIColor(named: "MainGrayColor")
+        button.backgroundColor = .systemBackground
+        button.clipsToBounds = true
+        return button
+    }()
     
     private let backBarButton: UIBarButtonItem = {
         let backImage = UIImage(systemName: "chevron.backward")
@@ -75,6 +87,7 @@ final class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationBar()
+        configureUI()
         bind()
         imagePicker.delegate = self
     }
@@ -97,9 +110,12 @@ final class RegisterViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        registerView.addImageButton.rx.tap
+        addImageButton.rx.tap
             .withUnretained(self)
             .observe(on: MainScheduler.instance)
+            .filter { vc, _ in
+                vc.viewModel.imagesCount < 5
+            }
             .subscribe(onNext: { vc, _ in
                 vc.coordinator.showPhotoLibrary(to: vc.imagePicker)
             })
@@ -126,11 +142,18 @@ final class RegisterViewController: UIViewController {
 // MARK: - NavigationBar Layout
 
 extension RegisterViewController {
-    private func configureLayout() {}
+    private func configureUI() {
+        registerView.setAddButton(addImageButton)
+        addImageButton.snp.makeConstraints {
+            $0.height.equalToSuperview()
+            $0.width.equalTo(addImageButton.snp.height)
+        }
+    }
+    
     private func configureNavigationBar() {
         navigationItem.leftBarButtonItem = backBarButton
         navigationItem.rightBarButtonItem = completionBarButton
-        navigationItem.title = "M-Market"
+        navigationItem.title = "상품 등록하기"
         navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 }
@@ -138,11 +161,6 @@ extension RegisterViewController {
 //MARK: - ImagePickerController
 
 extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    private func presentAlbum() {
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.allowsEditing = true
-        present(imagePicker, animated: false, completion: nil)
-    }
     
     func imagePickerController(
         _ picker: UIImagePickerController,
@@ -150,15 +168,12 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         info: [UIImagePickerController.InfoKey : Any]
     ) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            guard let resizedPickerImage = resize(image: image, newWidth: 300) else {
-                return
-            }
+            guard let resizedPickerImage = resize(image: image, newWidth: 300) else { return }
+            
             registerView.setImages(image)
             viewModel.selectImage(resizedPickerImage)
         }
-        if viewModel.imagesCount == 5 {
-            registerView.hideAddImageButton()
-        }
+        
         dismiss(animated: true, completion: nil)
     }
     
