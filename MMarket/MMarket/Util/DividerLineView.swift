@@ -8,7 +8,7 @@
 import UIKit
 
 final class DividerLineView: UIView {
-    init(height: CGFloat) {
+    init(height: CGFloat = 1.0) {
         super.init(frame: .zero)
         
         configureLayout(height)
