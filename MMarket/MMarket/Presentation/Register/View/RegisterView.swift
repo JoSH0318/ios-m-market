@@ -52,6 +52,7 @@ final class RegisterView: UIView {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .white
         textField.keyboardType = .numberPad
+        textField.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return textField
     }()
     
@@ -73,10 +74,14 @@ final class RegisterView: UIView {
     
     private let descriptionTextView: UITextView = {
         let textView = UITextView()
+        textView.layer.cornerRadius = 5
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor(named: "MainGrayColor")?.cgColor
         textView.backgroundColor = .white
         textView.keyboardType = .default
         textView.isScrollEnabled = false
         textView.font = .systemFont(ofSize: 16)
+        textView.setContentHuggingPriority(.init(rawValue: 1), for: .vertical)
         return textView
     }()
     
@@ -88,12 +93,12 @@ final class RegisterView: UIView {
     private let totalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.spacing = 8
         return stackView
     }()
     
     private let mainScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        
         return scrollView
     }()
     
@@ -136,6 +141,7 @@ final class RegisterView: UIView {
     
     func setImages(_ image: UIImage) {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
         imageView.image = image
         imageView.snp.makeConstraints {
             $0.width.equalTo(imageView.snp.height)
@@ -166,12 +172,14 @@ final class RegisterView: UIView {
         totalStackView.addArrangedSubview(descriptionTextView)
         
         mainScrollView.snp.makeConstraints {
-            $0.edges.equalTo(safeAreaLayoutGuide).offset(16)
+            $0.leading.top.equalTo(safeAreaLayoutGuide).offset(16)
+            $0.trailing.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
         }
         
         totalStackView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(mainScrollView.contentLayoutGuide)
             $0.width.equalToSuperview()
+            $0.height.equalTo(mainScrollView.frameLayoutGuide)
         }
         
         imageScrollView.snp.makeConstraints {
