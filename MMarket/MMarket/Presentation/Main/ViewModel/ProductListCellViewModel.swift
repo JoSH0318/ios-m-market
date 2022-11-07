@@ -45,7 +45,7 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
     
     var price: String {
         guard product.discountedPrice != 0 else {
-            return ""
+            return " "
         }
         
         return formattedString(from: product.price)
