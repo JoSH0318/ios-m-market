@@ -63,4 +63,12 @@ final class RegisterCoordinator: Coordinator {
         
         navigationController.present(alert, animated: true)
     }
+    
+    func showPhotoLibrary(to imagePicker: UIImagePickerController) {
+        navigationController.present(imagePicker, animated: true)
+    }
+    
+    func removePhotoLibrary(to imagePicker: UIImagePickerController) {
+        imagePicker.dismiss(animated: true)
+    }
 }
