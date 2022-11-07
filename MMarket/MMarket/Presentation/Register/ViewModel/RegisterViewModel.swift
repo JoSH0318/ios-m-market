@@ -53,9 +53,15 @@ final class RegisterViewModel: RegisterViewModelable {
     
     func didTapPostButton(_ request: ProductRequest, images: [Data]) {
         productUseCase.createProduct(productRequest: request, images: images)
-            .subscribe(onCompleted: { [weak self] in
-                self?.postSubject.accept(())
-            })
+            .withUnretained(self)
+            .subscribe { viewModel, _ in
+                
+            } onError: { error in
+                print(request)
+                self.errorRelay.accept(error)
+            } onCompleted: {
+                self.postRelay.accept(())
+            }
             .disposed(by: disposeBag)
     }
 }
