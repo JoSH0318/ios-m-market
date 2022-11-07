@@ -16,7 +16,7 @@ final class RegisterView: UIView {
     
     private let imageScrollView = UIScrollView()
     
-    private let addImageButton: UIButton = {
+    let addImageButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "camera"), for: .normal)
         button.tintColor = .darkGray
