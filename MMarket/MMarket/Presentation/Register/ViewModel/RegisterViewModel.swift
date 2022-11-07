@@ -64,5 +64,21 @@ final class RegisterViewModel: RegisterViewModelable {
             }
             .disposed(by: disposeBag)
     }
+    
+    func selectImage(_ selectedImage: UIImage) {
+        let imageData = convertToImageFile(from: selectedImage)
+        var list = [Data]()
+        imageRelay.value.forEach { list.append($0)}
+        list.append(imageData)
+        imageRelay.accept(list)
+    }
+    
+    private func convertToImageFile(from image: UIImage) -> Data {
+        guard let imageData = image.jpegData(compressionQuality: 1) else {
+            return Data()
+        }
+        
+        return imageData
+    }
 }
 
