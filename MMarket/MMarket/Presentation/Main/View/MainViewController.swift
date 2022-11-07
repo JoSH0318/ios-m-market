@@ -11,6 +11,13 @@ import RxRelay
 import RxCocoa
 
 final class MainViewController: UIViewController {
+    
+    private let refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .darkGray
+        return refreshControl
+    }()
+    
     private let mainView = MainView()
     private var viewModel: MainViewModel
     private var coordinator: MainCoordinator
@@ -36,7 +43,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureNavigationBar()
+        setView()
         bind()
     }
     
@@ -70,13 +77,29 @@ final class MainViewController: UIViewController {
                 vc.coordinator.showRegisterView()
             })
             .disposed(by: disposeBag)
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .withUnretained(self)
+            .subscribe(onNext: { vc, _ in
+                vc.refreshMainView()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func refreshMainView() {
+        viewModel.fetchProductList(pageNumber: 1)
+        mainView.productListCollectionView.refreshControl?.endRefreshing()
     }
 }
 
 // MARK: - Layout
 
 extension MainViewController {
-    private func configureLayout() {}
+    private func setView() {
+        mainView.productListCollectionView.refreshControl = refreshControl
+        configureNavigationBar()
+    }
+    
     private func configureNavigationBar() {
         navigationItem.title = "M-Market"
         navigationController?.navigationBar.backgroundColor = .systemGray5
