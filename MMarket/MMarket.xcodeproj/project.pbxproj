@@ -357,8 +357,8 @@
 			isa = PBXGroup;
 			children = (
 				03D374BE291562B700AA0F58 /* RegisterView.swift */,
-				03D374CB291AA60500AA0F58 /* EditViewController.swift */,
 				03D374BC291562A500AA0F58 /* RegisterViewController.swift */,
+				03D374CB291AA60500AA0F58 /* EditViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
