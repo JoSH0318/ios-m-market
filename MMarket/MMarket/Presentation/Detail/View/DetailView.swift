@@ -148,8 +148,8 @@ final class DetailView: UIView {
         descriptionLabel.text = detailProduct.description
     }
     
-    func setOwnerButtons(_ Buttons: [UIButton]) {
-        Buttons.forEach { userInformationStackView.addArrangedSubview($0) }
+    func setOwnerButtons(_ buttons: [UIButton]) {
+        buttons.forEach { userInformationStackView.addArrangedSubview($0) }
     }
     
     private func configureView() {
