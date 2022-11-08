@@ -23,9 +23,10 @@ final class EditCoordinator: Coordinator {
         self.useCase = useCase
     }
     
-    func start() {
+    func start(with product: Product) {
         let editViewModel = EditViewModel(
-            productUseCase: useCase
+            productUseCase: useCase,
+            product: product
         )
         let editViewController = EditViewController(
             viewModel: editViewModel,

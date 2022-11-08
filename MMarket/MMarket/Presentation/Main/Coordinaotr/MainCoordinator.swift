@@ -36,7 +36,7 @@ final class MainCoordinator: Coordinator {
             useCase: useCase
         )
         self.childCoordinators.append(detailCoordinator)
-        detailCoordinator.start(productID: productID)
+        detailCoordinator.start(with: productID)
     }
     
     func showRegisterView() {

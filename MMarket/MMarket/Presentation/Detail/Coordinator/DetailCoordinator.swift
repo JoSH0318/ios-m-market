@@ -23,7 +23,7 @@ final class DetailCoordinator: Coordinator {
         self.useCase = useCase
     }
     
-    func start(productID: Int) {
+    func start(with productID: Int) {
         let detailViewModel = DetailViewModel(
             productUseCase: useCase,
             productID: productID
@@ -35,14 +35,14 @@ final class DetailCoordinator: Coordinator {
         self.navigationController.pushViewController(detailViewController, animated: true)
     }
     
-    func showEditView() {
+    func showEditView(with product: Product) {
         let editCoordinator = EditCoordinator(
             navigationController: self.navigationController,
             parentCoordinators: self,
             useCase: useCase
         )
         self.childCoordinators.append(editCoordinator)
-        editCoordinator.start()
+        editCoordinator.start(with: product)
     }
     
     func popDetailView() {
