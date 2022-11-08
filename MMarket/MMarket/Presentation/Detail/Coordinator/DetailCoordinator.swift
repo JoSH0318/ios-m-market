@@ -39,4 +39,16 @@ final class DetailCoordinator: Coordinator {
         navigationController.popViewController(animated: true)
         parentCoordinators?.removeChildCoordinator(child: self)
     }
+    
+    func showErrorAlert() {
+        let action = UIAlertAction(title: "확인", style: .cancel)
+        let alert = AlertBuilder.shared
+            .setType(.alert)
+            .setTitle("오류")
+            .setMessage("다시 한번 시도하세요.")
+            .setActions([action])
+            .apply()
+        
+        navigationController.present(alert, animated: true)
+    }
 }
