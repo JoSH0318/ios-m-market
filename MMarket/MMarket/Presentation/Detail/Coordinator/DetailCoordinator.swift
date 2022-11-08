@@ -61,4 +61,17 @@ final class DetailCoordinator: Coordinator {
         
         navigationController.present(alert, animated: true)
     }
+    
+    func showAlert() {
+        let action = UIAlertAction(title: "확인", style: .cancel) { [weak self] _ in
+            self?.popDetailView()
+        }
+        let alert = AlertBuilder.shared
+            .setType(.alert)
+            .setTitle("등록한 상품이 삭제됐습니다.")
+            .setActions([action])
+            .apply()
+        
+        navigationController.present(alert, animated: true)
+    }
 }
