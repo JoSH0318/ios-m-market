@@ -23,14 +23,14 @@ class EditViewController: UIViewController {
         return barButtonItem
     }()
     
-    private let completionBarButton: UIBarButtonItem = {
+    private let saveBarButton: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(
             image: nil,
             style: .plain,
             target: nil,
             action: nil
         )
-        barButtonItem.title = "완료"
+        barButtonItem.title = "저장"
         barButtonItem.setTitleTextAttributes(
             [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold)],
             for: .normal
@@ -78,7 +78,7 @@ class EditViewController: UIViewController {
 extension EditViewController {
     private func configureNavigationBar() {
         navigationItem.leftBarButtonItem = backBarButton
-        navigationItem.rightBarButtonItem = completionBarButton
+        navigationItem.rightBarButtonItem = saveBarButton
         navigationItem.title = "상품 수정하기"
         navigationController?.navigationBar.backgroundColor = .systemGray5
     }
