@@ -33,8 +33,8 @@ final class MainView: UIView {
     init() {
         super.init(frame: .zero)
         
-        configureLayout()
-        configureRegisterButton()
+        configureView()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -72,12 +72,12 @@ final class MainView: UIView {
         }
     }
     
-    private func configureLayout() {
-        addSubview(productListCollectionView)
+    private func configureView() {
+        backgroundColor = .systemBackground
         
-        productListCollectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        addSubview(searchBar)
+        addSubview(productListCollectionView)
+        addSubview(registerButton)
         
         productListCollectionView.register(
             ProductListCell.self,
@@ -85,8 +85,17 @@ final class MainView: UIView {
         )
     }
     
-    private func configureRegisterButton() {
-        addSubview(registerButton)
+    private func configureConstraints() {
+        searchBar.snp.makeConstraints {
+            $0.leading.top.equalTo(safeAreaLayoutGuide).offset(8)
+            $0.trailing.equalTo(safeAreaLayoutGuide).offset(-8)
+            $0.height.equalTo(35)
+        }
+        
+        productListCollectionView.snp.makeConstraints {
+            $0.top.equalTo(searchBar.snp.bottom).offset(4)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
         
         registerButton.snp.makeConstraints {
             $0.width.height.equalTo(50)
