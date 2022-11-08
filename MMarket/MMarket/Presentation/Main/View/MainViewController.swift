@@ -83,6 +83,15 @@ final class MainViewController: UIViewController {
                 vc.refreshMainView()
             })
             .disposed(by: disposeBag)
+        mainView.searchBar.rx.text.orEmpty
+            .observe(on: MainScheduler.instance)
+            .filter{ $0 != "" }
+            .withUnretained(self)
+            .subscribe(onNext: { vc, text in
+                vc.viewModel.didBeginEditingSerachBar(text)
+                vc.mainView.productListCollectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func refreshMainView() {
