@@ -108,7 +108,7 @@ final class DetailViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { vc, _ in
-                vc.coordinator.popDetailView()
+                vc.coordinator.showAlert()
             })
             .disposed(by: disposeBag)
     }
