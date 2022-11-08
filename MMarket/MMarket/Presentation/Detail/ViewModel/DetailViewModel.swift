@@ -25,8 +25,8 @@ final class DetailViewModel: DetailViewModelable {
     private let productUseCase: ProductUseCase
     private let disposeBag = DisposeBag()
     private let productSubject = PublishSubject<Product>()
-    private let deleteKeyRelay = PublishRelay<String>()
     private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
+    private let deleteKeyRelay = PublishRelay<String>()
     private let deleteCompletionRelay = PublishRelay<Void>()
     private let productID: Int
     
@@ -38,8 +38,8 @@ final class DetailViewModel: DetailViewModelable {
     
     var productImagesURL: Observable<[String]> {
         return productSubject
-            .compactMap { product in
-                product.images?.compactMap { $0.url }
+            .compactMap {
+                $0.images?.compactMap { $0.url }
             }
     }
     
@@ -76,16 +76,13 @@ final class DetailViewModel: DetailViewModelable {
         self.deleteProduct()
     }
     
-    // MARK: - Input
-    
-    func didTapDeleteButton() {
-        productUseCase.inquireProductSecret(with: "xcnbof13rg2", productID)
-            .withUnretained(self)
-            .subscribe { viewModel, deleteKey in
-                viewModel.deleteKeyRelay.accept(deleteKey)
-            } onError: { error in
-                self.errorRelay.accept(error)
-            }
+    private func fetchProduct(by productID: Int) {
+        productUseCase.fetchProduct(with: productID)
+            .subscribe(onNext: { [weak self] product in
+                self?.productSubject.onNext(product)
+            }, onError: { [weak self] error in
+                self?.errorRelay.accept(error)
+            })
             .disposed(by: disposeBag)
     }
     
@@ -111,12 +108,18 @@ final class DetailViewModel: DetailViewModelable {
             .disposed(by: disposeBag)
     }
     
-    private func fetchProduct(by productID: Int) {
-        productUseCase.fetchProduct(with: productID)
+    // MARK: - Input
+    
+    func didTapDeleteButton() {
+        productUseCase.inquireProductSecret(with: "xcnbof13rg2", productID)
             .withUnretained(self)
-            .subscribe { viewModel, product in
-                viewModel.productSubject.onNext(product)
+            .subscribe { viewModel, deleteKey in
+                viewModel.deleteKeyRelay.accept(deleteKey)
+            } onError: { error in
+                self.errorRelay.accept(error)
             }
             .disposed(by: disposeBag)
     }
+    
+    
 }
