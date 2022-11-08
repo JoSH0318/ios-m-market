@@ -118,7 +118,8 @@ final class DetailView: UIView {
         super.init(frame: frame)
         
         backgroundColor = .systemBackground
-        configureLayout()
+        configureView()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -147,10 +148,11 @@ final class DetailView: UIView {
         descriptionLabel.text = detailProduct.description
     }
     
-    private func configureLayout() {
     func setOwnerButtons(_ Buttons: [UIButton]) {
         Buttons.forEach { userInformationStackView.addArrangedSubview($0) }
     }
+    
+    private func configureView() {
         addSubview(scrollView)
         scrollView.addSubview(imagesCollectionView)
         scrollView.addSubview(totalStackView)
@@ -172,6 +174,13 @@ final class DetailView: UIView {
         totalStackView.addArrangedSubview(DividerLineView(height: 0.5))
         totalStackView.addArrangedSubview(descriptionLabel)
         
+        imagesCollectionView.register(
+            DetailViewImagesCell.self,
+            forCellWithReuseIdentifier: DetailViewImagesCell.idenfier
+        )
+    }
+    
+    private func configureConstraints() {
         userImageView.snp.makeConstraints {
             $0.height.equalTo(userNameLabel.snp.height).offset(8)
             $0.width.equalTo(userImageView.snp.height)
@@ -192,10 +201,5 @@ final class DetailView: UIView {
         scrollView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        imagesCollectionView.register(
-            DetailViewImagesCell.self,
-            forCellWithReuseIdentifier: DetailViewImagesCell.idenfier
-        )
     }
 }
