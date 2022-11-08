@@ -68,6 +68,7 @@ class EditViewController: UIViewController {
 
         configureNavigationBar()
         bind()
+        editView.setContents(by: viewModel.product)
     }
     
     private func bind() {
