@@ -14,8 +14,7 @@ enum APIEndpoints {
         static let identifier = "a1cc0fd2-4abe-11ed-a200-e3abc55dd13d"
     }
     
-    case productList(Int, Int)
-    case searchedProducts(String)
+    case productList(Int, Int, String?)
     case productDetail(Int)
     case productCreation(Data, String)
     case productEdition(Data, Int)
@@ -26,25 +25,17 @@ enum APIEndpoints {
 extension APIEndpoints {
     var asEndpoint: Endpoint {
         switch self {
-        case .productList(let pageNumber, let itemsPerPage):
+        case .productList(let pageNumber, let itemsPerPage, let searchValue):
             return Endpoint(
                 baseURL: Constant.baseURL,
                 path: Constant.path,
                 method: .get,
                 queries: [
                     "page_no": pageNumber,
-                    "items_per_page": itemsPerPage
+                    "items_per_page": itemsPerPage,
+                    "search_value": searchValue ?? ""
                 ]
             )
-        case .searchedProducts(let searchValue):
-            return Endpoint(
-                baseURL: Constant.baseURL,
-                path: Constant.path,
-                method: .get,
-                queries: [
-                    "search_value": searchValue
-                ]
-        )
         case .productDetail(let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,

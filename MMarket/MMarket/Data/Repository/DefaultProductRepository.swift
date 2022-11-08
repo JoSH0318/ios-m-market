@@ -15,19 +15,13 @@ final class DefaultProductRepository: ProductRepository {
         self.networkProvider = networkProvider
     }
     
-    func fetchAll(with pageNumber: Int, _ itemsPerPage: Int) -> Observable<ProductPagesDTO> {
+    func fetchProducts(
+        with pageNumber: Int,
+        _ itemsPerPage: Int,
+        _ searchValue: String?
+    ) -> Observable<ProductPagesDTO> {
         let endpoint = APIEndpoints
-            .productList(pageNumber, itemsPerPage)
-            .asEndpoint
-        
-        return networkProvider
-            .execute(endpoint: endpoint)
-            .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
-    }
-    
-    func searchProducts(with searchValue: String) -> Observable<ProductPagesDTO> {
-        let endpoint = APIEndpoints
-            .searchedProducts(searchValue)
+            .productList(pageNumber, itemsPerPage, searchValue)
             .asEndpoint
         
         return networkProvider

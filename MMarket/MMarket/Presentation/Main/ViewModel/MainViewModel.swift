@@ -28,7 +28,7 @@ final class MainViewModel: MainViewModelable {
     
     init(productUseCase: ProductUseCase) {
         self.productUseCase = productUseCase
-        fetchProductList(with: currentPage)
+        fetchProducts(with: currentPage)
     }
     
     // MARK: - Output
@@ -45,9 +45,13 @@ final class MainViewModel: MainViewModelable {
         showDetailView.accept(product)
     }
     
-    func fetchProductList(with pageNumber: Int, _ itemsPerPage: Int = 20) {
+    func didBeginEditingSerachBar(_ text: String?) {
+        fetchProducts(with: 1, 100, text)
+    }
+    
+    func fetchProducts(with pageNumber: Int, _ itemsPerPage: Int = 20, _ searchValue: String? = "") {
         productUseCase
-            .fetchAllProducts(with: pageNumber, itemsPerPage)
+            .fetchProducts(with: pageNumber, itemsPerPage, searchValue)
             .filter { $0.hasNext }
             .map { $0.products }
             .withUnretained(self)
