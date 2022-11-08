@@ -178,6 +178,14 @@ final class RegisterView: UIView {
         )
     }
     
+    func setContents(by product: Product) {
+        nameTextField.text = product.name
+        priceTextField.text = String(product.price)
+        discountedPriceTextField.text = String(product.discountedPrice)
+        stockTextField.text = String(product.stock)
+        descriptionTextView.text = product.description
+    }
+    
     func setImages(_ image: UIImage) {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 1
