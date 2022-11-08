@@ -35,6 +35,16 @@ final class DetailCoordinator: Coordinator {
         self.navigationController.pushViewController(detailViewController, animated: true)
     }
     
+    func showEditView() {
+        let editCoordinator = EditCoordinator(
+            navigationController: self.navigationController,
+            parentCoordinators: self,
+            useCase: useCase
+        )
+        self.childCoordinators.append(editCoordinator)
+        editCoordinator.start()
+    }
+    
     func popDetailView() {
         navigationController.popViewController(animated: true)
         parentCoordinators?.removeChildCoordinator(child: self)
