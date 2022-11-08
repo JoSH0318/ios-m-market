@@ -45,6 +45,10 @@ struct DetailViewModelItem {
         return product.description
     }
     
+    var isPostOwner: Bool {
+        return product.vendor?.name == "mimm123"
+    }
+    
     init(by product: Product) {
         self.product = product
     }
