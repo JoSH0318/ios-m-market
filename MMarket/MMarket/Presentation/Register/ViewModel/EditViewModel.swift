@@ -20,7 +20,7 @@ protocol EditViewModelable: EditViewModelInput, EditViewModelOutput {}
 final class EditViewModel: EditViewModelable {
     private let productUseCase: ProductUseCase
     private let disposeBag = DisposeBag()
-    private let postRelay = PublishRelay<Void>()
+    private let patchRelay = PublishRelay<Void>()
     private let imageRelay = BehaviorRelay<[Data]>(value: [])
     private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
     
@@ -31,7 +31,7 @@ final class EditViewModel: EditViewModelable {
     // MARK: - Output
     
     var postProdct: Observable<Void> {
-        return postRelay.asObservable()
+        return patchRelay.asObservable()
     }
     
     var productImages: [Data] {
@@ -56,7 +56,7 @@ final class EditViewModel: EditViewModelable {
             } onError: { error in
                 self.errorRelay.accept(error)
             } onCompleted: {
-                self.postRelay.accept(())
+                self.patchRelay.accept(())
             }
             .disposed(by: disposeBag)
     }

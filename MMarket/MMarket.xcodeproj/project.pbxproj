@@ -44,6 +44,8 @@
 		03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */; };
 		03D374C629195BE900AA0F58 /* BMHANNAAir_ttf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */; };
 		03D374C829196ABF00AA0F58 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C729196ABF00AA0F58 /* EditViewModel.swift */; };
+		03D374CA291AA29300AA0F58 /* EditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C9291AA29300AA0F58 /* EditCoordinator.swift */; };
+		03D374CC291AA60600AA0F58 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374CB291AA60500AA0F58 /* EditViewController.swift */; };
 		03D44F40290FF81F0059BE72 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F3F290FF81F0059BE72 /* UIImageView.swift */; };
 		03D44F42291056420059BE72 /* ProductListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F41291056420059BE72 /* ProductListCellViewModel.swift */; };
 		03D44F4429111DE20059BE72 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D44F4329111DE20059BE72 /* CALayer.swift */; };
@@ -101,6 +103,8 @@
 		03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMDOHYEON_otf.otf; sourceTree = "<group>"; };
 		03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAAir_ttf.ttf; sourceTree = "<group>"; };
 		03D374C729196ABF00AA0F58 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
+		03D374C9291AA29300AA0F58 /* EditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoordinator.swift; sourceTree = "<group>"; };
+		03D374CB291AA60500AA0F58 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		03D44F3F290FF81F0059BE72 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		03D44F41291056420059BE72 /* ProductListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListCellViewModel.swift; sourceTree = "<group>"; };
 		03D44F4329111DE20059BE72 /* CALayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				03D374B92915444F00AA0F58 /* RegisterCoordinator.swift */,
+				03D374C9291AA29300AA0F58 /* EditCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				03D374BE291562B700AA0F58 /* RegisterView.swift */,
+				03D374CB291AA60500AA0F58 /* EditViewController.swift */,
 				03D374BC291562A500AA0F58 /* RegisterViewController.swift */,
 			);
 			path = View;
@@ -592,6 +598,7 @@
 				030E834128DC8E1200FE1BB8 /* ProductImageDTO.swift in Sources */,
 				03D374BD291562A500AA0F58 /* RegisterViewController.swift in Sources */,
 				030E833428DB672900FE1BB8 /* APIEndpoints.swift in Sources */,
+				03D374CA291AA29300AA0F58 /* EditCoordinator.swift in Sources */,
 				034CD38B2908485300CF5C08 /* ImageDownloader.swift in Sources */,
 				030E834528DC933000FE1BB8 /* NetworkProvider.swift in Sources */,
 				03E0542D28B7B40A00279039 /* Vendor.swift in Sources */,
@@ -606,6 +613,7 @@
 				03D44F4A29119A0F0059BE72 /* DetailCoordinator.swift in Sources */,
 				03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */,
 				030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */,
+				03D374CC291AA60600AA0F58 /* EditViewController.swift in Sources */,
 				030E833D28DC5DF600FE1BB8 /* ProductPagesDTO.swift in Sources */,
 				03D44F592913E8F40059BE72 /* DetailViewModelItem.swift in Sources */,
 				03D44F4D29119AD20059BE72 /* DetailViewModel.swift in Sources */,
