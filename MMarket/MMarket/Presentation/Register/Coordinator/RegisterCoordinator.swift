@@ -34,14 +34,14 @@ final class RegisterCoordinator: Coordinator {
         self.navigationController.pushViewController(registerViewController, animated: true)
     }
     
-    func removeRegisterView() {
+    func popRegisterView() {
         navigationController.popViewController(animated: true)
         parentCoordinators?.removeChildCoordinator(child: self)
     }
     
     func showAlert(with title: String) {
         let confirmAction = UIAlertAction(title: "확인", style: .default)  { [weak self] _ in
-            self?.removeRegisterView()
+            self?.popRegisterView()
         }
         let alert = AlertBuilder.shared
             .setType(.alert)

@@ -97,7 +97,7 @@ final class RegisterViewController: UIViewController {
             .withUnretained(self)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { vc, _ in
-                vc.coordinator.removeRegisterView()
+                vc.coordinator.popRegisterView()
             })
             .disposed(by: disposeBag)
         
