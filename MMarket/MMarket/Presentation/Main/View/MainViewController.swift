@@ -87,7 +87,7 @@ final class MainViewController: UIViewController {
     }
     
     private func refreshMainView() {
-        viewModel.fetchProductList(pageNumber: 1)
+        viewModel.fetchProductList(with: 1)
         mainView.productListCollectionView.refreshControl?.endRefreshing()
     }
 }

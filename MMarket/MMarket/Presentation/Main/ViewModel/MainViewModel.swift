@@ -28,7 +28,7 @@ final class MainViewModel: MainViewModelable {
     
     init(productUseCase: ProductUseCase) {
         self.productUseCase = productUseCase
-        fetchProductList(pageNumber: currentPage)
+        fetchProductList(with: currentPage)
     }
     
     // MARK: - Output
@@ -45,9 +45,9 @@ final class MainViewModel: MainViewModelable {
         showDetailView.accept(product)
     }
     
-    func fetchProductList(pageNumber: Int, itemsPerPage: Int = 20) {
+    func fetchProductList(with pageNumber: Int, _ itemsPerPage: Int = 20) {
         productUseCase
-            .fetchAllProducts(pageNumber: pageNumber, itemsPerPage: itemsPerPage)
+            .fetchAllProducts(with: pageNumber, itemsPerPage)
             .filter { $0.hasNext }
             .map { $0.products }
             .withUnretained(self)

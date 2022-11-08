@@ -52,7 +52,7 @@ final class RegisterViewModel: RegisterViewModelable {
     // MARK: - Input
     
     func didTapPostButton(_ request: ProductRequest, images: [Data]) {
-        productUseCase.createProduct(productRequest: request, images: images)
+        productUseCase.createProduct(with: request, images)
             .withUnretained(self)
             .subscribe { viewModel, _ in
                 

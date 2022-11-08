@@ -9,13 +9,13 @@ import Foundation
 import RxSwift
 
 protocol ProductUseCase {
-    func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<ProductPages>
-    func searchProducts(by searchValue: String) -> Observable<ProductPages>
-    func fetchProduct(productId: Int) -> Observable<Product>
-    func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void>
-    func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void>
-    func inquireProductSecret(password: String, productId: Int) -> Observable<String>
-    func deleteProduct(secret: String, productId: Int) -> Observable<Void>
+    func fetchAllProducts(with pageNumber: Int, _ itemsPerPage: Int) -> Observable<ProductPages>
+    func searchProducts(with searchValue: String) -> Observable<ProductPages>
+    func fetchProduct(with productId: Int) -> Observable<Product>
+    func createProduct(with productRequest: ProductRequest, _ images: [Data]) -> Observable<Void>
+    func updateProduct(with productRequest: ProductRequest, _ productID: Int) -> Observable<Void>
+    func inquireProductSecret(with password: String, _ productID: Int) -> Observable<String>
+    func deleteProduct(with deleteURI: String) -> Observable<Void>
 }
 
 final class DefaultProductUseCase: ProductUseCase {
@@ -27,41 +27,41 @@ final class DefaultProductUseCase: ProductUseCase {
 }
 
 extension DefaultProductUseCase {
-    func fetchAllProducts(pageNumber: Int, itemsPerPage: Int) -> Observable<ProductPages> {
+    func fetchAllProducts(with pageNumber: Int, _ itemsPerPage: Int) -> Observable<ProductPages> {
         return repository
-            .fetchAll(by: pageNumber, itemsPerPage)
+            .fetchAll(with: pageNumber, itemsPerPage)
             .map { $0.toEntity() }
     }
     
-    func searchProducts(by searchValue: String) -> Observable<ProductPages> {
+    func searchProducts(with searchValue: String) -> Observable<ProductPages> {
         return repository
-            .searchProducts(by: searchValue)
+            .searchProducts(with: searchValue)
             .map { $0.toEntity() }
     }
     
-    func fetchProduct(productId: Int) -> Observable<Product> {
+    func fetchProduct(with productID: Int) -> Observable<Product> {
         return repository
-            .fetchProduct(by: productId)
+            .fetchProduct(with: productID)
             .map { $0.toEntity() }
     }
     
-    func createProduct(productRequest: ProductRequest, images: [Data]) -> Observable<Void> {
-        return repository.createProduct(by: productRequest, images)
+    func createProduct(with productRequest: ProductRequest, _ images: [Data]) -> Observable<Void> {
+        return repository.createProduct(with: productRequest, images)
     }
     
-    func updateProduct(productRequest: ProductRequest, productId: Int) -> Observable<Void> {
-        return repository.patchProduct(by: productRequest, productId)
+    func updateProduct(with productRequest: ProductRequest, _ productID: Int) -> Observable<Void> {
+        return repository.patchProduct(with: productRequest, productID)
     }
     
-    func inquireProductSecret(password: String, productId: Int) -> Observable<String> {
+    func inquireProductSecret(with password: String, _ productID: Int) -> Observable<String> {
         return repository
-            .inquireProductSecret(by: password, productId)
+            .searchDeleteURI(with: password, productID)
             .compactMap { data in
                 String(data: data, encoding: .utf8)
             }
     }
     
-    func deleteProduct(secret: String, productId: Int) -> Observable<Void> {
-        return repository.deleteProduct(by: secret, productId)
+    func deleteProduct(with deleteURI: String) -> Observable<Void> {
+        return repository.deleteProduct(with: deleteURI)
     }
 }

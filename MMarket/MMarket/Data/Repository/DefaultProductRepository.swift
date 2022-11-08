@@ -15,7 +15,7 @@ final class DefaultProductRepository: ProductRepository {
         self.networkProvider = networkProvider
     }
     
-    func fetchAll(by pageNumber: Int, _ itemsPerPage: Int) -> Observable<ProductPagesDTO> {
+    func fetchAll(with pageNumber: Int, _ itemsPerPage: Int) -> Observable<ProductPagesDTO> {
         let endpoint = APIEndpoints
             .productList(pageNumber, itemsPerPage)
             .asEndpoint
@@ -25,7 +25,7 @@ final class DefaultProductRepository: ProductRepository {
             .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
     }
     
-    func searchProducts(by searchValue: String) -> Observable<ProductPagesDTO> {
+    func searchProducts(with searchValue: String) -> Observable<ProductPagesDTO> {
         let endpoint = APIEndpoints
             .searchedProducts(searchValue)
             .asEndpoint
@@ -35,9 +35,9 @@ final class DefaultProductRepository: ProductRepository {
             .decode(type: ProductPagesDTO.self, decoder: JSONDecoder())
     }
     
-    func fetchProduct(by productId: Int) -> Observable<ProductDTO> {
+    func fetchProduct(with productID: Int) -> Observable<ProductDTO> {
         let endpoint = APIEndpoints
-            .productDetail(productId)
+            .productDetail(productID)
             .asEndpoint
         
         return networkProvider
@@ -45,10 +45,10 @@ final class DefaultProductRepository: ProductRepository {
             .decode(type: ProductDTO.self, decoder: JSONDecoder())
     }
     
-    func createProduct(by productRequest: ProductRequest, _ images: [Data]) -> Observable<Void> {
+    func createProduct(with productRequest: ProductRequest, _ images: [Data]) -> Observable<Void> {
         let boundary = UUID().uuidString
-        let formData = generateFormData(by: productRequest)
-        let imageFormDatas = generateImageFormDatas(by: images)
+        let formData = generateFormData(from: productRequest)
+        let imageFormDatas = generateImageFormDatas(from: images)
         let body = HTTPBodyBuilder
             .create(uuid: boundary)
             .append(formData)
@@ -62,14 +62,14 @@ final class DefaultProductRepository: ProductRepository {
             .map { _ in }
     }
     
-    func patchProduct(by productRequest: ProductRequest, _ productId: Int) -> Observable<Void> {
-        let formData = generateFormData(by: productRequest)
+    func patchProduct(with productRequest: ProductRequest, _ productID: Int) -> Observable<Void> {
+        let formData = generateFormData(from: productRequest)
         let body = HTTPBodyBuilder
             .create()
             .append(formData)
             .apply()
         let endpoint = APIEndpoints
-            .productEdition(body, productId)
+            .productEdition(body, productID)
             .asEndpoint
         
         return networkProvider
@@ -77,13 +77,13 @@ final class DefaultProductRepository: ProductRepository {
             .map { _ in }
     }
     
-    func inquireProductSecret(by password: String, _ productId: Int) -> Observable<Data> {
+    func searchDeleteURI(with password: String, _ productID: Int) -> Observable<Data> {
         let body = HTTPBodyBuilder
             .create()
             .append(password)
             .apply()
         let endpoint = APIEndpoints
-            .secretKeyInquiry(body, productId)
+            .deleteURISearch(body, productID)
             .asEndpoint
         
         return networkProvider
@@ -91,9 +91,9 @@ final class DefaultProductRepository: ProductRepository {
             .map { $0 }
     }
     
-    func deleteProduct(by secret: String, _ productId: Int) -> Observable<Void> {
+    func deleteProduct(with deleteURI: String) -> Observable<Void> {
         let endpoint = APIEndpoints
-            .productDelete(secret, productId)
+            .productDelete(deleteURI)
             .asEndpoint
         
         return networkProvider
@@ -103,7 +103,7 @@ final class DefaultProductRepository: ProductRepository {
 }
 
 extension DefaultProductRepository {
-    private func generateFormData(by productRequest: ProductRequest) -> RequestDataInfo {
+    private func generateFormData(from productRequest: ProductRequest) -> RequestDataInfo {
         let jsonData = try? JSONEncoder().encode(productRequest)
         let formData = RequestDataInfo(
             name: "params",
@@ -115,7 +115,7 @@ extension DefaultProductRepository {
         return formData
     }
     
-    private func generateImageFormDatas(by images: [Data]) -> [RequestDataInfo] {
+    private func generateImageFormDatas(from images: [Data]) -> [RequestDataInfo] {
         let imageFormDatas = images.map {
             RequestDataInfo(
                 name: "images",

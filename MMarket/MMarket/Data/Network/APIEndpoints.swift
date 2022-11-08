@@ -19,8 +19,8 @@ enum APIEndpoints {
     case productDetail(Int)
     case productCreation(Data, String)
     case productEdition(Data, Int)
-    case secretKeyInquiry(Data, Int)
-    case productDelete(String, Int)
+    case deleteURISearch(Data, Int)
+    case productDelete(String)
 }
 
 extension APIEndpoints {
@@ -45,10 +45,10 @@ extension APIEndpoints {
                     "search_value": searchValue
                 ]
         )
-        case .productDetail(let productId):
+        case .productDetail(let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productId)",
+                path: Constant.path + "\(productID)",
                 method: .get
             )
         case .productCreation(let body, let boundary):
@@ -62,10 +62,10 @@ extension APIEndpoints {
                 ],
                 body: body
             )
-        case .productEdition(let body, let productId):
+        case .productEdition(let body, let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productId)",
+                path: Constant.path + "\(productID)",
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
@@ -73,22 +73,25 @@ extension APIEndpoints {
                 ],
                 body: body
             )
-        case .secretKeyInquiry(let body, let productId):
+        case .deleteURISearch(let body, let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productId)/secret",
-                method: .patch,
+                path: Constant.path + "\(productID)/archived",
+                method: .post,
                 header: [
                     "Content-Type": "application/json",
                     "identifier": Constant.identifier
                 ],
                 body: body
             )
-        case .productDelete(let productSecret, let productId):
+        case .productDelete(let deleteURI):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productId)/\(productSecret)",
-                method: .delete
+                path: "\(deleteURI)",
+                method: .delete,
+                header: [
+                    "identifier": Constant.identifier
+                ]
             )
         }
     }
