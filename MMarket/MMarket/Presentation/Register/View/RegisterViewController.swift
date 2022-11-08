@@ -95,18 +95,19 @@ final class RegisterViewController: UIViewController {
         backBarButton.rx.tap
             .withUnretained(self)
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { vc, _ in
+            .bind { vc, _ in
                 vc.coordinator.popRegisterView()
-            })
+            }
             .disposed(by: disposeBag)
         
         completionBarButton.rx.tap
             .withUnretained(self)
-            .subscribe(onNext: { vc, _ in
+            .observe(on: MainScheduler.instance)
+            .bind { vc, _ in
                 let productRequest = vc.registerView.setProductRequest()
                 let imagesData = vc.viewModel.productImages
                 vc.viewModel.didTapPostButton(productRequest, images: imagesData)
-            })
+            }
             .disposed(by: disposeBag)
         
         addImageButton.rx.tap
@@ -115,9 +116,9 @@ final class RegisterViewController: UIViewController {
             .filter { vc, _ in
                 vc.viewModel.imagesCount < 5
             }
-            .subscribe(onNext: { vc, _ in
+            .bind { vc, _ in
                 vc.coordinator.showPhotoLibrary(to: vc.imagePicker)
-            })
+            }
             .disposed(by: disposeBag)
         
         viewModel.postProdct
