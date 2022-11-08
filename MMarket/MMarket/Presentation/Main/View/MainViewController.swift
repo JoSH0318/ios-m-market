@@ -42,7 +42,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setView()
+        configureView()
         bind()
     }
     
@@ -83,6 +83,7 @@ final class MainViewController: UIViewController {
                 vc.refreshMainView()
             })
             .disposed(by: disposeBag)
+        
         mainView.searchBar.rx.text.orEmpty
             .observe(on: MainScheduler.instance)
             .filter{ $0 != "" }
@@ -103,7 +104,7 @@ final class MainViewController: UIViewController {
 // MARK: - Layout
 
 extension MainViewController {
-    private func setView() {
+    private func configureView() {
         mainView.productListCollectionView.refreshControl = refreshControl
         configureNavigationBar()
     }
