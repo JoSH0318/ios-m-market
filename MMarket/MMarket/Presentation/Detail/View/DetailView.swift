@@ -148,6 +148,9 @@ final class DetailView: UIView {
     }
     
     private func configureLayout() {
+    func setOwnerButtons(_ Buttons: [UIButton]) {
+        Buttons.forEach { userInformationStackView.addArrangedSubview($0) }
+    }
         addSubview(scrollView)
         scrollView.addSubview(imagesCollectionView)
         scrollView.addSubview(totalStackView)
