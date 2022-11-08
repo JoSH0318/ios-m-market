@@ -9,6 +9,23 @@ import UIKit
 import RxSwift
 
 final class DetailViewController: UIViewController {
+    
+    private let editButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("수정", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(named: "MainNavyColor")
+        return button
+    }()
+    
+    private let deleteButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("삭제", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor(named: "MainNavyColor")
+        return button
+    }()
+    
     private let detailView = DetailView()
     private var viewModel: DetailViewModel
     private var coordinator: DetailCoordinator
