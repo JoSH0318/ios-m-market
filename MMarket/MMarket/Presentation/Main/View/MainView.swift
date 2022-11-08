@@ -22,6 +22,14 @@ final class MainView: UIView {
         return button
     }()
     
+    private(set) var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "상품을 검색해주세요."
+        searchBar.searchTextField.font = UIFont(name: "BM HANNA Air TTF", size: 16)
+        searchBar.searchBarStyle = .minimal
+        return searchBar
+    }()
+    
     init() {
         super.init(frame: .zero)
         
