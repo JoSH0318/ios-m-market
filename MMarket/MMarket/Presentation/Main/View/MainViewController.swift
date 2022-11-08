@@ -5,9 +5,8 @@
 //  Created by 조성훈 on 2022/08/16.
 //
 
-import UIKit
+import SnapKit
 import RxSwift
-import RxRelay
 import RxCocoa
 
 final class MainViewController: UIViewController {

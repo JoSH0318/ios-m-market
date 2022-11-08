@@ -7,7 +7,6 @@
 
 import SnapKit
 import RxSwift
-import RxRelay
 import RxCocoa
 
 final class RegisterViewController: UIViewController {
