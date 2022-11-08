@@ -72,5 +72,47 @@ final class DetailViewController: UIViewController {
                 vc.detailView.setContents(with: DetailViewModelItem(by: product))
             }
             .disposed(by: disposeBag)
+        
+        viewModel.isPostOwner
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe { vc, _ in
+                vc.configureButtonsLayout()
+            }
+            .disposed(by: disposeBag)
+        
+        editButton.rx.tap
+            .withUnretained(self)
+            .bind { vc, _ in
+                
+            }
+            .disposed(by: disposeBag)
+        
+        deleteButton.rx.tap
+            .withUnretained(self)
+            .bind { vc, _ in
+                vc.viewModel.didTapDeleteButton()
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.error
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe(onNext: { vc, error in
+                vc.coordinator.showErrorAlert()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.deleteCompletion
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe(onNext: { vc, _ in
+                vc.coordinator.popDetailView()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func configureButtonsLayout() {
+        detailView.setOwnerButtons([editButton, deleteButton])
     }
 }
