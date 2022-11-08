@@ -57,7 +57,7 @@ final class RegisterCoordinator: Coordinator {
         let alert = AlertBuilder.shared
             .setType(.alert)
             .setTitle("입력하지 않은 정보가 있습니다.")
-            .setMessage("다시 한번 확인해주세요.")
+            .setMessage("다시 한번 확인하세요.")
             .setActions([action])
             .apply()
         
