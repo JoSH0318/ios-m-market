@@ -24,11 +24,11 @@ protocol DetailViewModelable: DetailViewModelInput, DetailViewModelOutput {}
 final class DetailViewModel: DetailViewModelable {
     private let productUseCase: ProductUseCase
     private let disposeBag = DisposeBag()
-    private let productSubject = PublishSubject<Product>()
+    private let productRelay = PublishRelay<Product>()
     private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
-    private let deleteKeyRelay = PublishRelay<String>()
     private let deleteCompletionRelay = PublishRelay<Void>()
     private let productID: Int
+    private(set) var product: Product?
     
     // MARK: - Output
     
@@ -50,12 +50,8 @@ final class DetailViewModel: DetailViewModelable {
     
     var isPostOwner: Observable<Void> {
         return productSubject
-            .compactMap { product in
-                product.vendor?.name
-            }
-            .filter { userName in
-                userName == "mimm123"
-            }
+            .compactMap { $0.vendor?.name }
+            .filter { $0 == "mimm123" }
             .map { _ in }
             .asObservable()
     }
@@ -73,37 +69,25 @@ final class DetailViewModel: DetailViewModelable {
         self.productID = productID
         
         self.fetchProduct(by: productID)
-        self.deleteProduct()
     }
     
     private func fetchProduct(by productID: Int) {
         productUseCase.fetchProduct(with: productID)
             .subscribe(onNext: { [weak self] product in
-                self?.productSubject.onNext(product)
+                self?.productSubject.accept(product)
+                self?.product = product
             }, onError: { [weak self] error in
                 self?.errorRelay.accept(error)
             })
             .disposed(by: disposeBag)
     }
     
-    private func deleteProduct() {
-        deleteKeyRelay
-            .withUnretained(self)
-            .subscribe(onNext: { viewModel, deleteKey in
-                viewModel.deleteProduct(with: deleteKey)
-            })
-            .disposed(by: disposeBag)
-    }
-    
     private func deleteProduct(with deleteURI: String) {
         productUseCase.deleteProduct(with: deleteURI)
-            .withUnretained(self)
-            .subscribe(onNext: { viewModel, _ in
-                
-            }, onError: { error in
-                self.errorRelay.accept(error)
-            }, onCompleted: {
-                self.deleteCompletionRelay.accept(())
+            .subscribe(onError: { [weak self] error in
+                self?.errorRelay.accept(error)
+            }, onCompleted: { [weak self] in
+                self?.deleteCompletionRelay.accept(())
             })
             .disposed(by: disposeBag)
     }
@@ -112,14 +96,11 @@ final class DetailViewModel: DetailViewModelable {
     
     func didTapDeleteButton() {
         productUseCase.inquireProductSecret(with: "xcnbof13rg2", productID)
-            .withUnretained(self)
-            .subscribe { viewModel, deleteKey in
-                viewModel.deleteKeyRelay.accept(deleteKey)
-            } onError: { error in
-                self.errorRelay.accept(error)
-            }
+            .subscribe(onNext: { [weak self] deleteURI in
+                self?.deleteProduct(with: deleteURI)
+            }, onError: { [weak self] error in
+                self?.errorRelay.accept(error)
+            })
             .disposed(by: disposeBag)
     }
-    
-    
 }
