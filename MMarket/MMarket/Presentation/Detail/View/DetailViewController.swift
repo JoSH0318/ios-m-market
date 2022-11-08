@@ -92,7 +92,8 @@ final class DetailViewController: UIViewController {
         editButton.rx.tap
             .withUnretained(self)
             .bind { vc, _ in
-                
+                guard let product = vc.viewModel.product else { return }
+                vc.coordinator.showEditView(with: product)
             }
             .disposed(by: disposeBag)
         
