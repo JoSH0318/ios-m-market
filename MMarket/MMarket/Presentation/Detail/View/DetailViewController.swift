@@ -55,6 +55,14 @@ final class DetailViewController: UIViewController {
     }
     
     private func bind() {
+        viewModel.error
+            .observe(on: MainScheduler.instance)
+            .withUnretained(self)
+            .subscribe(onNext: { vc, error in
+                vc.coordinator.showErrorAlert()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.productImagesURL
             .observe(on: MainScheduler.instance)
             .bind(to: detailView.imagesCollectionView.rx.items(
@@ -93,14 +101,6 @@ final class DetailViewController: UIViewController {
             .bind { vc, _ in
                 vc.viewModel.didTapDeleteButton()
             }
-            .disposed(by: disposeBag)
-        
-        viewModel.error
-            .observe(on: MainScheduler.instance)
-            .withUnretained(self)
-            .subscribe(onNext: { vc, error in
-                vc.coordinator.showErrorAlert()
-            })
             .disposed(by: disposeBag)
         
         viewModel.deleteCompletion
