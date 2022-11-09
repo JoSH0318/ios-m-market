@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 
 protocol MainViewModelInput {
+    func didLaunchView()
     func didTapCell(_ product: Product)
 }
 
@@ -39,6 +40,11 @@ final class MainViewModel: MainViewModelable {
     var showDetailView = PublishRelay<Product>()
     
     // MARK: - Input
+    
+    func didLaunchView() {
+        currentPageNumber = 1
+        fetchProducts(pageNumber: currentPageNumber)
+    }
     
     func didTapCell(_ product: Product) {
         showDetailView.accept(product)
