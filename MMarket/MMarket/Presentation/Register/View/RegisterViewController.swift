@@ -86,7 +86,7 @@ final class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationBar()
-        configureUI()
+        configureView()
         bind()
         imagePicker.delegate = self
     }
@@ -112,7 +112,6 @@ final class RegisterViewController: UIViewController {
         
         addImageButton.rx.tap
             .withUnretained(self)
-            .observe(on: MainScheduler.instance)
             .filter { vc, _ in
                 vc.viewModel.imagesCount < 5
             }
@@ -123,7 +122,6 @@ final class RegisterViewController: UIViewController {
         
         viewModel.postProdct
             .withUnretained(self)
-            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { vc, _ in
                 vc.coordinator.showAlert(with: "제품을 등록했습니다.")
             })
@@ -131,7 +129,6 @@ final class RegisterViewController: UIViewController {
         
         viewModel.error
             .withUnretained(self)
-            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { vc, error in
                 vc.coordinator.showErrorAlert()
             })
@@ -142,7 +139,7 @@ final class RegisterViewController: UIViewController {
 // MARK: - NavigationBar Layout
 
 extension RegisterViewController {
-    private func configureUI() {
+    private func configureView() {
         registerView.setAddButton(addImageButton)
         addImageButton.snp.makeConstraints {
             $0.height.equalToSuperview()
