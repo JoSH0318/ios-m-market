@@ -94,7 +94,17 @@ final class ProductListCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func bind(with viewModel: ProductListCellViewModel) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        thumbnailImageView.image = nil
+        nameLabel.text = nil
+        stockLabel.text = nil
+        discountRateLabel.text = nil
+        priceLabel.attributedText = nil
+        bargainPriceLabel.text = nil
+    }
+    
     func setContents(with viewModel: ProductListCellViewModel) {
         thumbnailImageView.setImage(with: viewModel.thumbnailURL)
         nameLabel.text = viewModel.name
