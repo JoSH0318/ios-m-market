@@ -26,6 +26,18 @@ final class DetailViewController: UIViewController {
         return button
     }()
     
+    private let backBarButton: UIBarButtonItem = {
+        let backImage = UIImage(systemName: "chevron.backward")
+        let barButtonItem = UIBarButtonItem(
+            image: backImage,
+            style: .plain,
+            target: nil,
+            action: nil
+        )
+        barButtonItem.tintColor = UIColor(named: "MainNavyColor")
+        return barButtonItem
+    }()
+    
     private let detailView = DetailView()
     private var viewModel: DetailViewModel
     private var coordinator: DetailCoordinator
@@ -52,11 +64,11 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         bind()
+        configureNavigationBar()
     }
     
     private func bind() {
         viewModel.error
-            .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { vc, error in
                 vc.coordinator.showErrorAlert()
@@ -89,6 +101,13 @@ final class DetailViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        backBarButton.rx.tap
+            .withUnretained(self)
+            .bind { vc, _ in
+                vc.coordinator.popDetailView()
+            }
+            .disposed(by: disposeBag)
+        
         editButton.rx.tap
             .withUnretained(self)
             .bind { vc, _ in
@@ -105,7 +124,6 @@ final class DetailViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.deleteCompletion
-            .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { vc, _ in
                 vc.coordinator.showAlert()
@@ -115,5 +133,15 @@ final class DetailViewController: UIViewController {
     
     private func configureButtonsLayout() {
         detailView.setOwnerButtons([editButton, deleteButton])
+    }
+}
+
+// MARK: - NavigationBar Layout
+
+extension DetailViewController {
+    private func configureNavigationBar() {
+        navigationItem.leftBarButtonItem = backBarButton
+        navigationItem.title = "상품 정보"
+        navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 }
