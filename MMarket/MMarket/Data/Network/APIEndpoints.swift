@@ -14,7 +14,7 @@ enum APIEndpoints {
         static let identifier = "a1cc0fd2-4abe-11ed-a200-e3abc55dd13d"
     }
     
-    case productList(Int, Int, String?)
+    case productList(Int, Int, String)
     case productDetail(Int)
     case productCreation(Data, String)
     case productEdition(Data, Int)
@@ -33,7 +33,7 @@ extension APIEndpoints {
                 queries: [
                     "page_no": pageNumber,
                     "items_per_page": itemsPerPage,
-                    "search_value": searchValue ?? ""
+                    "search_value": searchValue
                 ]
             )
         case .productDetail(let productID):

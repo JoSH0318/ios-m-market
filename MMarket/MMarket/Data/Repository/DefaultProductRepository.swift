@@ -18,7 +18,7 @@ final class DefaultProductRepository: ProductRepository {
     func fetchProducts(
         with pageNumber: Int,
         _ itemsPerPage: Int,
-        _ searchValue: String?
+        _ searchValue: String
     ) -> Observable<ProductPagesDTO> {
         let endpoint = APIEndpoints
             .productList(pageNumber, itemsPerPage, searchValue)

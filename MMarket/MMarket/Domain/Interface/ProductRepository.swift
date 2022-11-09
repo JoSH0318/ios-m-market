@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol ProductRepository {
-    func fetchProducts(with pageNumber: Int, _ itemsPerPage: Int, _ searchValue: String?) -> Observable<ProductPagesDTO>
+    func fetchProducts(with pageNumber: Int, _ itemsPerPage: Int, _ searchValue: String) -> Observable<ProductPagesDTO>
     func fetchProduct(with productID: Int) -> Observable<ProductDTO>
     func createProduct(with productRequest: ProductRequest, _ images: [Data]) -> Observable<Void>
     func patchProduct(with productRequest: ProductRequest, _ productID: Int) -> Observable<Void>
