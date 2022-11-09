@@ -30,6 +30,7 @@ final class MainViewModel: MainViewModelable {
     
     init(productUseCase: ProductUseCase) {
         self.productUseCase = productUseCase
+        self.currentPageNumber = 1
     }
     
     // MARK: - Output
