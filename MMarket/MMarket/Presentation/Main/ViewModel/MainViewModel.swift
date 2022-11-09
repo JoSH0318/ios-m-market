@@ -52,34 +52,27 @@ final class MainViewModel: MainViewModelable {
     }
     
     func didBeginEditingSearchBar(_ text: String) {
-        fetchProducts(pageNumber: 1, itemsPerPage: 20, searchValue: text)
+        fetchProducts(pageNumber: 1, searchValue: text)
     }
     
-    func fetchProducts(
     func didScroll(_ row: Int) {
         if row == currentPageNumber * 20 - 1 {
             currentPageNumber += 1
             fetchProducts(pageNumber: currentPageNumber)
         }
     }
+    
+    private func fetchProducts(
         pageNumber: Int,
         itemsPerPage: Int = 20,
         searchValue: String = ""
     ) {
-        productUseCase
-            .fetchProducts(with: pageNumber, itemsPerPage, searchValue)
+        productUseCase.fetchProducts(with: pageNumber, itemsPerPage, searchValue)
             .map { $0.products }
             .withUnretained(self)
             .subscribe(onNext: { viewModel, products in
-                viewModel.productsSubject.accept(products)
-            })
-            .disposed(by: disposeBag)
-    }
-            .filter { $0.hasNext }
-            .map { $0.products }
-            .withUnretained(self)
-            .subscribe(onNext: { viewModel, products in
-                viewModel.productsSubject.accept(products)
+                let preProducts = viewModel.productsSubject.value
+                viewModel.productsSubject.accept(preProducts + products)
             })
             .disposed(by: disposeBag)
     }
