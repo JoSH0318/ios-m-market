@@ -96,7 +96,7 @@ final class MainViewController: UIViewController {
             .distinctUntilChanged()
             .filter{ !$0.isEmpty }
             .subscribe(onNext: { [weak self] text in
-                self?.viewModel.didBeginEditingSerachBar(text)
+                self?.viewModel.didBeginEditingSearchBar(text)
             })
             .disposed(by: disposeBag)
     }

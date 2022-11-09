@@ -44,13 +44,20 @@ final class MainViewModel: MainViewModelable {
         showDetailView.accept(product)
     }
     
-    func didBeginEditingSerachBar(_ text: String?) {
+    func didBeginEditingSearchBar(_ text: String) {
         fetchProducts(with: 1, 100, text)
     }
     
-    func fetchProducts(with pageNumber: Int, _ itemsPerPage: Int = 20, _ searchValue: String? = "") {
+    func fetchProducts(with pageNumber: Int, _ itemsPerPage: Int = 20, _ searchValue: String = "") {
         productUseCase
             .fetchProducts(with: pageNumber, itemsPerPage, searchValue)
+            .map { $0.products }
+            .withUnretained(self)
+            .subscribe(onNext: { viewModel, products in
+                viewModel.productsSubject.accept(products)
+            })
+            .disposed(by: disposeBag)
+    }
             .filter { $0.hasNext }
             .map { $0.products }
             .withUnretained(self)
