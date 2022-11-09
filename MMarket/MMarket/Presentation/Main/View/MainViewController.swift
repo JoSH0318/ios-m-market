@@ -49,7 +49,7 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewModel.fetchProducts(pageNumber: 1)
+        viewModel.didLaunchView()
     }
     
     private func bind() {
@@ -102,7 +102,7 @@ final class MainViewController: UIViewController {
     }
     
     private func refreshMainView() {
-        viewModel.fetchProducts(pageNumber: 1)
+        viewModel.didLaunchView()
         mainView.productListCollectionView.refreshControl?.endRefreshing()
     }
 }
