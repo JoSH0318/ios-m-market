@@ -109,6 +109,7 @@ final class DetailViewController: UIViewController {
             .disposed(by: disposeBag)
         
         editButton.rx.tap
+            .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .bind { vc, _ in
                 guard let product = vc.viewModel.product else { return }
@@ -124,6 +125,7 @@ final class DetailViewController: UIViewController {
             .disposed(by: disposeBag)
         
         viewModel.deleteCompletion
+            .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .subscribe(onNext: { vc, _ in
                 vc.coordinator.showAlert()

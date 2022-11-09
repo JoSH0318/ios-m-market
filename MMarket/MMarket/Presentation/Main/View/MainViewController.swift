@@ -48,6 +48,7 @@ final class MainViewController: UIViewController {
     
     private func bind() {
         viewModel.products
+            .observe(on: MainScheduler.instance)
             .bind(to: mainView.productListCollectionView.rx.items(
                 cellIdentifier: ProductListCell.idenfier,
                 cellType: ProductListCell.self

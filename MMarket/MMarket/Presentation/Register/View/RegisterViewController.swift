@@ -102,7 +102,6 @@ final class RegisterViewController: UIViewController {
         
         completionBarButton.rx.tap
             .withUnretained(self)
-            .observe(on: MainScheduler.instance)
             .bind { vc, _ in
                 let productRequest = vc.registerView.setProductRequest()
                 let imagesData = vc.viewModel.productImages
@@ -122,6 +121,7 @@ final class RegisterViewController: UIViewController {
         
         viewModel.postProdct
             .withUnretained(self)
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { vc, _ in
                 vc.coordinator.showAlert(with: "제품을 등록했습니다.")
             })
