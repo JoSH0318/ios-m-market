@@ -45,10 +45,14 @@ final class MainViewModel: MainViewModelable {
     }
     
     func didBeginEditingSearchBar(_ text: String) {
-        fetchProducts(with: 1, 100, text)
+        fetchProducts(pageNumber: 1, itemsPerPage: 20, searchValue: text)
     }
     
-    func fetchProducts(with pageNumber: Int, _ itemsPerPage: Int = 20, _ searchValue: String = "") {
+    func fetchProducts(
+        pageNumber: Int,
+        itemsPerPage: Int = 20,
+        searchValue: String = ""
+    ) {
         productUseCase
             .fetchProducts(with: pageNumber, itemsPerPage, searchValue)
             .map { $0.products }
