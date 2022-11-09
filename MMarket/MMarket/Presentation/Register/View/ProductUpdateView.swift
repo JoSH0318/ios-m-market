@@ -161,11 +161,7 @@ final class ProductUpdateView: UIView {
     }
     
     func setProductRequest() -> ProductRequest {
-        var currency = "KRW"
-        
-        if currencySegmentedControl.selectedSegmentIndex == 1 {
-            currency = "USD"
-        }
+        let currency = currencySegmentedControl.selectedSegmentIndex == 0 ? "KRW" : "USD"
         
         return ProductRequest(
             name: nameTextField.text,
