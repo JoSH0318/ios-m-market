@@ -12,6 +12,7 @@ import RxRelay
 protocol MainViewModelInput {
     func didLaunchView()
     func didTapCell(_ product: Product)
+    func didBeginEditingSearchBar(_ text: String)
     func didScroll(_ row: Int)
 }
 
