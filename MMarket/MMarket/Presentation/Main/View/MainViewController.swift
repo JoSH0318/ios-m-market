@@ -92,12 +92,11 @@ final class MainViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.searchBar.rx.text.orEmpty
-            .observe(on: MainScheduler.instance)
-            .filter{ $0 != "" }
-            .withUnretained(self)
-            .subscribe(onNext: { vc, text in
-                vc.viewModel.didBeginEditingSerachBar(text)
-                vc.mainView.productListCollectionView.reloadData()
+            .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .filter{ !$0.isEmpty }
+            .subscribe(onNext: { [weak self] text in
+                self?.viewModel.didBeginEditingSerachBar(text)
             })
             .disposed(by: disposeBag)
     }
