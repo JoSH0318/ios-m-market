@@ -95,6 +95,7 @@ final class ProductListCell: UICollectionViewCell {
     }
     
     func bind(with viewModel: ProductListCellViewModel) {
+    func setContents(with viewModel: ProductListCellViewModel) {
         thumbnailImageView.setImage(with: viewModel.thumbnailURL)
         nameLabel.text = viewModel.name
         stockLabel.text = viewModel.stock
