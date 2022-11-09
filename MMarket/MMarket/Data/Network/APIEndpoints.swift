@@ -10,7 +10,7 @@ import Foundation
 enum APIEndpoints {
     private enum Constant {
         static let baseURL = "https://openmarket.yagom-academy.kr"
-        static let path = "/api/products/"
+        static let path = "/api/products"
         static let identifier = "a1cc0fd2-4abe-11ed-a200-e3abc55dd13d"
     }
     
@@ -39,7 +39,7 @@ extension APIEndpoints {
         case .productDetail(let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productID)",
+                path: Constant.path + "/\(productID)",
                 method: .get
             )
         case .productCreation(let body, let boundary):
@@ -56,7 +56,7 @@ extension APIEndpoints {
         case .productEdition(let body, let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productID)",
+                path: Constant.path + "/\(productID)",
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
@@ -67,7 +67,7 @@ extension APIEndpoints {
         case .deleteURISearch(let body, let productID):
             return Endpoint(
                 baseURL: Constant.baseURL,
-                path: Constant.path + "\(productID)/archived",
+                path: Constant.path + "/\(productID)/archived",
                 method: .post,
                 header: [
                     "Content-Type": "application/json",
