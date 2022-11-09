@@ -28,7 +28,6 @@ final class MainViewModel: MainViewModelable {
     
     init(productUseCase: ProductUseCase) {
         self.productUseCase = productUseCase
-        fetchProducts(with: currentPage)
     }
     
     // MARK: - Output
