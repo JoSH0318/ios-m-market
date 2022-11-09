@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RegisterView: UIView {
+final class ProductUpdateView: UIView {
     
     private enum FontSize {
         static let title = 20.0

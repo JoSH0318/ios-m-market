@@ -58,7 +58,7 @@ final class RegisterViewController: UIViewController {
         return imagePicker
     }()
     
-    private let registerView = RegisterView()
+    private let registerView = ProductUpdateView()
     private var viewModel: RegisterViewModel
     private var coordinator: RegisterCoordinator
     private let disposeBag = DisposeBag()

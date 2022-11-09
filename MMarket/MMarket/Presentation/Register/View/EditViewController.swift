@@ -39,7 +39,7 @@ class EditViewController: UIViewController {
         return barButtonItem
     }()
     
-    private let editView = RegisterView()
+    private let editView = ProductUpdateView()
     private var viewModel: EditViewModel
     private var coordinator: EditCoordinator
     private let disposeBag = DisposeBag()
