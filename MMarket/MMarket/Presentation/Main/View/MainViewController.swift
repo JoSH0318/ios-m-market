@@ -99,6 +99,14 @@ final class MainViewController: UIViewController {
                 self?.viewModel.didBeginEditingSearchBar(text)
             })
             .disposed(by: disposeBag)
+        
+        mainView.productListCollectionView.rx.prefetchItems
+            .compactMap { $0.last?.row }
+            .withUnretained(self)
+            .bind { vc, row in
+                vc.viewModel.didScroll(row)
+            }
+            .disposed(by: disposeBag)
     }
     
     private func refreshMainView() {
