@@ -12,6 +12,7 @@ import RxRelay
 protocol MainViewModelInput {
     func didLaunchView()
     func didTapCell(_ product: Product)
+    func didScroll(_ row: Int)
 }
 
 protocol MainViewModelOutput {
@@ -55,6 +56,12 @@ final class MainViewModel: MainViewModelable {
     }
     
     func fetchProducts(
+    func didScroll(_ row: Int) {
+        if row == currentPageNumber * 20 - 1 {
+            currentPageNumber += 1
+            fetchProducts(pageNumber: currentPageNumber)
+        }
+    }
         pageNumber: Int,
         itemsPerPage: Int = 20,
         searchValue: String = ""
