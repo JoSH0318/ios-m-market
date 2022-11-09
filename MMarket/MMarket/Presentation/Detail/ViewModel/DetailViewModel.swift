@@ -33,11 +33,11 @@ final class DetailViewModel: DetailViewModelable {
     // MARK: - Output
     
     var productDetailInfo: Observable<Product> {
-        return productSubject.asObservable()
+        return productRelay.asObservable()
     }
     
     var productImagesURL: Observable<[String]> {
-        return productSubject
+        return productRelay
             .compactMap {
                 $0.images?.compactMap { $0.url }
             }
@@ -49,7 +49,7 @@ final class DetailViewModel: DetailViewModelable {
     }
     
     var isPostOwner: Observable<Void> {
-        return productSubject
+        return productRelay
             .compactMap { $0.vendor?.name }
             .filter { $0 == "mimm123" }
             .map { _ in }
@@ -74,7 +74,7 @@ final class DetailViewModel: DetailViewModelable {
     private func fetchProduct(by productID: Int) {
         productUseCase.fetchProduct(with: productID)
             .subscribe(onNext: { [weak self] product in
-                self?.productSubject.accept(product)
+                self?.productRelay.accept(product)
                 self?.product = product
             }, onError: { [weak self] error in
                 self?.errorRelay.accept(error)
