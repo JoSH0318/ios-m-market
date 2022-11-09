@@ -74,7 +74,6 @@ class EditViewController: UIViewController {
     private func bind() {
         backBarButton.rx.tap
             .withUnretained(self)
-            .observe(on: MainScheduler.instance)
             .bind { vc, _ in
                 vc.coordinator.popEditView()
             }
@@ -82,7 +81,6 @@ class EditViewController: UIViewController {
         
         saveBarButton.rx.tap
             .withUnretained(self)
-            .observe(on: MainScheduler.instance)
             .bind { vc, _ in
                 let productRequest = vc.editView.setProductRequest()
                 vc.viewModel.didTapSaveButton(productRequest)
