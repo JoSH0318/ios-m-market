@@ -23,7 +23,7 @@ protocol MainViewModelable: MainViewModelInput, MainViewModelOutput {}
 
 final class MainViewModel: MainViewModelable {
     private let productUseCase: ProductUseCase
-    private(set) var currentPage: Int = 1
+    private var currentPageNumber: Int
     private let disposeBag = DisposeBag()
     private var productsSubject = BehaviorRelay<[Product]>(value: [])
     
