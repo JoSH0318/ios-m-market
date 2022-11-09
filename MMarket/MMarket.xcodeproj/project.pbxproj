@@ -155,8 +155,7 @@
 				0361F47228DF5DB40010EC31 /* HTTPBodyBuilder.swift */,
 				030E834428DC933000FE1BB8 /* NetworkProvider.swift */,
 				030E832F28DB58E800FE1BB8 /* NetworkError.swift */,
-				034CD38A2908485200CF5C08 /* ImageDownloader.swift */,
-				034CD38C290985C500CF5C08 /* ImageCacheManager.swift */,
+				03F64C13291C1B6E00DEBE9B /* ImageNetwork */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -437,6 +436,15 @@
 				030E834828DCA99F00FE1BB8 /* ProductRequest.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		03F64C13291C1B6E00DEBE9B /* ImageNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				034CD38A2908485200CF5C08 /* ImageDownloader.swift */,
+				034CD38C290985C500CF5C08 /* ImageCacheManager.swift */,
+			);
+			path = ImageNetwork;
 			sourceTree = "<group>";
 		};
 		57E2E23A1D0FD5E375BC9D97 /* Pods */ = {
