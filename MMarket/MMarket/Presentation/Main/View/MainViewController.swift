@@ -46,6 +46,12 @@ final class MainViewController: UIViewController {
         bind()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.fetchProducts(with: 1)
+    }
+    
     private func bind() {
         viewModel.products
             .observe(on: MainScheduler.instance)
