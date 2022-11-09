@@ -611,7 +611,7 @@
 				03D374BA2915444F00AA0F58 /* RegisterCoordinator.swift in Sources */,
 				030E833028DB58E800FE1BB8 /* NetworkError.swift in Sources */,
 				03D44F4A29119A0F0059BE72 /* DetailCoordinator.swift in Sources */,
-				03D374BF291562B700AA0F58 /* RegisterView.swift in Sources */,
+				03D374BF291562B700AA0F58 /* ProductUpdateView.swift in Sources */,
 				030E832E28DB55DF00FE1BB8 /* Endpoint.swift in Sources */,
 				03D374CC291AA60600AA0F58 /* EditViewController.swift in Sources */,
 				030E833D28DC5DF600FE1BB8 /* ProductPagesDTO.swift in Sources */,
