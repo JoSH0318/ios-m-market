@@ -124,7 +124,3 @@ extension MainViewController {
         navigationController?.navigationBar.backgroundColor = .systemGray5
     }
 }
-
-// MARK: - DataSource
-
-extension MainViewController {}
