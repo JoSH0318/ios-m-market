@@ -30,15 +30,25 @@ struct DetailViewModelItem {
     }
     
     var price: String {
+        guard product.discountedPrice != 0 else {
+            return " "
+        }
+        
         return formattedString(from: product.price)
     }
     
     var discountRate: String {
-        return calculateDiscountRate()
+        guard product.price != product.bargainPrice else {
+            return ""
+        }
+        
+        let discountedPercent = Int((product.discountedPrice / product.price * 100).rounded())
+        
+        return "\(discountedPercent)%"
     }
     
     var stock: String {
-        return product.stock == 0 ? "품절" : "재고수량: \(product.stock)"
+        return product.stock == 0 ? "품절" : "재고 \(product.stock)"
     }
     
     var description: String? {
