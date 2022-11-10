@@ -62,6 +62,7 @@ final class ProductListCell: UICollectionViewCell {
         label.textAlignment = .right
         label.font = .systemFont(ofSize: FontSize.subtitle)
         label.textColor = .systemRed
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
         return label
     }()
     
