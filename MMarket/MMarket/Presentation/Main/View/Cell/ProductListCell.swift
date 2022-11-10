@@ -90,7 +90,8 @@ final class ProductListCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        configureLayout()
+        configureView()
+        configureConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -122,7 +123,7 @@ final class ProductListCell: UICollectionViewCell {
         imageDataTask?.cancel()
     }
     
-    private func configureLayout() {
+    private func configureView() {
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(mainStackView)
         
@@ -137,7 +138,9 @@ final class ProductListCell: UICollectionViewCell {
         
         mainStackView.addArrangedSubview(nameLabelStackView)
         mainStackView.addArrangedSubview(totalInformationStackView)
-
+    }
+    
+    private func configureConstraints() {
         thumbnailImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.leading.equalToSuperview().offset(16)
