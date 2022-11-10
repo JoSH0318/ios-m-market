@@ -157,7 +157,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
             guard let resizedPickerImage = resize(image: image, newWidth: 300) else { return }
             
             registerView.setImages(image)
-            viewModel.selectImage(resizedPickerImage)
+            viewModel.didSelectImage(resizedPickerImage)
         }
         
         dismiss(animated: true, completion: nil)
