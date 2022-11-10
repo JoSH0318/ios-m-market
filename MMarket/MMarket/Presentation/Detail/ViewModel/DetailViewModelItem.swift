@@ -10,6 +10,8 @@ import Foundation
 struct DetailViewModelItem {
     let product: Product
     
+    // MARK: - Output
+    
     var thumbnailURL: String {
         return product.thumbnailURL
     }
@@ -75,14 +77,5 @@ struct DetailViewModelItem {
         let formattedString = product.currency == "KRW" ? "\(numberString) 원" : "\(numberString) USD"
         
         return formattedString
-    }
-    
-    private func calculateDiscountRate() -> String {
-        guard product.price != product.bargainPrice else {
-            return ""
-        }
-        
-        let discountedPercent = Int((product.discountedPrice / product.price * 100).rounded())
-        return "\(discountedPercent)%"
     }
 }
