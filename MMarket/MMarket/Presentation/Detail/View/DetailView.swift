@@ -11,6 +11,7 @@ final class DetailView: UIView {
     
     private enum FontSize {
         static let title = 20.0
+        static let subtitle = 18.0
         static let body = 16.0
     }
     
@@ -24,6 +25,13 @@ final class DetailView: UIView {
     static var idenfier: String {
         return String(describing: self)
     }
+    
+    private let userInformationStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .center
+        stackView.spacing = 8
+        return stackView
+    }()
     
     private let userImageView: UIImageView = {
         let imageView = UIImageView()
@@ -40,17 +48,40 @@ final class DetailView: UIView {
         return label
     }()
     
-    private let userInformationStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .center
-        stackView.spacing = 8
-        return stackView
-    }()
-    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
+        return label
+    }()
+    
+    private let bargainStackView = UIStackView()
+    
+    private let bargainPriceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: FontSize.subtitle, weight: .bold)
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
+        return label
+    }()
+    
+    private let discountRateLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .right
+        label.font = .systemFont(ofSize: FontSize.subtitle)
+        label.textColor = .systemRed
+        label.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return label
+    }()
+    
+    private let additionalStackView = UIStackView()
+    
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: FontSize.body)
+        label.textColor = .systemGray3
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
     }()
     
@@ -62,31 +93,6 @@ final class DetailView: UIView {
         return label
     }()
     
-    private let bargainPriceLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
-        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
-        return label
-    }()
-    
-    private let priceLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.body)
-        label.textColor = .systemGray3
-        return label
-    }()
-    
-    private let discountRateLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-        label.font = .systemFont(ofSize: FontSize.title)
-        label.textColor = .systemRed
-        label.setContentCompressionResistancePriority(.required, for: .horizontal)
-        return label
-    }()
-    
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -94,24 +100,19 @@ final class DetailView: UIView {
         label.numberOfLines = 0
         return label
     }()
-    
-    private let totalPriceStackView: UIStackView = {
+
+    private let informationStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 4
         return stackView
     }()
     
-    private let bargainPriceStackView: UIStackView = {
-        let stackView = UIStackView()
-        return stackView
-    }()
-    
-    private let totalStackView: UIStackView = {
+    private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
-        stackView.spacing = 10
+        stackView.spacing = 16
         return stackView
     }()
     
@@ -134,6 +135,7 @@ final class DetailView: UIView {
             width: UIScreen.main.bounds.width,
             height: UIScreen.main.bounds.height
         )
+        flowLayout.minimumLineSpacing = 0
         flowLayout.scrollDirection = .horizontal
         
         return flowLayout
@@ -167,29 +169,33 @@ final class DetailView: UIView {
     private func configureView() {
         addSubview(scrollView)
         scrollView.addSubview(imagesCollectionView)
-        scrollView.addSubview(totalStackView)
+        scrollView.addSubview(mainStackView)
         
         userInformationStackView.addArrangedSubview(userImageView)
         userInformationStackView.addArrangedSubview(userNameLabel)
         
-        bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
-        bargainPriceStackView.addArrangedSubview(discountRateLabel)
+        bargainStackView.addArrangedSubview(bargainPriceLabel)
+        bargainStackView.addArrangedSubview(discountRateLabel)
         
-        totalPriceStackView.addArrangedSubview(bargainPriceStackView)
-        totalPriceStackView.addArrangedSubview(priceLabel)
+        additionalStackView.addArrangedSubview(priceLabel)
+        additionalStackView.addArrangedSubview(stockLabel)
         
-        totalStackView.addArrangedSubview(userInformationStackView)
-        totalStackView.addArrangedSubview(DividerLineView(height: 0.5))
-        totalStackView.addArrangedSubview(nameLabel)
-        totalStackView.addArrangedSubview(stockLabel)
-        totalStackView.addArrangedSubview(totalPriceStackView)
-        totalStackView.addArrangedSubview(DividerLineView(height: 0.5))
-        totalStackView.addArrangedSubview(descriptionLabel)
+        informationStackView.addArrangedSubview(bargainStackView)
+        informationStackView.addArrangedSubview(additionalStackView)
+        
+        mainStackView.addArrangedSubview(userInformationStackView)
+        mainStackView.addArrangedSubview(DividerLineView())
+        mainStackView.addArrangedSubview(nameLabel)
+        mainStackView.addArrangedSubview(informationStackView)
+        mainStackView.addArrangedSubview(DividerLineView())
+        mainStackView.addArrangedSubview(descriptionLabel)
         
         imagesCollectionView.register(
             DetailViewImagesCell.self,
             forCellWithReuseIdentifier: DetailViewImagesCell.idenfier
         )
+        
+        imagesCollectionView.isPagingEnabled = true
     }
     
     private func configureConstraints() {
@@ -202,10 +208,10 @@ final class DetailView: UIView {
             $0.leading.top.trailing.equalToSuperview()
             $0.width.equalToSuperview()
             $0.height.equalTo(imagesCollectionView.snp.width)
-            $0.bottom.equalTo(totalStackView.snp.top).offset(-16)
+            $0.bottom.equalTo(mainStackView.snp.top).offset(-16)
         }
         
-        totalStackView.snp.makeConstraints {
+        mainStackView.snp.makeConstraints {
             $0.leading.bottom.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
         }
