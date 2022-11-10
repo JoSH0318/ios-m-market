@@ -10,7 +10,8 @@ import SnapKit
 final class ProductListCell: UICollectionViewCell {
     
     private enum FontSize {
-        static let title = 16.0
+        static let title = 18.0
+        static let subtitle = 16.0
         static let body = 12.0
     }
     
