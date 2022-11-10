@@ -142,7 +142,7 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureButtonsLayout() {
-        detailView.setOwnerButtons([editButton, deleteButton])
+        detailView.setOwnerButtons(editButton, deleteButton)
     }
 }
 
