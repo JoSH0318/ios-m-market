@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Product: Hashable {
+struct Product {
     let id: Int
     let venderId: Int
     let name: String
@@ -22,12 +22,4 @@ struct Product: Hashable {
     var vendor: Vendor?
     let createdAt: String
     let issuedAt: String
-    
-    func hash(into hasher: inout Hasher) {
-      hasher.combine(id)
-    }
-
-    static func == (lhs: Product, rhs: Product) -> Bool {
-      lhs.id == rhs.id
-    }
 }
