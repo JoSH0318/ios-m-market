@@ -186,7 +186,7 @@ final class ProductUpdateView: UIView {
     func setImages(_ image: UIImage) {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor(named: "MainGrayColor")?.cgColor
+        imageView.layer.borderColor = UIColor.grayColor?.cgColor
         imageView.layer.cornerRadius = 8
         imageView.backgroundColor = .systemBackground
         imageView.contentMode = .scaleAspectFit
