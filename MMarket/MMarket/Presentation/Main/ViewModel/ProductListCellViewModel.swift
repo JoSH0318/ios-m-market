@@ -7,22 +7,7 @@
 
 import Foundation
 
-protocol ProductListCellViewModelInput {
-    func prepareForReuse()
-}
-
-protocol ProductListCellViewModelOutput {
-    var thumbnailURL: String { get }
-    var name: String { get }
-    var stock: String { get }
-    var price: String { get }
-    var bargainPrice: String { get }
-    var discountRate: String { get }
-}
-
-protocol ProductListCellViewModelable: ProductListCellViewModelInput, ProductListCellViewModelOutput {}
-
-final class ProductListCellViewModel: ProductListCellViewModelable {
+final class ProductListCellViewModel {
     private let product: Product
 
     // MARK: - Output
@@ -63,12 +48,6 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
 
     init(product: Product) {
         self.product = product
-    }
-
-    // MARK: - Input
-    
-    func prepareForReuse() {
-
     }
 
     private func formattedString(from number: Double) -> String {
