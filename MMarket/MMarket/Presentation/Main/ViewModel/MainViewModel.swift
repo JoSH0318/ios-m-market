@@ -13,7 +13,7 @@ protocol MainViewModelInput {
     func didLaunchView()
     func didTapCell(_ product: Product)
     func didBeginEditingSearchBar(_ text: String)
-    func didScroll(_ row: Int)
+    func didScrollToNextPage(_ row: Int)
 }
 
 protocol MainViewModelOutput {
@@ -57,7 +57,7 @@ final class MainViewModel: MainViewModelable {
         fetchProducts(pageNumber: 1, searchValue: text)
     }
     
-    func didScroll(_ row: Int) {
+    func didScrollToNextPage(_ row: Int) {
         if row == currentPageNumber * 20 - 1 {
             currentPageNumber += 1
             fetchProducts(pageNumber: currentPageNumber)

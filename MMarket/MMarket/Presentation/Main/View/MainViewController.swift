@@ -104,7 +104,7 @@ final class MainViewController: UIViewController {
             .compactMap { $0.last?.row }
             .withUnretained(self)
             .bind { vc, row in
-                vc.viewModel.didScroll(row)
+                vc.viewModel.didScrollToNextPage(row)
             }
             .disposed(by: disposeBag)
     }
