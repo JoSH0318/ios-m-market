@@ -46,6 +46,7 @@ final class MainViewModel: MainViewModelable {
     
     func didLaunchView() {
         currentPageNumber = 1
+        productsSubject.accept([])
         fetchProducts(pageNumber: currentPageNumber)
     }
     
