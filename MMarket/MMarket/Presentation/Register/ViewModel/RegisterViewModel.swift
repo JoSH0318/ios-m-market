@@ -11,11 +11,14 @@ import RxRelay
 
 protocol RegisterViewModelInput {
     func didTapPostButton(_ request: ProductRequest, images: [Data])
+    func didSelectImage(_ selectedImage: UIImage)
 }
 
 protocol RegisterViewModelOutput {
     var postProdct: Observable<Void> { get }
     var productImages: [Data] { get }
+    var imagesCount: Int { get }
+    var error: Observable<Error> { get }
 }
 
 protocol RegisterViewModelable: RegisterViewModelInput, RegisterViewModelOutput {}

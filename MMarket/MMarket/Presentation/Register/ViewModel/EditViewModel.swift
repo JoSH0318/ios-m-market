@@ -10,9 +10,12 @@ import RxSwift
 import RxRelay
 
 protocol EditViewModelInput {
+    func didTapSaveButton(_ request: ProductRequest)
 }
 
 protocol EditViewModelOutput {
+    var patchProdct: Observable<Void> { get }
+    var error: Observable<Error> { get }
 }
 
 protocol EditViewModelable: EditViewModelInput, EditViewModelOutput {}
