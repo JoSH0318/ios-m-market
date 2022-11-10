@@ -8,8 +8,8 @@
 import UIKit
 
 extension UIImageView {
-    func setImage(with urlString: String) {
-        ImageDownloader.shared.downloadImage(urlString: urlString) { [weak self] image in
+    func setImage(with urlString: String) -> URLSessionDataTask? {
+        return ImageDownloader.shared.downloadImage(urlString: urlString) { [weak self] image in
             DispatchQueue.main.async {
                 self?.image = image
             }

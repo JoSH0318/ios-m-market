@@ -18,20 +18,15 @@ final class ImageDownloader {
         self.session = session
     }
     
-    func cancelTask() {
-        task?.suspend()
-        task?.cancel()
-    }
-    
     func downloadImage(
         urlString: String,
         completion: @escaping (UIImage) -> Void
-    ) {
-        guard let url = URL(string: urlString) else { return }
+    ) -> URLSessionDataTask? {
+        guard let url = URL(string: urlString) else { return nil }
         
         if let cacheImage = imageCacheManager.retrive(forKey: urlString) {
             completion(cacheImage)
-            return
+            return nil
         }
         
         task = requestImage(with: url) { [weak self] (result: Result<UIImage, NetworkError>) in
@@ -48,6 +43,7 @@ final class ImageDownloader {
         }
         
         task?.resume()
+        return task
     }
     
     @discardableResult

@@ -19,6 +19,8 @@ final class ProductListCell: UICollectionViewCell {
         return String(describing: self)
     }
     
+    private var imageDataTask: URLSessionDataTask?
+    
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -97,7 +99,7 @@ final class ProductListCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-
+        CancelImageDownload()
         thumbnailImageView.image = nil
         nameLabel.text = nil
         stockLabel.text = nil
@@ -107,12 +109,17 @@ final class ProductListCell: UICollectionViewCell {
     }
     
     func setContents(with viewModel: ProductListCellViewModel) {
-        thumbnailImageView.setImage(with: viewModel.thumbnailURL)
+        imageDataTask = thumbnailImageView.setImage(with: viewModel.thumbnailURL)
         nameLabel.text = viewModel.name
         stockLabel.text = viewModel.stock
         discountRateLabel.text = viewModel.discountRate
         priceLabel.attributedText = viewModel.price.strikeThrough()
         bargainPriceLabel.text = viewModel.bargainPrice
+    }
+    
+    private func CancelImageDownload() {
+        imageDataTask?.suspend()
+        imageDataTask?.cancel()
     }
     
     private func configureLayout() {
