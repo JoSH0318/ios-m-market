@@ -5,7 +5,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>BMDOHYEON_otf.otf</string>
-		<string>BMHANNAAir_ttf.ttf</string>
+		<string>BMHANNAAir.ttf</string>
+		<string>BMHANNAPro.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

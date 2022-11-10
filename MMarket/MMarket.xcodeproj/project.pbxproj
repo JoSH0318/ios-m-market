@@ -42,7 +42,7 @@
 		03D374BF291562B700AA0F58 /* ProductUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374BE291562B700AA0F58 /* ProductUpdateView.swift */; };
 		03D374C12917DBD100AA0F58 /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C02917DBD100AA0F58 /* AlertBuilder.swift */; };
 		03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */; };
-		03D374C629195BE900AA0F58 /* BMHANNAAir_ttf.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */; };
+		03D374C629195BE900AA0F58 /* BMHANNAAir.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03D374C529195BE900AA0F58 /* BMHANNAAir.ttf */; };
 		03D374C829196ABF00AA0F58 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C729196ABF00AA0F58 /* EditViewModel.swift */; };
 		03D374CA291AA29300AA0F58 /* EditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374C9291AA29300AA0F58 /* EditCoordinator.swift */; };
 		03D374CC291AA60600AA0F58 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D374CB291AA60500AA0F58 /* EditViewController.swift */; };
@@ -59,6 +59,8 @@
 		03E0542728B7B28400279039 /* ProductPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0542628B7B28400279039 /* ProductPages.swift */; };
 		03E0542928B7B35100279039 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0542828B7B35100279039 /* Product.swift */; };
 		03E0542D28B7B40A00279039 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0542C28B7B40A00279039 /* Vendor.swift */; };
+		03F64C15291C1C1200DEBE9B /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C14291C1C1200DEBE9B /* ImageButton.swift */; };
+		03F64C17291C3E0600DEBE9B /* BMHANNAPro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */; };
 		D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,7 +102,7 @@
 		03D374BE291562B700AA0F58 /* ProductUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUpdateView.swift; sourceTree = "<group>"; };
 		03D374C02917DBD100AA0F58 /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMDOHYEON_otf.otf; sourceTree = "<group>"; };
-		03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAAir_ttf.ttf; sourceTree = "<group>"; };
+		03D374C529195BE900AA0F58 /* BMHANNAAir.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAAir.ttf; sourceTree = "<group>"; };
 		03D374C729196ABF00AA0F58 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
 		03D374C9291AA29300AA0F58 /* EditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCoordinator.swift; sourceTree = "<group>"; };
 		03D374CB291AA60500AA0F58 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		03E0542628B7B28400279039 /* ProductPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPages.swift; sourceTree = "<group>"; };
 		03E0542828B7B35100279039 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		03E0542C28B7B40A00279039 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
+		03F64C14291C1C1200DEBE9B /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAPro.ttf; sourceTree = "<group>"; };
 		881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7A7B342CDE505C3EBF49F8 /* Pods-MMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarket.debug.xcconfig"; path = "Target Support Files/Pods-MMarket/Pods-MMarket.debug.xcconfig"; sourceTree = "<group>"; };
 		916449E82688729964040A54 /* Pods-MMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarket.release.xcconfig"; path = "Target Support Files/Pods-MMarket/Pods-MMarket.release.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +238,7 @@
 			children = (
 				03D374B629153C5C00AA0F58 /* DividerLineView.swift */,
 				03D374C02917DBD100AA0F58 /* AlertBuilder.swift */,
+				03F64C14291C1C1200DEBE9B /* ImageButton.swift */,
 				0361F47828E0B3740010EC31 /* Extension */,
 			);
 			path = Util;
@@ -363,7 +368,8 @@
 			isa = PBXGroup;
 			children = (
 				03D374C32919385E00AA0F58 /* BMDOHYEON_otf.otf */,
-				03D374C529195BE900AA0F58 /* BMHANNAAir_ttf.ttf */,
+				03D374C529195BE900AA0F58 /* BMHANNAAir.ttf */,
+				03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -521,10 +527,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03D374C629195BE900AA0F58 /* BMHANNAAir_ttf.ttf in Resources */,
+				03D374C629195BE900AA0F58 /* BMHANNAAir.ttf in Resources */,
 				03B04FAA28ABD91C00FA268D /* LaunchScreen.storyboard in Resources */,
 				03B04FA728ABD91C00FA268D /* Assets.xcassets in Resources */,
 				03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */,
+				03F64C17291C3E0600DEBE9B /* BMHANNAPro.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +612,7 @@
 				030E833428DB672900FE1BB8 /* APIEndpoints.swift in Sources */,
 				03D374CA291AA29300AA0F58 /* EditCoordinator.swift in Sources */,
 				034CD38B2908485300CF5C08 /* ImageDownloader.swift in Sources */,
+				03F64C15291C1C1200DEBE9B /* ImageButton.swift in Sources */,
 				030E834528DC933000FE1BB8 /* NetworkProvider.swift in Sources */,
 				03E0542D28B7B40A00279039 /* Vendor.swift in Sources */,
 				03D5E2DF28AE783400D3A333 /* ProductListCell.swift in Sources */,
