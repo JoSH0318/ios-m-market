@@ -45,7 +45,7 @@ final class ProductListCell: UICollectionViewCell {
     private let bargainPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
+        label.font = .systemFont(ofSize: FontSize.subtitle, weight: .bold)
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
     }()
@@ -61,7 +61,7 @@ final class ProductListCell: UICollectionViewCell {
     private let discountRateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .systemFont(ofSize: FontSize.title)
+        label.font = .systemFont(ofSize: FontSize.subtitle)
         label.textColor = .systemRed
         return label
     }()
