@@ -10,6 +10,10 @@ import RxSwift
 import RxCocoa
 
 class EditViewController: UIViewController {
+    private let editView = ProductUpdateView()
+    private var viewModel: EditViewModel
+    private var coordinator: EditCoordinator
+    private let disposeBag = DisposeBag()
     
     private let backBarButton: UIBarButtonItem = {
         let backImage = UIImage(systemName: "chevron.backward")
@@ -38,11 +42,6 @@ class EditViewController: UIViewController {
         barButtonItem.tintColor = UIColor(named: "MainBeigeColor")
         return barButtonItem
     }()
-    
-    private let editView = ProductUpdateView()
-    private var viewModel: EditViewModel
-    private var coordinator: EditCoordinator
-    private let disposeBag = DisposeBag()
     
     init(
         viewModel: EditViewModel,

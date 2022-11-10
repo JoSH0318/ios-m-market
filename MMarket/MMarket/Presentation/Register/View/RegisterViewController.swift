@@ -10,6 +10,10 @@ import RxSwift
 import RxCocoa
 
 final class RegisterViewController: UIViewController {
+    private let registerView = ProductUpdateView()
+    private var viewModel: RegisterViewModel
+    private var coordinator: RegisterCoordinator
+    private let disposeBag = DisposeBag()
     
     private let addImageButton = ImageButton()
     
@@ -47,11 +51,6 @@ final class RegisterViewController: UIViewController {
         imagePicker.allowsEditing = true
         return imagePicker
     }()
-    
-    private let registerView = ProductUpdateView()
-    private var viewModel: RegisterViewModel
-    private var coordinator: RegisterCoordinator
-    private let disposeBag = DisposeBag()
     
     init(
         viewModel: RegisterViewModel,

@@ -10,17 +10,16 @@ import RxSwift
 import RxCocoa
 
 final class MainViewController: UIViewController {
+    private let mainView = MainView()
+    private var viewModel: MainViewModel
+    private var coordinator: MainCoordinator
+    private let disposeBag = DisposeBag()
     
     private let refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = .darkGray
         return refreshControl
     }()
-    
-    private let mainView = MainView()
-    private var viewModel: MainViewModel
-    private var coordinator: MainCoordinator
-    private let disposeBag = DisposeBag()
     
     init(
         viewModel: MainViewModel,
