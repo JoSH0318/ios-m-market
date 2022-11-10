@@ -68,7 +68,7 @@ class EditViewController: UIViewController {
 
         configureNavigationBar()
         bind()
-        editView.setContents(by: viewModel.product)
+        setContents()
     }
     
     private func bind() {
@@ -86,6 +86,14 @@ class EditViewController: UIViewController {
                 vc.viewModel.didTapSaveButton(productRequest)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func setContents() {
+        editView.setContents(by: viewModel.product)
+        viewModel.product.images?.forEach { image in
+            let cachedImage = ImageCacheManager.shared.retrive(forKey: image.url) ?? UIImage()
+            editView.setImages(cachedImage)
+        }
     }
 }
 
