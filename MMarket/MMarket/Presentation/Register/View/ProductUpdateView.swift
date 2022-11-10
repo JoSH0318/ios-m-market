@@ -27,7 +27,7 @@ final class ProductUpdateView: UIView {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
         label.text = "상품명"
         return label
     }()
@@ -45,7 +45,7 @@ final class ProductUpdateView: UIView {
     private let currencyLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
         label.text = "가격 단위"
         return label
     }()
@@ -62,7 +62,7 @@ final class ProductUpdateView: UIView {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
         label.text = "상품 원가"
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
@@ -81,7 +81,7 @@ final class ProductUpdateView: UIView {
     private let discountedPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
         label.text = "상품 판매가"
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
@@ -100,7 +100,7 @@ final class ProductUpdateView: UIView {
     private let stockLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
         label.text = "재고수량"
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
@@ -117,7 +117,7 @@ final class ProductUpdateView: UIView {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air TTF", size: FontSize.body)
+        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
         label.text = "상품 상세 정보"
         return label
     }()
