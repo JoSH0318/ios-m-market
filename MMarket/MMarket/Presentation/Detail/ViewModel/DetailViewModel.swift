@@ -10,13 +10,16 @@ import RxSwift
 import RxRelay
 
 protocol DetailViewModelInput {
-
+    func didTapDeleteButton()
 }
 
 protocol DetailViewModelOutput {
     var productDetailInfo: Observable<Product> { get }
     var productImagesURL: Observable<[String]> { get }
     var productImagesCount: Observable<Int> { get }
+    var isPostOwner: Observable<Void> { get }
+    var error: Observable<Error> { get }
+    var deleteCompletion: Observable<Void> { get }
 }
 
 protocol DetailViewModelable: DetailViewModelInput, DetailViewModelOutput {}
