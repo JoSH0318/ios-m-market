@@ -96,7 +96,7 @@ final class DetailView: UIView {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.title)
+        label.font = .systemFont(ofSize: FontSize.subtitle)
         label.numberOfLines = 0
         return label
     }()
