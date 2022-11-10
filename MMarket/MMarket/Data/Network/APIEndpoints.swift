@@ -8,10 +8,10 @@
 import Foundation
 
 enum APIEndpoints {
+    
     private enum Constant {
         static let baseURL = "https://openmarket.yagom-academy.kr"
         static let path = "/api/products"
-        static let identifier = "a1cc0fd2-4abe-11ed-a200-e3abc55dd13d"
     }
     
     case productList(Int, Int, String)
@@ -49,7 +49,7 @@ extension APIEndpoints {
                 method: .post,
                 header: [
                     "Content-Type": "multipart/form-data; boundary=\(boundary)",
-                    "identifier": Constant.identifier
+                    "identifier": UserInfo.identifier
                 ],
                 body: body
             )
@@ -60,7 +60,7 @@ extension APIEndpoints {
                 method: .patch,
                 header: [
                     "Content-Type": "application/json",
-                    "identifier": Constant.identifier
+                    "identifier": UserInfo.identifier
                 ],
                 body: body
             )
@@ -71,7 +71,7 @@ extension APIEndpoints {
                 method: .post,
                 header: [
                     "Content-Type": "application/json",
-                    "identifier": Constant.identifier
+                    "identifier": UserInfo.identifier
                 ],
                 body: body
             )
@@ -81,7 +81,7 @@ extension APIEndpoints {
                 path: "\(deleteURI)",
                 method: .delete,
                 header: [
-                    "identifier": Constant.identifier
+                    "identifier": UserInfo.identifier
                 ]
             )
         }

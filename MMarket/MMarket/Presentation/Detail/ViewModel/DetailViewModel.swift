@@ -54,7 +54,7 @@ final class DetailViewModel: DetailViewModelable {
     var isPostOwner: Observable<Void> {
         return productRelay
             .compactMap { $0.vendor?.name }
-            .filter { $0 == "mimm123" }
+            .filter { $0 == UserInfo.id }
             .map { _ in }
             .asObservable()
     }
@@ -98,7 +98,7 @@ final class DetailViewModel: DetailViewModelable {
     // MARK: - Input
     
     func didTapDeleteButton() {
-        productUseCase.inquireProductSecret(with: "xcnbof13rg2", productID)
+        productUseCase.inquireProductSecret(with: UserInfo.password, productID)
             .subscribe(onNext: { [weak self] deleteURI in
                 self?.deleteProduct(with: deleteURI)
             }, onError: { [weak self] error in
