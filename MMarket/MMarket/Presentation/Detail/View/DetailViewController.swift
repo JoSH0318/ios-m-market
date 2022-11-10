@@ -42,7 +42,7 @@ final class DetailViewController: UIViewController {
             target: nil,
             action: nil
         )
-        barButtonItem.tintColor = UIColor(named: "MainNavyColor")
+        barButtonItem.tintColor = UIColor.navyColor
         return barButtonItem
     }()
     
