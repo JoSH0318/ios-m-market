@@ -110,7 +110,8 @@ final class DetailView: UIView {
     private let totalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalCentering
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 10
         return stackView
     }()
     
