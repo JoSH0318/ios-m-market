@@ -21,6 +21,7 @@ final class DetailViewImagesCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .systemGray6
         return imageView
     }()
     
