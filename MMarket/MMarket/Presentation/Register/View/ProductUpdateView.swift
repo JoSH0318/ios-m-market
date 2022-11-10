@@ -170,7 +170,7 @@ final class ProductUpdateView: UIView {
             stock: Int(stockTextField.text ?? ""),
             currency: currency,
             description: descriptionTextView.text,
-            secret: "xcnbof13rg2"
+            secret: UserInfo.password
         )
     }
     
