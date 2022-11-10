@@ -80,7 +80,7 @@ final class ProductListCell: UICollectionViewCell {
         return stackView
     }()
     
-    private let mainlStackView: UIStackView = {
+    private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalCentering
@@ -124,7 +124,7 @@ final class ProductListCell: UICollectionViewCell {
     
     private func configureLayout() {
         contentView.addSubview(thumbnailImageView)
-        contentView.addSubview(mainlStackView)
+        contentView.addSubview(mainStackView)
         
         nameLabelStackView.addArrangedSubview(nameLabel)
         nameLabelStackView.addArrangedSubview(discountRateLabel)
@@ -135,18 +135,18 @@ final class ProductListCell: UICollectionViewCell {
         totalInformationStackView.addArrangedSubview(bargainInformationStackView)
         totalInformationStackView.addArrangedSubview(priceLabel)
         
-        mainlStackView.addArrangedSubview(nameLabelStackView)
-        mainlStackView.addArrangedSubview(totalInformationStackView)
+        mainStackView.addArrangedSubview(nameLabelStackView)
+        mainStackView.addArrangedSubview(totalInformationStackView)
 
         thumbnailImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalTo(mainlStackView.snp.top).offset(-8)
+            $0.bottom.equalTo(mainStackView.snp.top).offset(-8)
             $0.width.equalTo(thumbnailImageView.snp.height)
         }
         
-        mainlStackView.snp.makeConstraints {
+        mainStackView.snp.makeConstraints {
             $0.leading.equalTo(contentView).offset(24)
             $0.trailing.equalTo(contentView).offset(-24)
             $0.bottom.equalTo(contentView).offset(-8)
