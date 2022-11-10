@@ -124,11 +124,24 @@ extension MainViewController {
     }
     
     private func configureNavigationBar() {
-        navigationItem.title = "M-MARKET"
+        navigationItem.titleView = generateNavigationTitleView()
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(
-            name: "BM DoHyeon OTF",
+            name: "BM HANNA Pro",
             size: 20
         ) as Any]
         navigationController?.navigationBar.backgroundColor = .systemGray5
+    }
+    
+    private func generateNavigationTitleView() -> UIStackView {
+        let stackView = UIStackView()
+        let label = UILabel()
+        label.text = " M-MARKET"
+        label.font = UIFont(name: "BM HANNA Pro", size: 25)
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "AppIcon")
+        stackView.addArrangedSubview(imageView)
+        stackView.addArrangedSubview(label)
+        
+        return stackView
     }
 }
