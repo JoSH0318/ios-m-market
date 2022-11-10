@@ -11,17 +11,7 @@ import RxCocoa
 
 final class RegisterViewController: UIViewController {
     
-    private let addImageButton: UIButton = {
-        let button = UIButton()
-        button.layer.borderWidth = 2
-        button.layer.cornerRadius = 8
-        button.layer.borderColor = UIColor(named: "MainGrayColor")?.cgColor
-        button.setBackgroundImage(UIImage(systemName: "camera"), for: .normal)
-        button.tintColor = UIColor(named: "MainGrayColor")
-        button.backgroundColor = .systemBackground
-        button.clipsToBounds = true
-        return button
-    }()
+    private let addImageButton = ImageButton()
     
     private let backBarButton: UIBarButtonItem = {
         let backImage = UIImage(systemName: "chevron.backward")
