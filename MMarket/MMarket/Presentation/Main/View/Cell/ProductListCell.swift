@@ -128,8 +128,9 @@ final class ProductListCell: UICollectionViewCell {
         }
         
         totalStackView.snp.makeConstraints {
-            $0.leading.equalTo(contentView).offset(16)
-            $0.bottom.trailing.equalTo(contentView).offset(-8)
+            $0.leading.equalTo(contentView).offset(24)
+            $0.trailing.equalTo(contentView).offset(-24)
+            $0.bottom.equalTo(contentView).offset(-8)
         }
         
         bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
