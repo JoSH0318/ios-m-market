@@ -27,7 +27,7 @@ final class ProductUpdateView: UIView {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
+        label.font = .systemFont(ofSize: FontSize.body)
         label.text = "상품명"
         return label
     }()
@@ -45,7 +45,7 @@ final class ProductUpdateView: UIView {
     private let currencyLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
+        label.font = .systemFont(ofSize: FontSize.body)
         label.text = "가격 단위"
         return label
     }()
@@ -62,7 +62,7 @@ final class ProductUpdateView: UIView {
     private let priceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
+        label.font = .systemFont(ofSize: FontSize.body)
         label.text = "상품 원가"
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
@@ -81,7 +81,7 @@ final class ProductUpdateView: UIView {
     private let discountedPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
+        label.font = .systemFont(ofSize: FontSize.body)
         label.text = "상품 판매가"
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
@@ -100,7 +100,7 @@ final class ProductUpdateView: UIView {
     private let stockLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
+        label.font = .systemFont(ofSize: FontSize.body)
         label.text = "재고수량"
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
@@ -117,7 +117,7 @@ final class ProductUpdateView: UIView {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "BM HANNA Air", size: FontSize.body)
+        label.font = .systemFont(ofSize: FontSize.body)
         label.text = "상품 상세 정보"
         return label
     }()
@@ -176,10 +176,11 @@ final class ProductUpdateView: UIView {
     
     func setContents(by product: Product) {
         nameTextField.text = product.name
-        priceTextField.text = String(product.price)
-        discountedPriceTextField.text = String(product.discountedPrice)
+        priceTextField.text = formattedString(from: product.price)
+        discountedPriceTextField.text = formattedString(from: product.discountedPrice)
         stockTextField.text = String(product.stock)
         descriptionTextView.text = product.description
+        currencySegmentedControl.selectedSegmentIndex = product.currency == "KRW" ? 0 : 1
     }
     
     func setImages(_ image: UIImage) {
@@ -275,5 +276,17 @@ final class ProductUpdateView: UIView {
         stockTextField.snp.makeConstraints {
             $0.width.equalToSuperview().multipliedBy(0.7)
         }
+    }
+    
+    private func formattedString(from number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        
+        guard let numberString = formatter.string(from: number as NSNumber) else {
+            return ""
+        }
+        
+        return numberString
     }
 }
