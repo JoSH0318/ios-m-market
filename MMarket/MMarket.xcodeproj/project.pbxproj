@@ -61,6 +61,7 @@
 		03E0542D28B7B40A00279039 /* Vendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E0542C28B7B40A00279039 /* Vendor.swift */; };
 		03F64C15291C1C1200DEBE9B /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C14291C1C1200DEBE9B /* ImageButton.swift */; };
 		03F64C17291C3E0600DEBE9B /* BMHANNAPro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */; };
+		03F64C19291CEF1000DEBE9B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C18291CEF1000DEBE9B /* UIColor.swift */; };
 		D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +122,7 @@
 		03E0542C28B7B40A00279039 /* Vendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vendor.swift; sourceTree = "<group>"; };
 		03F64C14291C1C1200DEBE9B /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAPro.ttf; sourceTree = "<group>"; };
+		03F64C18291CEF1000DEBE9B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7A7B342CDE505C3EBF49F8 /* Pods-MMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarket.debug.xcconfig"; path = "Target Support Files/Pods-MMarket/Pods-MMarket.debug.xcconfig"; sourceTree = "<group>"; };
 		916449E82688729964040A54 /* Pods-MMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarket.release.xcconfig"; path = "Target Support Files/Pods-MMarket/Pods-MMarket.release.xcconfig"; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				0361F47928E0B3870010EC31 /* Data.swift */,
 				03D44F3F290FF81F0059BE72 /* UIImageView.swift */,
 				03D44F45291149430059BE72 /* String.swift */,
+				03F64C18291CEF1000DEBE9B /* UIColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				03E0542728B7B28400279039 /* ProductPages.swift in Sources */,
 				030E833F28DC5E9700FE1BB8 /* ProductDTO.swift in Sources */,
 				03D374B52915352F00AA0F58 /* RegisterViewModel.swift in Sources */,
+				03F64C19291CEF1000DEBE9B /* UIColor.swift in Sources */,
 				03D44F46291149430059BE72 /* String.swift in Sources */,
 				03B04F9E28ABD91B00FA268D /* AppDelegate.swift in Sources */,
 				03320D59290058AF0030C853 /* MainCoordinator.swift in Sources */,
