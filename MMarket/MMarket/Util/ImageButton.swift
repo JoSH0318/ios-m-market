@@ -1,5 +1,5 @@
 //
-//  ImageAddButton.swift
+//  ImageButton.swift
 //  MMarket
 //
 //  Created by 조성훈 on 2022/11/10.
@@ -7,7 +7,7 @@
 
 import SnapKit
 
-final class ImageAddButton: UIButton {
+final class ImageButton: UIButton {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -25,7 +25,7 @@ final class ImageAddButton: UIButton {
     
     private let imageCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "BM HANNA Air TTF", size: 12)
+        label.font = UIFont(name: "BM HANNA Air TTF", size: 10)
         label.textColor = UIColor(named: "MainGrayColor")
         label.text = "0/5"
         return label
@@ -62,6 +62,10 @@ final class ImageAddButton: UIButton {
     }
     
     private func configureConstraints() {
+        mainStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(10)
+        }
+        
         addImageView.snp.makeConstraints {
             $0.height.width.equalToSuperview().multipliedBy(0.5)
         }
