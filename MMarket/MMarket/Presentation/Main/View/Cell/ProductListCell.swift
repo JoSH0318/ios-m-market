@@ -29,10 +29,13 @@ final class ProductListCell: UICollectionViewCell {
         return imageView
     }()
     
+    private let nameLabelStackView = UIStackView()
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: FontSize.title, weight: .bold)
+        label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
         return label
     }()
     
@@ -44,19 +47,13 @@ final class ProductListCell: UICollectionViewCell {
         return label
     }()
     
+    private let bargainInformationStackView = UIStackView()
+    
     private let bargainPriceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = .systemFont(ofSize: FontSize.subtitle, weight: .bold)
         label.setContentHuggingPriority(.init(rawValue: 1), for: .horizontal)
-        return label
-    }()
-    
-    private let priceLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: FontSize.body)
-        label.textColor = .systemGray3
         return label
     }()
     
@@ -68,19 +65,22 @@ final class ProductListCell: UICollectionViewCell {
         return label
     }()
     
-    private let totalPriceStackView: UIStackView = {
+    private let priceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: FontSize.body)
+        label.textColor = .systemGray3
+        return label
+    }()
+    
+    private let totalInformationStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.setContentHuggingPriority(.init(rawValue: 1), for: .vertical)
         return stackView
     }()
     
-    private let bargainPriceStackView: UIStackView = {
-        let stackView = UIStackView()
-        return stackView
-    }()
-    
-    private let totalStackView: UIStackView = {
+    private let mainlStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .equalCentering
@@ -124,29 +124,32 @@ final class ProductListCell: UICollectionViewCell {
     
     private func configureLayout() {
         contentView.addSubview(thumbnailImageView)
-        contentView.addSubview(totalStackView)
+        contentView.addSubview(mainlStackView)
+        
+        nameLabelStackView.addArrangedSubview(nameLabel)
+        nameLabelStackView.addArrangedSubview(discountRateLabel)
+        
+        bargainInformationStackView.addArrangedSubview(bargainPriceLabel)
+        bargainInformationStackView.addArrangedSubview(stockLabel)
+        
+        totalInformationStackView.addArrangedSubview(bargainInformationStackView)
+        totalInformationStackView.addArrangedSubview(priceLabel)
+        
+        mainlStackView.addArrangedSubview(nameLabelStackView)
+        mainlStackView.addArrangedSubview(totalInformationStackView)
 
         thumbnailImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(8)
             $0.leading.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalTo(totalStackView.snp.top).offset(-8)
+            $0.bottom.equalTo(mainlStackView.snp.top).offset(-8)
             $0.width.equalTo(thumbnailImageView.snp.height)
         }
         
-        totalStackView.snp.makeConstraints {
+        mainlStackView.snp.makeConstraints {
             $0.leading.equalTo(contentView).offset(24)
             $0.trailing.equalTo(contentView).offset(-24)
             $0.bottom.equalTo(contentView).offset(-8)
         }
-        
-        bargainPriceStackView.addArrangedSubview(bargainPriceLabel)
-        bargainPriceStackView.addArrangedSubview(discountRateLabel)
-        totalPriceStackView.addArrangedSubview(bargainPriceStackView)
-        totalPriceStackView.addArrangedSubview(priceLabel)
-        
-        totalStackView.addArrangedSubview(nameLabel)
-        totalStackView.addArrangedSubview(totalPriceStackView)
-//        totalStackView.addArrangedSubview(stockLabel)
     }
 }
