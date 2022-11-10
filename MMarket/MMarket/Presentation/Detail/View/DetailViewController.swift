@@ -12,17 +12,25 @@ final class DetailViewController: UIViewController {
     
     private let editButton: UIButton = {
         let button = UIButton()
-        button.setTitle("수정", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "MainNavyColor")
+        button.setImage(
+            UIImage(
+                systemName: "square.and.pencil",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+            ),
+            for: .normal)
+        button.tintColor = UIColor.navyColor
         return button
     }()
     
     private let deleteButton: UIButton = {
         let button = UIButton()
-        button.setTitle("삭제", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = UIColor(named: "MainNavyColor")
+        button.setImage(
+            UIImage(
+                systemName: "trash.square",
+                withConfiguration: UIImage.SymbolConfiguration(pointSize: 25, weight: .bold)
+            ),
+            for: .normal)
+        button.tintColor = UIColor.navyColor
         return button
     }()
     
