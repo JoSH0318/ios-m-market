@@ -94,7 +94,6 @@ final class MainViewController: UIViewController {
         mainView.searchBar.rx.text.orEmpty
             .debounce(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .filter{ !$0.isEmpty }
             .subscribe(onNext: { [weak self] text in
                 self?.viewModel.didBeginEditingSearchBar(text)
             })
