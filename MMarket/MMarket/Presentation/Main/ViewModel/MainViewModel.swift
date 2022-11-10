@@ -55,7 +55,7 @@ final class MainViewModel: MainViewModelable {
     }
     
     func didBeginEditingSearchBar(_ text: String) {
-        fetchProducts(pageNumber: 1, searchValue: text)
+        fetchSearchedProducts(searchValue: text)
     }
     
     func didScrollToNextPage(_ row: Int) {
@@ -76,6 +76,17 @@ final class MainViewModel: MainViewModelable {
             .subscribe(onNext: { viewModel, products in
                 let preProducts = viewModel.productsSubject.value
                 viewModel.productsSubject.accept(preProducts + products)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func fetchSearchedProducts(searchValue: String) {
+        productUseCase.fetchProducts(with: 1, 20, searchValue)
+            .map { $0.products }
+            .withUnretained(self)
+            .subscribe(onNext: { viewModel, products in
+                viewModel.productsSubject.accept([])
+                viewModel.productsSubject.accept(products)
             })
             .disposed(by: disposeBag)
     }
