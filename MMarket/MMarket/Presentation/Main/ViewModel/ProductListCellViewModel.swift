@@ -36,11 +36,7 @@ final class ProductListCellViewModel: ProductListCellViewModelable {
     }
 
     var stock: String {
-        guard product.stock != 0 else {
-            return "품절"
-        }
-        
-        return "재고 " + "\(product.stock)"
+        return product.stock == 0 ? "품절" : "재고 \(product.stock)"
     }
     
     var price: String {
