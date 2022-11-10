@@ -16,7 +16,7 @@ final class MainView: UIView {
     private(set) var registerButton: UIButton = {
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
-        button.tintColor = .systemBlue
+        button.tintColor = UIColor(named: "MainNavyColor")
         button.backgroundColor = .systemBackground
         button.clipsToBounds = true
         return button
