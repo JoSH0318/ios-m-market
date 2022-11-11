@@ -57,7 +57,7 @@ final class Endpoint {
         }
         
         guard let url = component?.url else {
-            throw NetworkError.invaildURL
+            throw NetworkError.invalidURL
         }
         
         return url

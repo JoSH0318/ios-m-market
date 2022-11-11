@@ -9,7 +9,7 @@ import Foundation
 
 enum NetworkError: Error {
     case errorIsOccurred(_ error: String)
-    case invaildURL
+    case invalidURL
     case invalidResponse
     case invalidData
     
@@ -17,7 +17,7 @@ enum NetworkError: Error {
         switch self {
         case .errorIsOccurred(let error):
             return "\(error) 관련 오류가 발생했습니다."
-        case .invaildURL:
+        case .invalidURL:
             return "유효하지 않은 URL 입니다."
         case .invalidResponse:
             return "유효하지 않은 응답입니다."

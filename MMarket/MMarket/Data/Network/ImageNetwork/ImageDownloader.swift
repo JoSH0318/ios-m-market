@@ -24,7 +24,7 @@ final class ImageDownloader {
     ) -> URLSessionDataTask? {
         guard let url = URL(string: urlString) else { return nil }
         
-        if let cacheImage = imageCacheManager.retrive(forKey: urlString) {
+        if let cacheImage = imageCacheManager.retrieve(forKey: urlString) {
             completion(cacheImage)
             return nil
         }
@@ -53,7 +53,7 @@ final class ImageDownloader {
     ) -> URLSessionDataTask? {
         return session.dataTask(with: url) { data, response, error in
             guard error == nil else {
-                completion(.failure(.invaildURL))
+                completion(.failure(.invalidURL))
                 return
             }
             

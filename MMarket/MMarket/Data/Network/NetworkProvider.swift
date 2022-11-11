@@ -22,7 +22,7 @@ final class DefaultNetworkProvider: NetworkProvider {
     func execute(endpoint: Endpoint) -> Observable<Data> {
         return Single<Data>.create { [weak self] single in
             guard let urlRequest = try? endpoint.generateRequest() else {
-                single(.failure(NetworkError.invaildURL))
+                single(.failure(NetworkError.invalidURL))
                 return Disposables.create()
             }
             

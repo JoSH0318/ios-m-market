@@ -56,7 +56,7 @@ final class NetworkProviderTests: XCTestCase {
     
     func test_잘못된_request로_execute요청시_HTTPResponse_StatuseCode가_400인가() throws {
         // given
-        let promise = expectation(description: "status Code 200")
+        let promise = expectation(description: "status Code 400")
         mockDataManager.makeRequestFailureResult()
         let endpoint = Endpoint(
             baseURL: "https://MMarketTest.kr",
