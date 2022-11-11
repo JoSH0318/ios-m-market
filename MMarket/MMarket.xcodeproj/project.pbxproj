@@ -63,6 +63,7 @@
 		03F64C17291C3E0600DEBE9B /* BMHANNAPro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */; };
 		03F64C19291CEF1000DEBE9B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C18291CEF1000DEBE9B /* UIColor.swift */; };
 		03F64C1C291D28A200DEBE9B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C1B291D28A200DEBE9B /* UserInfo.swift */; };
+		03F64C26291D98DB00DEBE9B /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */; };
 		03F64C2F291D991E00DEBE9B /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C2E291D991D00DEBE9B /* MockURLProtocol.swift */; };
 		03F64C31291D996800DEBE9B /* MockDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C30291D996800DEBE9B /* MockDataManager.swift */; };
 		2DB94502D8BF5BA8A4E0A428 /* Pods_MMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */; };
@@ -139,6 +140,7 @@
 		03F64C18291CEF1000DEBE9B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		03F64C1B291D28A200DEBE9B /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		03F64C23291D98DA00DEBE9B /* MMarketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMarketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviderTests.swift; sourceTree = "<group>"; };
 		03F64C2E291D991D00DEBE9B /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		03F64C30291D996800DEBE9B /* MockDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManager.swift; sourceTree = "<group>"; };
 		0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
