@@ -29,4 +29,28 @@ final class NetworkProviderTests: XCTestCase {
         self.sut = nil
         self.disposeBag = nil
     }
+
+    func test_올바른_request로_execute요청시_HTTPResponse_StatuseCode가_200이고_데이터가_방출되는가() throws {
+        // given
+        let promise = expectation(description: "status Code 200")
+        mockDataManager.makeRequestSuccessResult()
+        let endpoint = Endpoint(
+            baseURL: "https://MMarketTest.kr",
+            path: "/api/test",
+            method: .get
+        )
+        
+        // when
+        sut.execute(endpoint: endpoint)
+            .subscribe(onNext: { data in
+                
+                // then
+                XCTAssertTrue(true)
+                promise.fulfill()
+            }, onError: { _ in
+                XCTFail()
+            })
+            .disposed(by: disposeBag)
+        wait(for: [promise], timeout: 5)
+    }
 }
