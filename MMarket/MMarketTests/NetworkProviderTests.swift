@@ -53,4 +53,28 @@ final class NetworkProviderTests: XCTestCase {
             .disposed(by: disposeBag)
         wait(for: [promise], timeout: 5)
     }
+    
+    func test_잘못된_request로_execute요청시_HTTPResponse_StatuseCode가_400인가() throws {
+        // given
+        let promise = expectation(description: "status Code 200")
+        mockDataManager.makeRequestFailureResult()
+        let endpoint = Endpoint(
+            baseURL: "https://MMarketTest.kr",
+            path: "/api/test",
+            method: .get
+        )
+        
+        // when
+        sut.execute(endpoint: endpoint)
+            .subscribe(onNext: { _ in
+                XCTFail()
+            }, onError: { _ in
+                
+                // then
+                XCTAssertTrue(true)
+                promise.fulfill()
+            })
+            .disposed(by: disposeBag)
+        wait(for: [promise], timeout: 5)
+    }
 }
