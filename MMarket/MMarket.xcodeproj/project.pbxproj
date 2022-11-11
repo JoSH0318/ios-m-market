@@ -66,6 +66,7 @@
 		03F64C26291D98DB00DEBE9B /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */; };
 		03F64C2F291D991E00DEBE9B /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C2E291D991D00DEBE9B /* MockURLProtocol.swift */; };
 		03F64C31291D996800DEBE9B /* MockDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C30291D996800DEBE9B /* MockDataManager.swift */; };
+		03F64C33291E3A0300DEBE9B /* ProductRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C32291E3A0300DEBE9B /* ProductRepositoryTests.swift */; };
 		2DB94502D8BF5BA8A4E0A428 /* Pods_MMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */; };
 		D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */; };
 /* End PBXBuildFile section */
@@ -143,6 +144,7 @@
 		03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviderTests.swift; sourceTree = "<group>"; };
 		03F64C2E291D991D00DEBE9B /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		03F64C30291D996800DEBE9B /* MockDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManager.swift; sourceTree = "<group>"; };
+		03F64C32291E3A0300DEBE9B /* ProductRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepositoryTests.swift; sourceTree = "<group>"; };
 		0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE5610BAEA2E7ED147ABABA /* Pods-MMarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.release.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.release.xcconfig"; sourceTree = "<group>"; };
 		436710F8F5A7036B70E6DDB4 /* Pods-MMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -499,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */,
+				03F64C32291E3A0300DEBE9B /* ProductRepositoryTests.swift */,
 				03F64C2E291D991D00DEBE9B /* MockURLProtocol.swift */,
 				03F64C30291D996800DEBE9B /* MockDataManager.swift */,
 			);
@@ -756,6 +759,7 @@
 				03F64C26291D98DB00DEBE9B /* NetworkProviderTests.swift in Sources */,
 				03F64C31291D996800DEBE9B /* MockDataManager.swift in Sources */,
 				03F64C2F291D991E00DEBE9B /* MockURLProtocol.swift in Sources */,
+				03F64C33291E3A0300DEBE9B /* ProductRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
