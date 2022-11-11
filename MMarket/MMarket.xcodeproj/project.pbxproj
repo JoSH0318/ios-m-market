@@ -63,8 +63,19 @@
 		03F64C17291C3E0600DEBE9B /* BMHANNAPro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */; };
 		03F64C19291CEF1000DEBE9B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C18291CEF1000DEBE9B /* UIColor.swift */; };
 		03F64C1C291D28A200DEBE9B /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F64C1B291D28A200DEBE9B /* UserInfo.swift */; };
+		2DB94502D8BF5BA8A4E0A428 /* Pods_MMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */; };
 		D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		03F64C27291D98DB00DEBE9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03B04F9228ABD91B00FA268D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03B04F9928ABD91B00FA268D;
+			remoteInfo = MMarket;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		030E832D28DB55DE00FE1BB8 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -125,6 +136,10 @@
 		03F64C16291C3E0600DEBE9B /* BMHANNAPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMHANNAPro.ttf; sourceTree = "<group>"; };
 		03F64C18291CEF1000DEBE9B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		03F64C1B291D28A200DEBE9B /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		03F64C23291D98DA00DEBE9B /* MMarketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MMarketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BE5610BAEA2E7ED147ABABA /* Pods-MMarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.release.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.release.xcconfig"; sourceTree = "<group>"; };
+		436710F8F5A7036B70E6DDB4 /* Pods-MMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
 		881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7A7B342CDE505C3EBF49F8 /* Pods-MMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarket.debug.xcconfig"; path = "Target Support Files/Pods-MMarket/Pods-MMarket.debug.xcconfig"; sourceTree = "<group>"; };
 		916449E82688729964040A54 /* Pods-MMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarket.release.xcconfig"; path = "Target Support Files/Pods-MMarket/Pods-MMarket.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +151,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03F64C20291D98DA00DEBE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DB94502D8BF5BA8A4E0A428 /* Pods_MMarketTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				03B04F9C28ABD91B00FA268D /* MMarket */,
+				03F64C24291D98DB00DEBE9B /* MMarketTests */,
 				03B04F9B28ABD91B00FA268D /* Products */,
 				57E2E23A1D0FD5E375BC9D97 /* Pods */,
 				6F941D3E84C68C903911E5E9 /* Frameworks */,
@@ -282,6 +306,7 @@
 			isa = PBXGroup;
 			children = (
 				03B04F9A28ABD91B00FA268D /* MMarket.app */,
+				03F64C23291D98DA00DEBE9B /* MMarketTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -469,6 +494,8 @@
 			children = (
 				8F7A7B342CDE505C3EBF49F8 /* Pods-MMarket.debug.xcconfig */,
 				916449E82688729964040A54 /* Pods-MMarket.release.xcconfig */,
+				436710F8F5A7036B70E6DDB4 /* Pods-MMarketTests.debug.xcconfig */,
+				3BE5610BAEA2E7ED147ABABA /* Pods-MMarketTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -477,6 +504,7 @@
 			isa = PBXGroup;
 			children = (
 				881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */,
+				0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -503,6 +531,25 @@
 			productReference = 03B04F9A28ABD91B00FA268D /* MMarket.app */;
 			productType = "com.apple.product-type.application";
 		};
+		03F64C22291D98DA00DEBE9B /* MMarketTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03F64C29291D98DB00DEBE9B /* Build configuration list for PBXNativeTarget "MMarketTests" */;
+			buildPhases = (
+				EDFD9E51F14B91CFB5F36CFD /* [CP] Check Pods Manifest.lock */,
+				03F64C1F291D98DA00DEBE9B /* Sources */,
+				03F64C20291D98DA00DEBE9B /* Frameworks */,
+				03F64C21291D98DA00DEBE9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03F64C28291D98DB00DEBE9B /* PBXTargetDependency */,
+			);
+			name = MMarketTests;
+			productName = MMarketTests;
+			productReference = 03F64C23291D98DA00DEBE9B /* MMarketTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -515,6 +562,10 @@
 				TargetAttributes = {
 					03B04F9928ABD91B00FA268D = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					03F64C22291D98DA00DEBE9B = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 03B04F9928ABD91B00FA268D;
 					};
 				};
 			};
@@ -532,6 +583,7 @@
 			projectRoot = "";
 			targets = (
 				03B04F9928ABD91B00FA268D /* MMarket */,
+				03F64C22291D98DA00DEBE9B /* MMarketTests */,
 			);
 		};
 /* End PBXProject section */
@@ -546,6 +598,13 @@
 				03B04FA728ABD91C00FA268D /* Assets.xcassets in Resources */,
 				03D374C42919385E00AA0F58 /* BMDOHYEON_otf.otf in Resources */,
 				03F64C17291C3E0600DEBE9B /* BMHANNAPro.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03F64C21291D98DA00DEBE9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +644,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-MMarket-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDFD9E51F14B91CFB5F36CFD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MMarketTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -652,7 +733,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03F64C1F291D98DA00DEBE9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03F64C26291D98DB00DEBE9B /* NetworkProviderTests.swift in Sources */,
+				03F64C31291D996800DEBE9B /* MockDataManager.swift in Sources */,
+				03F64C2F291D991E00DEBE9B /* MockURLProtocol.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		03F64C28291D98DB00DEBE9B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 03B04F9928ABD91B00FA268D /* MMarket */;
+			targetProxy = 03F64C27291D98DB00DEBE9B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		03B04FA828ABD91C00FA268D /* LaunchScreen.storyboard */ = {
@@ -838,6 +937,44 @@
 			};
 			name = Release;
 		};
+		03F64C2A291D98DB00DEBE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 436710F8F5A7036B70E6DDB4 /* Pods-MMarketTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H7XUJ59Z6C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MMIM.MMarketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MMarket.app/MMarket";
+			};
+			name = Debug;
+		};
+		03F64C2B291D98DB00DEBE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3BE5610BAEA2E7ED147ABABA /* Pods-MMarketTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H7XUJ59Z6C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MMIM.MMarketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MMarket.app/MMarket";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -855,6 +992,15 @@
 			buildConfigurations = (
 				03B04FAF28ABD91C00FA268D /* Debug */,
 				03B04FB028ABD91C00FA268D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03F64C29291D98DB00DEBE9B /* Build configuration list for PBXNativeTarget "MMarketTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03F64C2A291D98DB00DEBE9B /* Debug */,
+				03F64C2B291D98DB00DEBE9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
