@@ -9,6 +9,10 @@ import UIKit
 import RxSwift
 
 final class DetailViewController: UIViewController {
+    private let detailView = DetailView()
+    private var viewModel: DetailViewModel
+    private var coordinator: DetailCoordinator
+    private let disposeBag = DisposeBag()
     
     private let editButton: UIButton = {
         let button = UIButton()
@@ -45,11 +49,6 @@ final class DetailViewController: UIViewController {
         barButtonItem.tintColor = UIColor.navyColor
         return barButtonItem
     }()
-    
-    private let detailView = DetailView()
-    private var viewModel: DetailViewModel
-    private var coordinator: DetailCoordinator
-    private let disposeBag = DisposeBag()
     
     init(
         viewModel: DetailViewModel,
