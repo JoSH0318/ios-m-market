@@ -86,7 +86,7 @@ final class DetailViewController: UIViewController {
         viewModel.productImagesURL
             .observe(on: MainScheduler.instance)
             .bind(to: detailView.imagesCollectionView.rx.items(
-                cellIdentifier: DetailViewImagesCell.idenfier,
+                cellIdentifier: DetailViewImagesCell.identifier,
                 cellType: DetailViewImagesCell.self
             )) { _, item, cell in
                 cell.setImage(with: item)

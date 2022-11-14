@@ -14,7 +14,7 @@ final class DetailViewImagesCell: UICollectionViewCell {
         static let body = 12.0
     }
     
-    static var idenfier: String {
+    static var identifier: String {
         return String(describing: self)
     }
     

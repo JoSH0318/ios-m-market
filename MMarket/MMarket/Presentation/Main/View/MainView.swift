@@ -81,7 +81,7 @@ final class MainView: UIView {
         
         productListCollectionView.register(
             ProductListCell.self,
-            forCellWithReuseIdentifier: ProductListCell.idenfier
+            forCellWithReuseIdentifier: ProductListCell.identifier
         )
     }
     

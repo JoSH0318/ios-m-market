@@ -22,7 +22,7 @@ final class DetailView: UIView {
         collectionViewLayout: configureCollectionFlowLayout()
     )
     
-    static var idenfier: String {
+    static var identifier: String {
         return String(describing: self)
     }
     
@@ -192,7 +192,7 @@ final class DetailView: UIView {
         
         imagesCollectionView.register(
             DetailViewImagesCell.self,
-            forCellWithReuseIdentifier: DetailViewImagesCell.idenfier
+            forCellWithReuseIdentifier: DetailViewImagesCell.identifier
         )
         
         imagesCollectionView.isPagingEnabled = true

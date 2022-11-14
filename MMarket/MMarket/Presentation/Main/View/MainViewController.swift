@@ -55,7 +55,7 @@ final class MainViewController: UIViewController {
         viewModel.products
             .observe(on: MainScheduler.instance)
             .bind(to: mainView.productListCollectionView.rx.items(
-                cellIdentifier: ProductListCell.idenfier,
+                cellIdentifier: ProductListCell.identifier,
                 cellType: ProductListCell.self
             )) { _, item, cell in
                 cell.setContents(with: ProductListCellViewModel(product: item))
