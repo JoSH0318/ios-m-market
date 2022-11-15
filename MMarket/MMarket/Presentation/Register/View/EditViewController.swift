@@ -89,9 +89,8 @@ class EditViewController: UIViewController {
     
     private func setContents() {
         editView.setContents(by: viewModel.product)
-        viewModel.product.images?.forEach { image in
-            let cachedImage = ImageCacheManager.shared.retrieve(forKey: image.url) ?? UIImage()
-            editView.setImages(cachedImage)
+        viewModel.product.images?.forEach {
+            editView.setImages($0.url)
         }
     }
 }

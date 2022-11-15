@@ -198,6 +198,21 @@ final class ProductUpdateView: UIView {
         imageStackView.addArrangedSubview(imageView)
     }
     
+    func setImages(_ url: String) {
+        let imageView = DownloadableImageView()
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.grayColor?.cgColor
+        imageView.layer.cornerRadius = 8
+        imageView.backgroundColor = .systemBackground
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.setImage(url)
+        imageView.snp.makeConstraints {
+            $0.width.equalTo(imageView.snp.height)
+        }
+        imageStackView.addArrangedSubview(imageView)
+    }
+    
     func setAddButton(_ addImageButton: UIButton) {
         imageStackView.addArrangedSubview(addImageButton)
     }

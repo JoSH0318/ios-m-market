@@ -18,8 +18,8 @@ final class DetailViewImagesCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
+    private let imageView: DownloadableImageView = {
+        let imageView = DownloadableImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .systemGray6
         return imageView
@@ -36,7 +36,7 @@ final class DetailViewImagesCell: UICollectionViewCell {
     }
     
     func setImage(with imageURL: String) {
-        imageView.setImage(with: imageURL)
+        imageView.setImage(imageURL)
     }
     
     private func configureLayout() {

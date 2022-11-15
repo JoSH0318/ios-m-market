@@ -21,8 +21,8 @@ final class ProductListCell: UICollectionViewCell {
     
     private var imageDataTask: URLSessionDataTask?
     
-    private let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
+    private let thumbnailImageView: DownloadableImageView = {
+        let imageView = DownloadableImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true
@@ -101,7 +101,8 @@ final class ProductListCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        CancelImageDownload()
+        
+        thumbnailImageView.cancelTask()
         thumbnailImageView.image = nil
         nameLabel.text = nil
         stockLabel.text = nil
@@ -111,17 +112,12 @@ final class ProductListCell: UICollectionViewCell {
     }
     
     func setContents(with viewModel: ProductListCellViewModel) {
-        imageDataTask = thumbnailImageView.setImage(with: viewModel.thumbnailURL)
+        thumbnailImageView.setImage(viewModel.thumbnailURL)
         nameLabel.text = viewModel.name
         stockLabel.text = viewModel.stock
         discountRateLabel.text = viewModel.discountRate
         priceLabel.attributedText = viewModel.price.strikeThrough()
         bargainPriceLabel.text = viewModel.bargainPrice
-    }
-    
-    private func CancelImageDownload() {
-        imageDataTask?.suspend()
-        imageDataTask?.cancel()
     }
     
     private func configureView() {
