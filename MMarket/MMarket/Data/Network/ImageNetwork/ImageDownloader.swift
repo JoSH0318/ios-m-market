@@ -5,14 +5,10 @@
 //  Created by 조성훈 on 2022/10/26.
 //
 
-import Foundation
-import RxSwift
+import UIKit
 
 final class ImageDownloader {
-    static let shared = ImageDownloader()
-    private let imageCacheManager = ImageCacheManager.shared
     private let session: URLSession
-    private var task: URLSessionDataTask?
     
     init(session: URLSession = URLSession.shared) {
         self.session = session
@@ -24,20 +20,12 @@ final class ImageDownloader {
     ) -> URLSessionDataTask? {
         guard let url = URL(string: urlString) else { return nil }
         
-        if let cacheImage = imageCacheManager.retrieve(forKey: urlString) {
-            completion(cacheImage)
-            return nil
-        }
-        
-        task = requestImage(with: url) { [weak self] (result: Result<UIImage, NetworkError>) in
+        let task = requestImage(with: url) { (result: Result<UIImage, NetworkError>) in
             switch result {
             case .success(let image):
-                self?.imageCacheManager.set(object: image, forKey: urlString)
                 completion(image)
             case .failure:
-                guard let image = UIImage(systemName: "questionmark.square.dashed") else {
-                    return
-                }
+                guard let image = UIImage(systemName: "questionmark.square.dashed") else { return }
                 completion(image)
             }
         }
@@ -78,4 +66,3 @@ final class ImageDownloader {
         }
     }
 }
-
