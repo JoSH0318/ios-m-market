@@ -18,18 +18,18 @@ final class ImageManager {
         cache.countLimit = 350
     }
     
+    @discardableResult
     func downloadImage(
         _ urlString: String,
         completion: @escaping (UIImage) -> Void
     ) -> URLSessionDataTask? {
-        return downloader.downloadImage(urlString: urlString, completion: completion)
-    }
-    
-    func set(object: UIImage, forKey key: String) {
-        cache.setObject(object, forKey: key as NSString)
-    }
-    
-    func retrieve(forKey key: String) -> UIImage? {
-        cache.object(forKey: key as NSString)
+        if let cachedImage = cache.object(forKey: urlString as NSString) {
+            completion(cachedImage)
+            return nil
+        }
+        
+        return downloader.downloadImage(urlString: urlString) { [weak self] image in
+            self?.cache.setObject(image, forKey: urlString as NSString)
+        }
     }
 }
