@@ -7,12 +7,18 @@
 
 import UIKit
 
+enum Mode {
+    case register
+    case edit
+}
+
 final class ProductUpdateView: UIView {
     
     private enum FontSize {
         static let title = 20.0
         static let body = 16.0
     }
+    private var mode: Mode
     
     private let imageScrollView = UIScrollView()
     
