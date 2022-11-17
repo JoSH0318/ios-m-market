@@ -15,8 +15,9 @@ protocol RegisterViewModelInput {
 }
 
 protocol RegisterViewModelOutput {
-    var postProdct: Observable<Void> { get }
-    var productImages: [Data] { get }
+    var productImages: Observable<[UIImage]> { get }
+    var imagesData: [Data] { get }
+    var postProduct: Observable<Void> { get }
     var imagesCount: Int { get }
     var error: Observable<Error> { get }
 }
@@ -27,7 +28,7 @@ final class RegisterViewModel: RegisterViewModelable {
     private let productUseCase: ProductUseCase
     private let disposeBag = DisposeBag()
     private let postRelay = PublishRelay<Void>()
-    private let imageRelay = BehaviorRelay<[Data]>(value: [])
+    private let imageRelay = BehaviorRelay<[UIImage]>(value: [])
     private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
     
     init(productUseCase: ProductUseCase) {
@@ -36,12 +37,16 @@ final class RegisterViewModel: RegisterViewModelable {
     
     // MARK: - Output
     
-    var postProdct: Observable<Void> {
-        return postRelay.asObservable()
+    var productImages: Observable<[UIImage]> {
+        return imageRelay.asObservable()
     }
     
-    var productImages: [Data] {
-        return imageRelay.value
+    var imagesData: [Data] {
+        return convertToImageFile(from: imageRelay.value)
+    }
+    
+    var postProduct: Observable<Void> {
+        return postRelay.asObservable()
     }
     
     var imagesCount: Int {
@@ -68,19 +73,18 @@ final class RegisterViewModel: RegisterViewModelable {
     }
     
     func didSelectImage(_ selectedImage: UIImage) {
-        let imageData = convertToImageFile(from: selectedImage)
-        var list = [Data]()
-        imageRelay.value.forEach { list.append($0)}
-        list.append(imageData)
-        imageRelay.accept(list)
+        var selectedImages = [UIImage]()
+        selectedImages.append(selectedImage)
+        imageRelay.accept(imageRelay.value + selectedImages)
     }
     
-    private func convertToImageFile(from image: UIImage) -> Data {
-        guard let imageData = image.jpegData(compressionQuality: 1) else {
-            return Data()
+    private func convertToImageFile(from images: [UIImage]) -> [Data] {
+        var imagesData = [Data]()
+        images.forEach { image in
+            let imageData = image.jpegData(compressionQuality: 1) ?? Data()
+            imagesData.append(imageData)
         }
-        
-        return imageData
+        return imagesData
     }
 }
 
