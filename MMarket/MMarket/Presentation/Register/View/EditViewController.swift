@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 class EditViewController: UIViewController {
-    private let editView = ProductUpdateView()
+    private let editView = ProductUpdateView(.edit)
     private var viewModel: EditViewModel
     private var coordinator: EditCoordinator
     private let disposeBag = DisposeBag()
@@ -73,6 +73,15 @@ class EditViewController: UIViewController {
     }
     
     private func bind() {
+        viewModel.imageURL
+            .bind(to: editView.imageCollectionView.rx.items(
+                cellIdentifier: UpdateImagesCell.identifier,
+                cellType: UpdateImagesCell.self
+            )) { _, item, cell in
+                cell.bind(with: item)
+            }
+            .disposed(by: disposeBag)
+        
         backBarButton.rx.tap
             .withUnretained(self)
             .bind { vc, _ in
@@ -91,9 +100,6 @@ class EditViewController: UIViewController {
     
     private func setContents() {
         editView.setContents(by: viewModel.product)
-        viewModel.product.images?.forEach {
-            editView.setImages($0.url)
-        }
     }
 }
 
