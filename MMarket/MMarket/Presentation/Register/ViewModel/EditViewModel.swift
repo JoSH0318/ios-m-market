@@ -10,11 +10,13 @@ import RxSwift
 import RxRelay
 
 protocol EditViewModelInput {
+    func didLaunchView()
     func didTapSaveButton(_ request: ProductRequest)
 }
 
 protocol EditViewModelOutput {
-    var patchProdct: Observable<Void> { get }
+    var imageURL: Observable<[String]> { get }
+    var patchProduct: Observable<Void> { get }
     var error: Observable<Error> { get }
 }
 
@@ -26,6 +28,7 @@ final class EditViewModel: EditViewModelable {
     private let patchRelay = PublishRelay<Void>()
     private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
     private(set) var product: Product
+    private let imageURLRelay = BehaviorRelay<[String]>(value: [])
     
     init(
         productUseCase: ProductUseCase,
@@ -37,7 +40,11 @@ final class EditViewModel: EditViewModelable {
     
     // MARK: - Output
     
-    var patchProdct: Observable<Void> {
+    var imageURL: Observable<[String]> {
+        return imageURLRelay.asObservable()
+    }
+    
+    var patchProduct: Observable<Void> {
         return patchRelay.asObservable()
     }
     
