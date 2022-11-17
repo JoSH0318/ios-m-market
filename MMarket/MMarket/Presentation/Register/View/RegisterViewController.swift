@@ -10,12 +10,10 @@ import RxSwift
 import RxCocoa
 
 final class RegisterViewController: UIViewController {
-    private let registerView = ProductUpdateView()
+    private let registerView = ProductUpdateView(.register)
     private var viewModel: RegisterViewModel
     private var coordinator: RegisterCoordinator
     private let disposeBag = DisposeBag()
-    
-    private let addImageButton = ImageButton()
     
     private let backBarButton: UIBarButtonItem = {
         let backImage = UIImage(systemName: "chevron.backward")
@@ -75,7 +73,6 @@ final class RegisterViewController: UIViewController {
         super.viewDidLoad()
         
         configureNavigationBar()
-        configureView()
         bind()
         imagePicker.delegate = self
     }
@@ -93,12 +90,12 @@ final class RegisterViewController: UIViewController {
             .withUnretained(self)
             .bind { vc, _ in
                 let productRequest = vc.registerView.setProductRequest()
-                let imagesData = vc.viewModel.productImages
+                let imagesData = vc.viewModel.imagesData
                 vc.viewModel.didTapPostButton(productRequest, images: imagesData)
             }
             .disposed(by: disposeBag)
         
-        addImageButton.rx.tap
+        registerView.addImageButton.rx.tap
             .withUnretained(self)
             .filter { vc, _ in
                 vc.viewModel.imagesCount < 5
@@ -108,7 +105,16 @@ final class RegisterViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.postProdct
+        viewModel.productImages
+            .bind(to: registerView.imageCollectionView.rx.items(
+                cellIdentifier: UpdateImagesCell.identifier,
+                cellType: UpdateImagesCell.self
+            )) { _, item, cell in
+                cell.bind(with: item)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.postProduct
             .withUnretained(self)
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { vc, _ in
@@ -128,14 +134,6 @@ final class RegisterViewController: UIViewController {
 // MARK: - NavigationBar Layout
 
 extension RegisterViewController {
-    private func configureView() {
-        registerView.setAddButton(addImageButton)
-        addImageButton.snp.makeConstraints {
-            $0.height.equalToSuperview()
-            $0.width.equalTo(addImageButton.snp.height)
-        }
-    }
-    
     private func configureNavigationBar() {
         navigationItem.leftBarButtonItem = backBarButton
         navigationItem.rightBarButtonItem = completionBarButton
@@ -156,7 +154,6 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             guard let resizedPickerImage = resize(image: image, newWidth: 300) else { return }
             
-            registerView.setImages(image)
             viewModel.didSelectImage(resizedPickerImage)
         }
         
