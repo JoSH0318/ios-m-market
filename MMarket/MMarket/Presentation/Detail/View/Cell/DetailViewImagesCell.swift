@@ -6,6 +6,7 @@
 //
 
 import SnapKit
+import RxSwift
 
 final class DetailViewImagesCell: UICollectionViewCell {
     
