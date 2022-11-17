@@ -20,11 +20,18 @@ final class ProductUpdateView: UIView {
     }
     private var mode: Mode
     
-    private let imageScrollView = UIScrollView()
+    private(set) var addImageButton = ImageButton()
+    private let mainScrollView = UIScrollView()
+    
+    private(set) lazy var imageCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: configureCollectionFlowLayout()
+    )
     
     private let imageStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = 20
+        stackView.spacing = 16
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -144,19 +151,13 @@ final class ProductUpdateView: UIView {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 16
         return stackView
     }()
     
-    private let mainScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        return scrollView
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        backgroundColor = .systemBackground
+    init(_ mode: Mode) {
+        self.mode = mode
+        super.init(frame: .zero)
         
         configureView()
         configureConstraints()
@@ -164,6 +165,19 @@ final class ProductUpdateView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureCollectionFlowLayout() -> UICollectionViewFlowLayout {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        flowLayout.itemSize = CGSize(
+            width: UIScreen.main.bounds.width * 0.2,
+            height: UIScreen.main.bounds.width * 0.2
+        )
+        flowLayout.minimumLineSpacing = 16
+        flowLayout.scrollDirection = .horizontal
+        
+        return flowLayout
     }
     
     func setProductRequest() -> ProductRequest {
@@ -189,46 +203,20 @@ final class ProductUpdateView: UIView {
         currencySegmentedControl.selectedSegmentIndex = product.currency == "KRW" ? 0 : 1
     }
     
-    func setImages(_ image: UIImage) {
-        let imageView = UIImageView()
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.grayColor?.cgColor
-        imageView.layer.cornerRadius = 8
-        imageView.backgroundColor = .systemBackground
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.image = image
-        imageView.snp.makeConstraints {
-            $0.width.equalTo(imageView.snp.height)
-        }
-        imageStackView.addArrangedSubview(imageView)
-    }
-    
-    func setImages(_ url: String) {
-        let imageView = DownloadableImageView()
-        imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.grayColor?.cgColor
-        imageView.layer.cornerRadius = 8
-        imageView.backgroundColor = .systemBackground
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.setImage(url)
-        imageView.snp.makeConstraints {
-            $0.width.equalTo(imageView.snp.height)
-        }
-        imageStackView.addArrangedSubview(imageView)
-    }
-    
-    func setAddButton(_ addImageButton: UIButton) {
-        imageStackView.addArrangedSubview(addImageButton)
-    }
-    
     private func configureView() {
+        backgroundColor = .systemBackground
+        
         addSubview(mainScrollView)
-        mainScrollView.addSubview(imageScrollView)
+        
         mainScrollView.addSubview(mainStackView)
         
-        imageScrollView.addSubview(imageStackView)
+        switch mode {
+        case .register:
+            imageStackView.addArrangedSubview(addImageButton)
+            imageStackView.addArrangedSubview(imageCollectionView)
+        case .edit:
+            imageStackView.addArrangedSubview(imageCollectionView)
+        }
         
         nameStackView.addArrangedSubview(nameLabel)
         nameStackView.addArrangedSubview(nameTextField)
@@ -245,7 +233,7 @@ final class ProductUpdateView: UIView {
         stockStackView.addArrangedSubview(stockLabel)
         stockStackView.addArrangedSubview(stockTextField)
         
-        mainStackView.addArrangedSubview(imageScrollView)
+        mainStackView.addArrangedSubview(imageStackView)
         mainStackView.addArrangedSubview(DividerLineView())
         mainStackView.addArrangedSubview(nameStackView)
         mainStackView.addArrangedSubview(currencyStackView)
@@ -255,31 +243,46 @@ final class ProductUpdateView: UIView {
         mainStackView.addArrangedSubview(DividerLineView())
         mainStackView.addArrangedSubview(descriptionLabel)
         mainStackView.addArrangedSubview(descriptionTextView)
+        
+        imageCollectionView.register(
+            UpdateImagesCell.self,
+            forCellWithReuseIdentifier: UpdateImagesCell.identifier
+        )
     }
     
     private func configureConstraints() {
         mainScrollView.snp.makeConstraints {
             $0.top.bottom.equalTo(safeAreaLayoutGuide)
-            $0.leading.equalTo(safeAreaLayoutGuide).offset(16)
-            $0.trailing.equalTo(safeAreaLayoutGuide).offset(-16)
+            $0.leading.equalTo(safeAreaLayoutGuide).offset(8)
+            $0.trailing.equalTo(safeAreaLayoutGuide).offset(-8)
         }
         
         mainStackView.snp.makeConstraints {
             $0.edges.equalTo(mainScrollView.contentLayoutGuide)
-            $0.width.equalToSuperview()
+            $0.width.equalToSuperview().offset(-16)
             $0.height.equalTo(mainScrollView.frameLayoutGuide)
         }
         
-        imageScrollView.snp.makeConstraints {
-            $0.leading.top.trailing.equalToSuperview()
-            $0.height.equalTo(self.snp.height).multipliedBy(0.1)
+        switch mode {
+        case .register:
+            addImageButton.snp.makeConstraints {
+                $0.width.equalTo(addImageButton.snp.height)
+            }
+            imageCollectionView.snp.makeConstraints {
+                $0.leading.equalTo(addImageButton.snp.trailing).offset(16)
+                $0.top.trailing.bottom.equalToSuperview()
+                $0.height.equalTo(self.snp.height).multipliedBy(0.1)
+            }
+        case .edit:
+            imageCollectionView.snp.makeConstraints {
+                $0.leading.top.trailing.bottom.equalToSuperview()
+                $0.height.equalTo(self.snp.height).multipliedBy(0.1)
+            }
         }
         
         imageStackView.snp.makeConstraints {
             $0.leading.top.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-16)
-            $0.bottom.equalToSuperview()
-            $0.height.equalToSuperview().offset(-16)
         }
         
         nameTextField.snp.makeConstraints {
