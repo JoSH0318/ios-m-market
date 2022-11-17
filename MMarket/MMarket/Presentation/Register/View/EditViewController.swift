@@ -50,6 +50,8 @@ class EditViewController: UIViewController {
         self.viewModel = viewModel
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.didLaunchView()
     }
     
     required init?(coder: NSCoder) {

@@ -53,12 +53,11 @@ final class MainViewController: UIViewController {
     
     private func bind() {
         viewModel.products
-            .observe(on: MainScheduler.instance)
             .bind(to: mainView.productListCollectionView.rx.items(
                 cellIdentifier: ProductListCell.identifier,
                 cellType: ProductListCell.self
             )) { _, item, cell in
-                cell.setContents(with: ProductListCellViewModel(product: item))
+                cell.bind(with: item)
             }
             .disposed(by: disposeBag)
         

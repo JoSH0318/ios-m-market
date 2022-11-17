@@ -47,6 +47,15 @@ final class EditViewModel: EditViewModelable {
     
     // MARK: - Input
     
+    func didLaunchView() {
+        var imageURLs = [String]()
+        product.images?.forEach {
+            imageURLs.append($0.url)
+        }
+        
+        imageURLRelay.accept(imageURLs)
+    }
+    
     func didTapSaveButton(_ request: ProductRequest) {
         productUseCase.updateProduct(with: request, product.id)
             .subscribe(onError: { [weak self] error in
