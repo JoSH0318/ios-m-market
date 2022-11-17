@@ -23,9 +23,7 @@ final class DefaultProductUseCase: ProductUseCase {
     init(repository: ProductRepository) {
         self.repository = repository
     }
-}
-
-extension DefaultProductUseCase {
+    
     func fetchProducts(
         with pageNumber: Int,
         _ itemsPerPage: Int,
