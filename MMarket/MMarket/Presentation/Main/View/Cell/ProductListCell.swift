@@ -21,8 +21,8 @@ final class ProductListCell: UICollectionViewCell {
     
     private var imageDataTask: URLSessionDataTask?
     
-    private let thumbnailImageView: DownloadableImageView = {
-        let imageView = DownloadableImageView()
+    private let thumbnailImageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 4
         imageView.clipsToBounds = true

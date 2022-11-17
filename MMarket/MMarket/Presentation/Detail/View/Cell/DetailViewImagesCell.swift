@@ -18,8 +18,11 @@ final class DetailViewImagesCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private let imageView: DownloadableImageView = {
-        let imageView = DownloadableImageView()
+    private var viewModel: DetailViewImagesCellModel?
+    private let disposeBag = DisposeBag()
+    
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .systemGray6
         return imageView
