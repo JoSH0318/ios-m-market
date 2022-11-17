@@ -88,7 +88,7 @@ final class DetailViewController: UIViewController {
                 cellIdentifier: DetailViewImagesCell.identifier,
                 cellType: DetailViewImagesCell.self
             )) { _, item, cell in
-                cell.setImage(with: item)
+                cell.bind(with: item)
             }
             .disposed(by: disposeBag)
         

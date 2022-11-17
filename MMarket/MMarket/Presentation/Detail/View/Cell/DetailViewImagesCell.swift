@@ -35,8 +35,15 @@ final class DetailViewImagesCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setImage(with imageURL: String) {
-        imageView.setImage(imageURL)
+    func bind(with imageURL: String) {
+        viewModel = DetailViewImagesCellModel(imageURL: imageURL)
+        
+        viewModel?.productImages
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] image in
+                self?.imageView.image = image
+            })
+            .disposed(by: disposeBag)
     }
     
     private func configureLayout() {
