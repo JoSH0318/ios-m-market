@@ -19,14 +19,14 @@ final class ImageButton: UIButton {
     private let addImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "camera")
-        imageView.tintColor = UIColor(named: "MainGrayColor")
+        imageView.tintColor = UIColor.grayColor
         return imageView
     }()
     
     private let imageCountLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "BM HANNA Air TTF", size: 10)
-        label.textColor = UIColor(named: "MainGrayColor")
+        label.font = .systemFont(ofSize: 12)
+        label.textColor = UIColor.grayColor
         label.text = "0/5"
         return label
     }()
@@ -50,7 +50,7 @@ final class ImageButton: UIButton {
     private func configureButton() {
         layer.borderWidth = 2
         layer.cornerRadius = 8
-        layer.borderColor = UIColor(named: "MainGrayColor")?.cgColor
+        layer.borderColor = UIColor.grayColor?.cgColor
         backgroundColor = .systemBackground
         clipsToBounds = true
     }
