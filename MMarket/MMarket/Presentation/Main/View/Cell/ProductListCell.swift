@@ -6,6 +6,7 @@
 //
 
 import SnapKit
+import RxSwift
 
 final class ProductListCell: UICollectionViewCell {
     
@@ -19,7 +20,8 @@ final class ProductListCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private var imageDataTask: URLSessionDataTask?
+    private var viewModel: ProductListCellViewModel?
+    private let disposeBag = DisposeBag()
     
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
@@ -102,7 +104,7 @@ final class ProductListCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        thumbnailImageView.cancelTask()
+        viewModel?.onPrepareForReuse()
         thumbnailImageView.image = nil
         nameLabel.text = nil
         stockLabel.text = nil
@@ -111,13 +113,25 @@ final class ProductListCell: UICollectionViewCell {
         bargainPriceLabel.text = nil
     }
     
-    func setContents(with viewModel: ProductListCellViewModel) {
-        thumbnailImageView.setImage(viewModel.thumbnailURL)
-        nameLabel.text = viewModel.name
-        stockLabel.text = viewModel.stock
-        discountRateLabel.text = viewModel.discountRate
-        priceLabel.attributedText = viewModel.price.strikeThrough()
-        bargainPriceLabel.text = viewModel.bargainPrice
+    func bind(with product: Product) {
+        viewModel = ProductListCellViewModel(product: product)
+        
+        viewModel?.thumbnailImage
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] image in
+                self?.thumbnailImageView.image = image
+            })
+            .disposed(by: disposeBag)
+        
+        setContents()
+    }
+    
+    private func setContents() {
+        nameLabel.text = viewModel?.name
+        stockLabel.text = viewModel?.stock
+        discountRateLabel.text = viewModel?.discountRate
+        priceLabel.attributedText = viewModel?.price.strikeThrough()
+        bargainPriceLabel.text = viewModel?.bargainPrice
     }
     
     private func configureView() {
