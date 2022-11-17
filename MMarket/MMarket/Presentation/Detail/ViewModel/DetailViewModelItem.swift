@@ -5,16 +5,14 @@
 //  Created by 조성훈 on 2022/11/03.
 //
 
-import Foundation
+import UIKit
+import RxSwift
+import RxRelay
 
-struct DetailViewModelItem {
+final class DetailViewModelItem {
     let product: Product
     
     // MARK: - Output
-    
-    var thumbnailURL: String {
-        return product.thumbnailURL
-    }
     
     var userName: String? {
         guard let vendor = product.vendor else {
