@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class ImageManager {
     static let shared = ImageManager()
@@ -18,18 +19,15 @@ final class ImageManager {
         cache.countLimit = 350
     }
     
-    @discardableResult
-    func downloadImage(
-        _ urlString: String,
-        completion: @escaping (UIImage) -> Void
-    ) -> URLSessionDataTask? {
+    func downloadImage(_ urlString: String) -> Observable<UIImage> {
         if let cachedImage = cache.object(forKey: urlString as NSString) {
-            completion(cachedImage)
-            return nil
+            return Observable.just(cachedImage)
         }
         
-        return downloader.downloadImage(urlString: urlString) { [weak self] image in
-            self?.cache.setObject(image, forKey: urlString as NSString)
-        }
+        return downloader.downloadImage(urlString)
+            .do { [weak self] image in
+                self?.cache.setObject(image, forKey: urlString as NSString)
+            }
+            .asObservable()
     }
 }
