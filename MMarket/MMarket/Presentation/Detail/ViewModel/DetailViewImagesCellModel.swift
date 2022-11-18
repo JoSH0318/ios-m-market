@@ -24,15 +24,14 @@ final class DetailViewImagesCellModel: DetailViewImagesCellModelable {
     
     // MARK: - Output
     
-    var productImages: Observable<UIImage> {
-        return imagesRelay.asObservable()
-    }
+    var productImage: Observable<UIImage>
     
     // MARK: - Input
     
     init(imageURL: String) {
-        imageManager.downloadImage(imageURL) { [weak self] image in
-            self?.imagesRelay.accept(image)
-        }
+//        imageManager.downloadImage(imageURL) { [weak self] image in
+//            self?.imagesRelay.accept(image)
+//        }
+        self.productImage = imageManager.downloadImage(imageURL)
     }
 }

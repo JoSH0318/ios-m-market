@@ -42,7 +42,7 @@ final class DetailViewImagesCell: UICollectionViewCell {
     func bind(with imageURL: String) {
         viewModel = DetailViewImagesCellModel(imageURL: imageURL)
         
-        viewModel?.productImages
+        viewModel?.productImage
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] image in
                 self?.imageView.image = image
