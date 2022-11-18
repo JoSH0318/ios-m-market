@@ -16,3 +16,26 @@ protocol UpdateImageCellModelOutput {
 }
 
 protocol UpdateImageCellModelType: UpdateImageCellModelInput, UpdateImageCellModelOutput {}
+
+final class EditCellViewModel: UpdateImageCellModelType {
+    private let imageManager = ImageManager.shared
+    
+    // MARK: - Output
+    
+    let productImage: Observable<UIImage>
+    
+    init(_ imageUrl: String) {
+        self.productImage = imageManager.downloadImage(imageUrl)
+    }
+}
+
+final class RegisterCellViewModel: UpdateImageCellModelType  {
+    
+    // MARK: - Output
+    
+    let productImage: Observable<UIImage>
+    
+    init(_ selectedImage: UIImage) {
+        productImage = .just(selectedImage)
+    }
+}

@@ -19,7 +19,7 @@ final class UpdateImagesCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private var viewModel = UpdateImageCellModel()
+    private var viewModel: UpdateImageCellModelType?
     private let disposeBag = DisposeBag()
     
     private let imageView: UIImageView = {
@@ -44,9 +44,9 @@ final class UpdateImagesCell: UICollectionViewCell {
     }
     
     func bind(with imageURL: String) {
-        viewModel.downloadImage(imageURL)
+        viewModel = EditCellViewModel(imageURL)
         
-        viewModel.productImages
+        viewModel?.productImage
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] image in
                 self?.imageView.image = image
@@ -55,9 +55,9 @@ final class UpdateImagesCell: UICollectionViewCell {
     }
     
     func bind(with selectedImage: UIImage) {
-        viewModel.didSelectedImage(selectedImage)
+        viewModel = RegisterCellViewModel(selectedImage)
         
-        viewModel.productImages
+        viewModel?.productImage
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] image in
                 self?.imageView.image = image
