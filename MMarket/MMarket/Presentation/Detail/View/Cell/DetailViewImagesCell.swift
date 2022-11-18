@@ -19,7 +19,7 @@ final class DetailViewImagesCell: UICollectionViewCell {
         return String(describing: self)
     }
     
-    private var viewModel: DetailViewImagesCellModel?
+    private var viewModel: DetailCellViewModelType?
     private let disposeBag = DisposeBag()
     
     private let imageView: UIImageView = {
@@ -40,7 +40,7 @@ final class DetailViewImagesCell: UICollectionViewCell {
     }
     
     func bind(with imageURL: String) {
-        viewModel = DetailViewImagesCellModel(imageURL: imageURL)
+        viewModel = DetailCellViewModel(imageURL: imageURL)
         
         viewModel?.productImage
             .observe(on: MainScheduler.instance)
