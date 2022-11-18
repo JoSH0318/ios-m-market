@@ -11,6 +11,6 @@ extension UIColor {
     static let grayColor = UIColor(named: "MainGrayColor")
     static let navyColor = UIColor(named: "MainNavyColor")
     static let beigeColor = UIColor(named: "MainBeigeColor")
-    static let balckColor = UIColor(named: "MainBalckColor")
+    static let blackColor = UIColor(named: "MainBlackColor")
 }
 
