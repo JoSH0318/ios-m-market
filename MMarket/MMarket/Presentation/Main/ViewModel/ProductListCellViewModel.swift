@@ -17,9 +17,7 @@ final class ProductListCellViewModel {
     
     // MARK: - Output
 
-    var thumbnailImage: Observable<UIImage> {
-        return thumbnailImageRelay.asObservable()
-    }
+    let thumbnailImage: Observable<UIImage>
     
     var name: String {
         return product.name
@@ -54,9 +52,7 @@ final class ProductListCellViewModel {
     init(product: Product) {
         self.product = product
         
-        imageTask = imageManager.downloadImage(product.thumbnailURL) { [weak self] image in
-            self?.thumbnailImageRelay.accept(image)
-        }
+        thumbnailImage = imageManager.downloadImage(product.thumbnailURL)
     }
     
     // MARK: - Input
