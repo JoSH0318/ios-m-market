@@ -18,9 +18,11 @@ final class ImageManager {
     
     private var taskQueue = [Token: URLSessionDataTask?]()
     private var currentToken: Token = 0
+    private let lock: NSLock
     private init() {
         cache = NSCache()
         cache.countLimit = 350
+        self.lock = NSLock()
     }
     
     func downloadImage(_ urlString: String) -> Observable<UIImage> {
