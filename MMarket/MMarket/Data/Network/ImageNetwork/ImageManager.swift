@@ -9,16 +9,17 @@ import UIKit
 import RxSwift
 
 final class ImageManager {
-    static let shared = ImageManager()
     
-    private let downloader = ImageDownloader()
     typealias Token = UInt
     
+    static let shared = ImageManager()
+    private let downloader: ImageDownloader
     private let cache: NSCache<NSString, UIImage>
     
     private var taskQueue = [Token: URLSessionDataTask?]()
     private var currentToken: Token = 0
     private let lock: NSLock
+    
     func nextToken() -> Token {
         lock.unlock()
         defer { lock.unlock() }
@@ -26,9 +27,11 @@ final class ImageManager {
         currentToken += 1
         return currentToken
     }
+    
     private init() {
-        cache = NSCache()
-        cache.countLimit = 350
+        self.downloader = ImageDownloader()
+        self.cache = NSCache()
+        self.cache.countLimit = 350
         self.lock = NSLock()
     }
     
