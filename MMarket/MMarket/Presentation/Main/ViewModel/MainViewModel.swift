@@ -20,9 +20,9 @@ protocol MainViewModelOutput {
     var products: Observable<[Product]> { get }
 }
 
-protocol MainViewModelable: MainViewModelInput, MainViewModelOutput {}
+protocol MainViewModelType: MainViewModelInput, MainViewModelOutput {}
 
-final class MainViewModel: MainViewModelable {
+final class MainViewModel: MainViewModelType {
     private let productUseCase: ProductUseCase
     weak var coordinator: MainCoordinator?
     private var currentPageNumber: Int
