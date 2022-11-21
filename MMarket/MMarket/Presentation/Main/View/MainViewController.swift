@@ -12,7 +12,6 @@ import RxCocoa
 final class MainViewController: UIViewController {
     private let mainView = MainView()
     private var viewModel: MainViewModel
-    private var coordinator: MainCoordinator
     private let disposeBag = DisposeBag()
     
     private let refreshControl: UIRefreshControl = {
@@ -22,11 +21,9 @@ final class MainViewController: UIViewController {
     }()
     
     init(
-        viewModel: MainViewModel,
-        coordinator: MainCoordinator
+        viewModel: MainViewModel
     ) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -68,17 +65,10 @@ final class MainViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.showDetailView
-            .withUnretained(self)
-            .bind { vc, product in
-                vc.coordinator.showDetailView(productID: product.id)
-            }
-            .disposed(by: disposeBag)
-        
         mainView.registerButton.rx.tap
             .withUnretained(self)
             .subscribe(onNext: { vc, _ in
-                vc.coordinator.showRegisterView()
+                vc.viewModel.didTapRegisterButton()
             })
             .disposed(by: disposeBag)
         

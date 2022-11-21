@@ -18,19 +18,23 @@ protocol MainViewModelInput {
 
 protocol MainViewModelOutput {
     var products: Observable<[Product]> { get }
-    var showDetailView: PublishRelay<Product> { get }
 }
 
 protocol MainViewModelable: MainViewModelInput, MainViewModelOutput {}
 
 final class MainViewModel: MainViewModelable {
     private let productUseCase: ProductUseCase
+    weak var coordinator: MainCoordinator?
     private var currentPageNumber: Int
     private let disposeBag = DisposeBag()
     private var productsSubject = BehaviorRelay<[Product]>(value: [])
     
-    init(productUseCase: ProductUseCase) {
+    init(
+        productUseCase: ProductUseCase,
+        coordinator: MainCoordinator
+    ) {
         self.productUseCase = productUseCase
+        self.coordinator = coordinator
         self.currentPageNumber = 1
     }
     
@@ -39,8 +43,6 @@ final class MainViewModel: MainViewModelable {
     var products: Observable<[Product]> {
         return productsSubject.asObservable()
     }
-    
-    var showDetailView = PublishRelay<Product>()
     
     // MARK: - Input
     
@@ -51,7 +53,11 @@ final class MainViewModel: MainViewModelable {
     }
     
     func didTapCell(_ product: Product) {
-        showDetailView.accept(product)
+        coordinator?.showDetailView(productID: product.id)
+    }
+    
+    func didTapRegisterButton() {
+        coordinator?.showRegisterView()
     }
     
     func didBeginEditingSearchBar(_ text: String) {

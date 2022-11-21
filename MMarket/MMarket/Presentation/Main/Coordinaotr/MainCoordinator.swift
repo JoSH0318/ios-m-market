@@ -24,8 +24,8 @@ final class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let mainViewModel = MainViewModel(productUseCase: useCase)
-        let mainViewController = MainViewController(viewModel: mainViewModel, coordinator: self)
+        let mainViewModel = MainViewModel(productUseCase: useCase, coordinator: self)
+        let mainViewController = MainViewController(viewModel: mainViewModel)
         self.navigationController.pushViewController(mainViewController, animated: true)
     }
     
