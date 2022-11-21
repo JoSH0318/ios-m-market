@@ -12,12 +12,12 @@ import RxRelay
 final class ProductListCellViewModel {
     private let product: Product
     private let imageManager = ImageManager.shared
-    private var imageTask: URLSessionDataTask?
     private let thumbnailImageRelay = BehaviorRelay<UIImage>(value: UIImage())
+    private var token: UInt
     
     // MARK: - Output
 
-    let thumbnailImage: Observable<UIImage>
+    let thumbnailImage: Observable<UIImage?>
     
     var name: String {
         return product.name
@@ -51,15 +51,17 @@ final class ProductListCellViewModel {
 
     init(product: Product) {
         self.product = product
+        self.token = imageManager.nextToken()
         
-        thumbnailImage = imageManager.downloadImage(product.thumbnailURL)
+        thumbnailImage = imageManager
+            .downloadImage(product.thumbnailURL, token)
+            .asObservable()
     }
     
     // MARK: - Input
     
     func onPrepareForReuse() {
-        imageTask?.suspend()
-        imageTask?.cancel()
+        imageManager.cancelTask(token)
     }
     
     private func formattedString(from number: Double) -> String {

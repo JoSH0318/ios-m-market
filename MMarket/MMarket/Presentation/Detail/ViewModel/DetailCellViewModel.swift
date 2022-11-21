@@ -12,7 +12,7 @@ import RxRelay
 protocol DetailCellViewModelInput {}
 
 protocol DetailCellViewModelOutput {
-    var productImage: Observable<UIImage> { get }
+    var productImage: Observable<UIImage?> { get }
 }
 
 protocol DetailCellViewModelType: DetailCellViewModelInput, DetailCellViewModelOutput {}
@@ -20,14 +20,18 @@ protocol DetailCellViewModelType: DetailCellViewModelInput, DetailCellViewModelO
 final class DetailCellViewModel: DetailCellViewModelType {
     private let imageManager = ImageManager.shared
     private let imagesRelay = BehaviorRelay<UIImage>(value: UIImage())
+    private let token: UInt
     
     // MARK: - Output
     
-    var productImage: Observable<UIImage>
+    var productImage: Observable<UIImage?>
     
     // MARK: - Input
     
     init(imageURL: String) {
-        self.productImage = imageManager.downloadImage(imageURL)
+        self.token = imageManager.nextToken()
+        self.productImage = imageManager
+            .downloadImage(imageURL, token)
+            .asObservable()
     }
 }
