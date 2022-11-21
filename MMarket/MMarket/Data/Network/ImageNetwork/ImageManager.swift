@@ -36,11 +36,16 @@ final class ImageManager {
         if let cachedImage = cache.object(forKey: urlString as NSString) {
             return Observable.just(cachedImage)
         }
+    private func insertTask(_ token: Token, _ task: URLSessionDataTask?) {
+        lock.lock()
+        defer { lock.unlock() }
         
         return downloader.downloadImage(urlString)
             .do { [weak self] image in
                 self?.cache.setObject(image, forKey: urlString as NSString)
             }
             .asObservable()
+        taskQueue[token] = task
+    }
     }
 }
