@@ -11,7 +11,6 @@ import RxSwift
 final class DetailViewController: UIViewController {
     private let detailView = DetailView()
     private var viewModel: DetailViewModel
-    private var coordinator: DetailCoordinator
     private let disposeBag = DisposeBag()
     
     private let editButton: UIButton = {
@@ -50,12 +49,8 @@ final class DetailViewController: UIViewController {
         return barButtonItem
     }()
     
-    init(
-        viewModel: DetailViewModel,
-        coordinator: DetailCoordinator
-    ) {
+    init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -75,13 +70,6 @@ final class DetailViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.error
-            .withUnretained(self)
-            .subscribe(onNext: { vc, error in
-                vc.coordinator.showErrorAlert()
-            })
-            .disposed(by: disposeBag)
-        
         viewModel.productImagesURL
             .observe(on: MainScheduler.instance)
             .bind(to: detailView.imagesCollectionView.rx.items(
@@ -111,7 +99,7 @@ final class DetailViewController: UIViewController {
         backBarButton.rx.tap
             .withUnretained(self)
             .bind { vc, _ in
-                vc.coordinator.popDetailView()
+                vc.viewModel.didTapBackButton()
             }
             .disposed(by: disposeBag)
         
@@ -120,7 +108,7 @@ final class DetailViewController: UIViewController {
             .withUnretained(self)
             .bind { vc, _ in
                 guard let product = vc.viewModel.product else { return }
-                vc.coordinator.showEditView(with: product)
+                vc.viewModel.didTapEditButton(product)
             }
             .disposed(by: disposeBag)
         
@@ -129,14 +117,6 @@ final class DetailViewController: UIViewController {
             .bind { vc, _ in
                 vc.viewModel.didTapDeleteButton()
             }
-            .disposed(by: disposeBag)
-        
-        viewModel.deleteCompletion
-            .observe(on: MainScheduler.instance)
-            .withUnretained(self)
-            .subscribe(onNext: { vc, _ in
-                vc.coordinator.showAlert()
-            })
             .disposed(by: disposeBag)
     }
     

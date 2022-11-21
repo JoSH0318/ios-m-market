@@ -11,6 +11,8 @@ import RxRelay
 
 protocol DetailViewModelInput {
     func didTapDeleteButton()
+    func didTapBackButton()
+    func didTapEditButton(_ product: Product)
 }
 
 protocol DetailViewModelOutput {
@@ -18,18 +20,15 @@ protocol DetailViewModelOutput {
     var productImagesURL: Observable<[String]> { get }
     var productImagesCount: Observable<Int> { get }
     var isPostOwner: Observable<Void> { get }
-    var error: Observable<Error> { get }
-    var deleteCompletion: Observable<Void> { get }
 }
 
-protocol DetailViewModelable: DetailViewModelInput, DetailViewModelOutput {}
+protocol DetailViewModelType: DetailViewModelInput, DetailViewModelOutput {}
 
-final class DetailViewModel: DetailViewModelable {
+final class DetailViewModel: DetailViewModelType {
     private let productUseCase: ProductUseCase
+    private let coordinator: DetailCoordinator
     private let disposeBag = DisposeBag()
     private let productRelay = PublishRelay<Product>()
-    private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
-    private let deleteCompletionRelay = PublishRelay<Void>()
     private let productID: Int
     private(set) var product: Product?
     
@@ -59,17 +58,14 @@ final class DetailViewModel: DetailViewModelable {
             .asObservable()
     }
     
-    var error: Observable<Error> {
-        return errorRelay.asObservable()
-    }
-    
-    var deleteCompletion: Observable<Void> {
-        return deleteCompletionRelay.asObservable()
-    }
-    
-    init(productUseCase: ProductUseCase, productID: Int) {
+    init(
+        productUseCase: ProductUseCase,
+        productID: Int,
+        coordinator: DetailCoordinator
+    ) {
         self.productUseCase = productUseCase
         self.productID = productID
+        self.coordinator = coordinator
         
         self.fetchProduct(by: productID)
     }
@@ -80,17 +76,18 @@ final class DetailViewModel: DetailViewModelable {
                 self?.productRelay.accept(product)
                 self?.product = product
             }, onError: { [weak self] error in
-                self?.errorRelay.accept(error)
+                self?.coordinator.showErrorAlert()
             })
             .disposed(by: disposeBag)
     }
     
     private func deleteProduct(with deleteURI: String) {
         productUseCase.deleteProduct(with: deleteURI)
+            .observe(on: MainScheduler.instance)
             .subscribe(onError: { [weak self] error in
-                self?.errorRelay.accept(error)
+                self?.coordinator.showErrorAlert()
             }, onCompleted: { [weak self] in
-                self?.deleteCompletionRelay.accept(())
+                self?.coordinator.showAlert()
             })
             .disposed(by: disposeBag)
     }
@@ -101,9 +98,15 @@ final class DetailViewModel: DetailViewModelable {
         productUseCase.inquireProductSecret(with: UserInfo.password, productID)
             .subscribe(onNext: { [weak self] deleteURI in
                 self?.deleteProduct(with: deleteURI)
-            }, onError: { [weak self] error in
-                self?.errorRelay.accept(error)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func didTapBackButton() {
+        coordinator.popDetailView()
+    }
+    
+    func didTapEditButton(_ product: Product) {
+        coordinator.showEditView(with: product)
     }
 }
