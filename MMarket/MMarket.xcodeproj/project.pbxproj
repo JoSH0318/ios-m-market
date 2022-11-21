@@ -72,6 +72,7 @@
 		03FD0C5F292BC07C005B03CF /* MyPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C5E292BC07C005B03CF /* MyPageCoordinator.swift */; };
 		03FD0C62292BC183005B03CF /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C61292BC183005B03CF /* MyPageViewController.swift */; };
 		03FD0C65292BC1B9005B03CF /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C64292BC1B9005B03CF /* MyPageViewModel.swift */; };
+		03FD0C67292BDEDA005B03CF /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C66292BDEDA005B03CF /* MyPageView.swift */; };
 		2DB94502D8BF5BA8A4E0A428 /* Pods_MMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */; };
 		D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */; };
 /* End PBXBuildFile section */
@@ -155,6 +156,7 @@
 		03FD0C5E292BC07C005B03CF /* MyPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCoordinator.swift; sourceTree = "<group>"; };
 		03FD0C61292BC183005B03CF /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		03FD0C64292BC1B9005B03CF /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		03FD0C66292BDEDA005B03CF /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE5610BAEA2E7ED147ABABA /* Pods-MMarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.release.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.release.xcconfig"; sourceTree = "<group>"; };
 		436710F8F5A7036B70E6DDB4 /* Pods-MMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 		03FD0C60292BC15A005B03CF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				03FD0C66292BDEDA005B03CF /* MyPageView.swift */,
 				03FD0C61292BC183005B03CF /* MyPageViewController.swift */,
 			);
 			path = View;
@@ -809,6 +812,7 @@
 				030E834C28DCB02400FE1BB8 /* DefaultProductRepository.swift in Sources */,
 				030E834328DC8E2A00FE1BB8 /* VendorDTO.swift in Sources */,
 				0324CF1B292260DB00A3F058 /* ImageManager.swift in Sources */,
+				03FD0C67292BDEDA005B03CF /* MyPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
