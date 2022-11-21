@@ -47,5 +47,10 @@ final class ImageManager {
             .asObservable()
         taskQueue[token] = task
     }
+    func cancelTask(_ token: UInt) {
+        taskQueue[token]??.suspend()
+        taskQueue[token]??.cancel()
+        taskQueue.removeValue(forKey: token)
+    }
     }
 }
