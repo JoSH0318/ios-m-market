@@ -29,9 +29,7 @@ final class EditCoordinator: Coordinator {
             product: product,
             coordinator: self
         )
-        let editViewController = EditViewController(
-            viewModel: editViewModel
-        )
+        let editViewController = EditViewController(viewModel: editViewModel)
         self.navigationController.pushViewController(editViewController, animated: true)
     }
     

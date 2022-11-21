@@ -29,9 +29,7 @@ final class DetailCoordinator: Coordinator {
             productID: productID,
             coordinator: self
         )
-        let detailViewController = DetailViewController(
-            viewModel: detailViewModel
-        )
+        let detailViewController = DetailViewController(viewModel: detailViewModel)
         self.navigationController.pushViewController(detailViewController, animated: true)
     }
     
