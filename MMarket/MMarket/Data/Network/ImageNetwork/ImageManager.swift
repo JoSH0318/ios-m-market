@@ -12,8 +12,12 @@ final class ImageManager {
     static let shared = ImageManager()
     
     private let downloader = ImageDownloader()
+    typealias Token = UInt
+    
     private let cache: NSCache<NSString, UIImage>
     
+    private var taskQueue = [Token: URLSessionDataTask?]()
+    private var currentToken: Token = 0
     private init() {
         cache = NSCache()
         cache.countLimit = 350
