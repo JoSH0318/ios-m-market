@@ -52,5 +52,8 @@ final class ImageManager {
         taskQueue[token]??.cancel()
         taskQueue.removeValue(forKey: token)
     }
+    
+    func removeAllTasks() {
+        taskQueue.removeAll()
     }
 }
