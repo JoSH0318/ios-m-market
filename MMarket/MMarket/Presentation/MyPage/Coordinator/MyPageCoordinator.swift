@@ -23,6 +23,20 @@ final class MyPageCoordinator: Coordinator {
         self.useCase = useCase
     }
     
-    func start() {}
+    func start() {
+        let myPageViewModel = MyPageViewModel(productUseCase: useCase, coordinator: self)
+        let myPageViewController = MyPageViewController(viewModel: myPageViewModel)
+        self.navigationController.pushViewController(myPageViewController, animated: true)
+    }
+    
+    func showDetailView(productID: Int) {
+        let detailCoordinator = DetailCoordinator(
+            navigationController: self.navigationController,
+            parentCoordinators: self,
+            useCase: useCase
+        )
+        self.childCoordinators.append(detailCoordinator)
+        detailCoordinator.start(with: productID)
+    }
 }
 
