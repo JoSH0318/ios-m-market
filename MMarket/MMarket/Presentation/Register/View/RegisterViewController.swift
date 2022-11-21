@@ -12,7 +12,6 @@ import RxCocoa
 final class RegisterViewController: UIViewController {
     private let registerView = ProductUpdateView(.register)
     private var viewModel: RegisterViewModel
-    private var coordinator: RegisterCoordinator
     private let disposeBag = DisposeBag()
     
     private let backBarButton: UIBarButtonItem = {
@@ -50,12 +49,8 @@ final class RegisterViewController: UIViewController {
         return imagePicker
     }()
     
-    init(
-        viewModel: RegisterViewModel,
-        coordinator: RegisterCoordinator
-    ) {
+    init(viewModel: RegisterViewModel) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -82,7 +77,7 @@ final class RegisterViewController: UIViewController {
             .withUnretained(self)
             .observe(on: MainScheduler.instance)
             .bind { vc, _ in
-                vc.coordinator.popRegisterView()
+                vc.viewModel.didTapBackButton()
             }
             .disposed(by: disposeBag)
         
@@ -101,7 +96,7 @@ final class RegisterViewController: UIViewController {
                 vc.viewModel.imagesCount < 5
             }
             .bind { vc, _ in
-                vc.coordinator.showPhotoLibrary(to: vc.imagePicker)
+                vc.viewModel.didTapAddImageButton(vc.imagePicker)
             }
             .disposed(by: disposeBag)
         
@@ -112,21 +107,6 @@ final class RegisterViewController: UIViewController {
             )) { _, item, cell in
                 cell.bind(with: item)
             }
-            .disposed(by: disposeBag)
-        
-        viewModel.postProduct
-            .withUnretained(self)
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { vc, _ in
-                vc.coordinator.showAlert(with: "제품을 등록했습니다.")
-            })
-            .disposed(by: disposeBag)
-        
-        viewModel.error
-            .withUnretained(self)
-            .subscribe(onNext: { vc, error in
-                vc.coordinator.showErrorAlert()
-            })
             .disposed(by: disposeBag)
     }
 }

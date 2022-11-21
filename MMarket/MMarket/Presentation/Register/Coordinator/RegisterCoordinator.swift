@@ -25,11 +25,11 @@ final class RegisterCoordinator: Coordinator {
     
     func start() {
         let registerViewModel = RegisterViewModel(
-            productUseCase: useCase
+            productUseCase: useCase,
+            coordinator: self
         )
         let registerViewController = RegisterViewController(
-            viewModel: registerViewModel,
-            coordinator: self
+            viewModel: registerViewModel
         )
         self.navigationController.pushViewController(registerViewController, animated: true)
     }

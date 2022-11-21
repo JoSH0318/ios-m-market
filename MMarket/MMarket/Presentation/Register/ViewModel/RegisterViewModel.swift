@@ -17,22 +17,33 @@ protocol RegisterViewModelInput {
 protocol RegisterViewModelOutput {
     var productImages: Observable<[UIImage]> { get }
     var imagesData: [Data] { get }
-    var postProduct: Observable<Void> { get }
     var imagesCount: Int { get }
-    var error: Observable<Error> { get }
 }
 
 protocol RegisterViewModelable: RegisterViewModelInput, RegisterViewModelOutput {}
 
 final class RegisterViewModel: RegisterViewModelable {
     private let productUseCase: ProductUseCase
+    private let coordinator: RegisterCoordinator
     private let disposeBag = DisposeBag()
-    private let postRelay = PublishRelay<Void>()
     private let imageRelay = BehaviorRelay<[UIImage]>(value: [])
-    private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
     
-    init(productUseCase: ProductUseCase) {
+    
+    private func convertToImageFile(from images: [UIImage]) -> [Data] {
+        var imagesData = [Data]()
+        images.forEach { image in
+            let imageData = image.jpegData(compressionQuality: 1) ?? Data()
+            imagesData.append(imageData)
+        }
+        return imagesData
+    }
+    
+    init(
+        productUseCase: ProductUseCase,
+        coordinator: RegisterCoordinator
+    ) {
         self.productUseCase = productUseCase
+        self.coordinator = coordinator
     }
     
     // MARK: - Output
@@ -45,30 +56,31 @@ final class RegisterViewModel: RegisterViewModelable {
         return convertToImageFile(from: imageRelay.value)
     }
     
-    var postProduct: Observable<Void> {
-        return postRelay.asObservable()
-    }
-    
     var imagesCount: Int {
         return imageRelay.value.count
     }
     
-    var error: Observable<Error> {
-        return errorRelay.asObservable()
+    // MARK: - Input
+    
+    func didTapBackButton() {
+        coordinator.popRegisterView()
     }
     
-    // MARK: - Input
+    func didTapAddImageButton(_ picker: UIImagePickerController) {
+        coordinator.showPhotoLibrary(to: picker)
+    }
     
     func didTapPostButton(_ request: ProductRequest, images: [Data]) {
         productUseCase.createProduct(with: request, images)
+            .observe(on: MainScheduler.instance)
             .withUnretained(self)
-            .subscribe { viewModel, _ in
+            .subscribe(onNext: { viewModel, _ in
                 
-            } onError: { error in
-                self.errorRelay.accept(error)
-            } onCompleted: {
-                self.postRelay.accept(())
-            }
+            }, onError: { error in
+                self.coordinator.showErrorAlert()
+            }, onCompleted: {
+                self.coordinator.showAlert(with: "제품을 등록했습니다.")
+            })
             .disposed(by: disposeBag)
     }
     
@@ -76,15 +88,6 @@ final class RegisterViewModel: RegisterViewModelable {
         var selectedImages = [UIImage]()
         selectedImages.append(selectedImage)
         imageRelay.accept(imageRelay.value + selectedImages)
-    }
-    
-    private func convertToImageFile(from images: [UIImage]) -> [Data] {
-        var imagesData = [Data]()
-        images.forEach { image in
-            let imageData = image.jpegData(compressionQuality: 1) ?? Data()
-            imagesData.append(imageData)
-        }
-        return imagesData
     }
 }
 
