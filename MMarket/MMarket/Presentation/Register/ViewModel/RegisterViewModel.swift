@@ -10,6 +10,8 @@ import RxSwift
 import RxRelay
 
 protocol RegisterViewModelInput {
+    func didTapBackButton()
+    func didTapAddImageButton(_ picker: UIImagePickerController)
     func didTapPostButton(_ request: ProductRequest, images: [Data])
     func didSelectImage(_ selectedImage: UIImage)
 }
