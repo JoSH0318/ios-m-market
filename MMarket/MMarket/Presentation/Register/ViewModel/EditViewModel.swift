@@ -19,9 +19,9 @@ protocol EditViewModelOutput {
     var imageURL: Observable<[String]> { get }
 }
 
-protocol EditViewModelable: EditViewModelInput, EditViewModelOutput {}
+protocol EditViewModelType: EditViewModelInput, EditViewModelOutput {}
 
-final class EditViewModel: EditViewModelable {
+final class EditViewModel: EditViewModelType {
     private let productUseCase: ProductUseCase
     private let coordinator: EditCoordinator
     private let disposeBag = DisposeBag()

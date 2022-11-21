@@ -20,9 +20,9 @@ protocol RegisterViewModelOutput {
     var imagesCount: Int { get }
 }
 
-protocol RegisterViewModelable: RegisterViewModelInput, RegisterViewModelOutput {}
+protocol RegisterViewModelType: RegisterViewModelInput, RegisterViewModelOutput {}
 
-final class RegisterViewModel: RegisterViewModelable {
+final class RegisterViewModel: RegisterViewModelType {
     private let productUseCase: ProductUseCase
     private let coordinator: RegisterCoordinator
     private let disposeBag = DisposeBag()
