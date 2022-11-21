@@ -20,9 +20,7 @@ final class MainViewController: UIViewController {
         return refreshControl
     }()
     
-    init(
-        viewModel: MainViewModel
-    ) {
+    init(viewModel: MainViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
