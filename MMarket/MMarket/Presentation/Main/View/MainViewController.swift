@@ -136,6 +136,7 @@ extension MainViewController {
         label.font = UIFont(name: "BM HANNA Pro", size: 25)
         let imageView = UIImageView()
         imageView.image = UIImage(named: "AppIcon")
+        imageView.contentMode = .scaleAspectFit
         stackView.addArrangedSubview(imageView)
         stackView.addArrangedSubview(label)
         
