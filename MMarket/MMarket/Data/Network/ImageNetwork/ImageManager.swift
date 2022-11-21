@@ -35,21 +35,38 @@ final class ImageManager {
         self.lock = NSLock()
     }
     
-    func downloadImage(_ urlString: String) -> Observable<UIImage> {
-        if let cachedImage = cache.object(forKey: urlString as NSString) {
-            return Observable.just(cachedImage)
+    func downloadImage(_ urlString: String, _ token: Token) -> Single<UIImage?> {
+        return Single.create { [weak self] single in
+            if let cachedImage = self?.cache.object(forKey: urlString as NSString) {
+                single(.success(cachedImage))
+                return Disposables.create()
+            }
+            
+            let task = self?.downloader.requestImage(urlString) { result in
+                switch result {
+                case .success(let image):
+                    self?.cache.setObject(image, forKey: urlString as NSString)
+                    single(.success(image))
+                case .failure:
+                    single(.success(UIImage()))
+                }
+            }
+            self?.insertTask(token, task)
+            
+            return Disposables.create {
+                task?.suspend()
+                task?.cancel()
+            }
         }
+    }
+    
     private func insertTask(_ token: Token, _ task: URLSessionDataTask?) {
         lock.lock()
         defer { lock.unlock() }
         
-        return downloader.downloadImage(urlString)
-            .do { [weak self] image in
-                self?.cache.setObject(image, forKey: urlString as NSString)
-            }
-            .asObservable()
         taskQueue[token] = task
     }
+    
     func cancelTask(_ token: UInt) {
         taskQueue[token]??.suspend()
         taskQueue[token]??.cancel()
