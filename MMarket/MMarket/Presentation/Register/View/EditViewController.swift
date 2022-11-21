@@ -12,7 +12,6 @@ import RxCocoa
 class EditViewController: UIViewController {
     private let editView = ProductUpdateView(.edit)
     private var viewModel: EditViewModel
-    private var coordinator: EditCoordinator
     private let disposeBag = DisposeBag()
     
     private let backBarButton: UIBarButtonItem = {
@@ -43,12 +42,8 @@ class EditViewController: UIViewController {
         return barButtonItem
     }()
     
-    init(
-        viewModel: EditViewModel,
-        coordinator: EditCoordinator
-    ) {
+    init(viewModel: EditViewModel) {
         self.viewModel = viewModel
-        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.didLaunchView()
@@ -79,13 +74,6 @@ class EditViewController: UIViewController {
                 cellType: UpdateImagesCell.self
             )) { _, item, cell in
                 cell.bind(with: item)
-            }
-            .disposed(by: disposeBag)
-        
-        backBarButton.rx.tap
-            .withUnretained(self)
-            .bind { vc, _ in
-                vc.coordinator.popEditView()
             }
             .disposed(by: disposeBag)
         

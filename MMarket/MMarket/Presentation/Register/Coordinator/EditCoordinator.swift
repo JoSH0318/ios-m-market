@@ -26,11 +26,11 @@ final class EditCoordinator: Coordinator {
     func start(with product: Product) {
         let editViewModel = EditViewModel(
             productUseCase: useCase,
-            product: product
+            product: product,
+            coordinator: self
         )
         let editViewController = EditViewController(
-            viewModel: editViewModel,
-            coordinator: self
+            viewModel: editViewModel
         )
         self.navigationController.pushViewController(editViewController, animated: true)
     }

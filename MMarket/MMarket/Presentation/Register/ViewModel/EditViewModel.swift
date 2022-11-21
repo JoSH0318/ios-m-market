@@ -11,45 +11,37 @@ import RxRelay
 
 protocol EditViewModelInput {
     func didLaunchView()
+    func didTapBackButton()
     func didTapSaveButton(_ request: ProductRequest)
 }
 
 protocol EditViewModelOutput {
     var imageURL: Observable<[String]> { get }
-    var patchProduct: Observable<Void> { get }
-    var error: Observable<Error> { get }
 }
 
 protocol EditViewModelable: EditViewModelInput, EditViewModelOutput {}
 
 final class EditViewModel: EditViewModelable {
     private let productUseCase: ProductUseCase
+    private let coordinator: EditCoordinator
     private let disposeBag = DisposeBag()
-    private let patchRelay = PublishRelay<Void>()
-    private let errorRelay = ReplayRelay<Error>.create(bufferSize: 1)
     private(set) var product: Product
     private let imageURLRelay = BehaviorRelay<[String]>(value: [])
     
     init(
         productUseCase: ProductUseCase,
-        product: Product
+        product: Product,
+        coordinator: EditCoordinator
     ) {
         self.productUseCase = productUseCase
         self.product = product
+        self.coordinator = coordinator
     }
     
     // MARK: - Output
     
     var imageURL: Observable<[String]> {
         return imageURLRelay.asObservable()
-    }
-    
-    var patchProduct: Observable<Void> {
-        return patchRelay.asObservable()
-    }
-    
-    var error: Observable<Error> {
-        return errorRelay.asObservable()
     }
     
     // MARK: - Input
@@ -63,12 +55,17 @@ final class EditViewModel: EditViewModelable {
         imageURLRelay.accept(imageURLs)
     }
     
+    func didTapBackButton() {
+        coordinator.popEditView()
+    }
+    
     func didTapSaveButton(_ request: ProductRequest) {
         productUseCase.updateProduct(with: request, product.id)
+            .observe(on: MainScheduler.instance)
             .subscribe(onError: { [weak self] error in
-                self?.errorRelay.accept(error)
+                self?.coordinator.showErrorAlert()
             }, onCompleted: { [weak self] in
-                self?.patchRelay.accept(())
+                self?.coordinator.showAlert(with: "입력하신 내용이 저장됐습니다.")
             })
             .disposed(by: disposeBag)
     }
