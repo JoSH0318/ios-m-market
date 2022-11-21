@@ -19,6 +19,13 @@ final class ImageManager {
     private var taskQueue = [Token: URLSessionDataTask?]()
     private var currentToken: Token = 0
     private let lock: NSLock
+    func nextToken() -> Token {
+        lock.unlock()
+        defer { lock.unlock() }
+        
+        currentToken += 1
+        return currentToken
+    }
     private init() {
         cache = NSCache()
         cache.countLimit = 350
