@@ -21,25 +21,25 @@ final class EditCellViewModel: UpdateImageCellModelType {
     private let imageManager = ImageManager.shared
     private let token: UInt
     
-    // MARK: - Output
-    
-    let productImage: Observable<UIImage?>
-    
     init(_ imageUrl: String) {
         self.token = imageManager.nextToken()
         self.productImage = imageManager
             .downloadImage(imageUrl, token)
             .asObservable()
     }
-}
-
-final class RegisterCellViewModel: UpdateImageCellModelType  {
     
     // MARK: - Output
     
     let productImage: Observable<UIImage?>
+}
+
+final class RegisterCellViewModel: UpdateImageCellModelType  {
     
     init(_ selectedImage: UIImage) {
         productImage = .just(selectedImage)
     }
+    
+    // MARK: - Output
+    
+    let productImage: Observable<UIImage?>
 }

@@ -38,6 +38,32 @@ final class MainViewModel: MainViewModelType {
         self.currentPageNumber = 1
     }
     
+    private func fetchProducts(
+        pageNumber: Int,
+        itemsPerPage: Int = 20,
+        searchValue: String = ""
+    ) {
+        productUseCase.fetchProducts(with: pageNumber, itemsPerPage, searchValue)
+            .map { $0.products }
+            .withUnretained(self)
+            .subscribe(onNext: { viewModel, products in
+                let preProducts = viewModel.productsSubject.value
+                viewModel.productsSubject.accept(preProducts + products)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func fetchSearchedProducts(searchValue: String) {
+        productUseCase.fetchProducts(with: 1, 20, searchValue)
+            .map { $0.products }
+            .withUnretained(self)
+            .subscribe(onNext: { viewModel, products in
+                viewModel.productsSubject.accept([])
+                viewModel.productsSubject.accept(products)
+            })
+            .disposed(by: disposeBag)
+    }
+    
     // MARK: - Output
     
     var products: Observable<[Product]> {
@@ -69,31 +95,5 @@ final class MainViewModel: MainViewModelType {
             currentPageNumber += 1
             fetchProducts(pageNumber: currentPageNumber)
         }
-    }
-    
-    private func fetchProducts(
-        pageNumber: Int,
-        itemsPerPage: Int = 20,
-        searchValue: String = ""
-    ) {
-        productUseCase.fetchProducts(with: pageNumber, itemsPerPage, searchValue)
-            .map { $0.products }
-            .withUnretained(self)
-            .subscribe(onNext: { viewModel, products in
-                let preProducts = viewModel.productsSubject.value
-                viewModel.productsSubject.accept(preProducts + products)
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func fetchSearchedProducts(searchValue: String) {
-        productUseCase.fetchProducts(with: 1, 20, searchValue)
-            .map { $0.products }
-            .withUnretained(self)
-            .subscribe(onNext: { viewModel, products in
-                viewModel.productsSubject.accept([])
-                viewModel.productsSubject.accept(products)
-            })
-            .disposed(by: disposeBag)
     }
 }

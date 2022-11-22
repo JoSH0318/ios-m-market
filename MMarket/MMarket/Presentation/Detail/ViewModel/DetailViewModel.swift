@@ -32,32 +32,6 @@ final class DetailViewModel: DetailViewModelType {
     private let productID: Int
     private(set) var product: Product?
     
-    // MARK: - Output
-    
-    var productDetailInfo: Observable<Product> {
-        return productRelay.asObservable()
-    }
-    
-    var productImagesURL: Observable<[String]> {
-        return productRelay
-            .compactMap {
-                $0.images?.compactMap { $0.url }
-            }
-    }
-    
-    var productImagesCount: Observable<Int> {
-        return productImagesURL
-            .map { $0.count }
-    }
-    
-    var isPostOwner: Observable<Void> {
-        return productRelay
-            .compactMap { $0.vendor?.name }
-            .filter { $0 == UserInfo.id }
-            .map { _ in }
-            .asObservable()
-    }
-    
     init(
         productUseCase: ProductUseCase,
         productID: Int,
@@ -90,6 +64,32 @@ final class DetailViewModel: DetailViewModelType {
                 self?.coordinator.showAlert()
             })
             .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Output
+    
+    var productDetailInfo: Observable<Product> {
+        return productRelay.asObservable()
+    }
+    
+    var productImagesURL: Observable<[String]> {
+        return productRelay
+            .compactMap {
+                $0.images?.compactMap { $0.url }
+            }
+    }
+    
+    var productImagesCount: Observable<Int> {
+        return productImagesURL
+            .map { $0.count }
+    }
+    
+    var isPostOwner: Observable<Void> {
+        return productRelay
+            .compactMap { $0.vendor?.name }
+            .filter { $0 == UserInfo.id }
+            .map { _ in }
+            .asObservable()
     }
     
     // MARK: - Input

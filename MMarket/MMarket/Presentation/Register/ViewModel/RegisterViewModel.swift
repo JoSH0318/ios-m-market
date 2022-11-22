@@ -30,6 +30,13 @@ final class RegisterViewModel: RegisterViewModelType {
     private let disposeBag = DisposeBag()
     private let imageRelay = BehaviorRelay<[UIImage]>(value: [])
     
+    init(
+        productUseCase: ProductUseCase,
+        coordinator: RegisterCoordinator
+    ) {
+        self.productUseCase = productUseCase
+        self.coordinator = coordinator
+    }
     
     private func convertToImageFile(from images: [UIImage]) -> [Data] {
         var imagesData = [Data]()
@@ -38,14 +45,6 @@ final class RegisterViewModel: RegisterViewModelType {
             imagesData.append(imageData)
         }
         return imagesData
-    }
-    
-    init(
-        productUseCase: ProductUseCase,
-        coordinator: RegisterCoordinator
-    ) {
-        self.productUseCase = productUseCase
-        self.coordinator = coordinator
     }
     
     // MARK: - Output
