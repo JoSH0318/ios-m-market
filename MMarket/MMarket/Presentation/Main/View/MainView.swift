@@ -50,7 +50,7 @@ final class MainView: UIView {
     private func configureProductListLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, env in
             let width = (env.container.effectiveContentSize.width) * 0.5
-            let height = width * 1.3
+            let height = width * 1.4
             
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .absolute(width),
@@ -94,7 +94,9 @@ final class MainView: UIView {
         
         productListCollectionView.snp.makeConstraints {
             $0.top.equalTo(searchBar.snp.bottom).offset(4)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().offset(8)
+            $0.trailing.equalToSuperview().offset(-8)
+            $0.bottom.equalToSuperview()
         }
         
         registerButton.snp.makeConstraints {
