@@ -27,7 +27,7 @@ final class MyPageView: UIView {
     private func configureProductListLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { _, env in
             let width = (env.container.effectiveContentSize.width) * 0.5
-            let height = width * 1.3
+            let height = width * 1.4
             
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .absolute(width),
@@ -62,10 +62,10 @@ final class MyPageView: UIView {
     
     private func configureConstraints() {
         productListCollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.bottom.equalToSuperview()
-        }
-        
+            $0.top.equalToSuperview().offset(4)
+            $0.leading.equalToSuperview().offset(8)
+            $0.trailing.equalToSuperview().offset(-8)
+            $0.bottom.equalToSuperview()
         }
     }
 }
