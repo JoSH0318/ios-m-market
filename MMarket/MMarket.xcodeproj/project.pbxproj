@@ -291,9 +291,7 @@
 		0361F47728E0B3640010EC31 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				03D374B629153C5C00AA0F58 /* DividerLineView.swift */,
-				03D374C02917DBD100AA0F58 /* AlertBuilder.swift */,
-				03F64C14291C1C1200DEBE9B /* ImageButton.swift */,
+				03D374C22919384600AA0F58 /* Font */,
 				0361F47828E0B3740010EC31 /* Extension */,
 				03F64C1A291D289200DEBE9B /* UserInfo */,
 			);
@@ -341,7 +339,6 @@
 		03B04F9C28ABD91B00FA268D /* MMarket */ = {
 			isa = PBXGroup;
 			children = (
-				03D374C22919384600AA0F58 /* Font */,
 				03320D51290046CB0030C853 /* Application */,
 				0361F47728E0B3640010EC31 /* Util */,
 				030E832B28DB54A100FE1BB8 /* Data */,
@@ -356,6 +353,7 @@
 		03B04FB128ABE26500FA268D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				03FD0C68292CF5B8005B03CF /* Common */,
 				03B04FB228ABE28900FA268D /* Main */,
 				03FD0C5C292BC015005B03CF /* MyPage */,
 				03D44F47291199CD0059BE72 /* Detail */,
@@ -564,6 +562,16 @@
 				03FD0C64292BC1B9005B03CF /* MyPageViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		03FD0C68292CF5B8005B03CF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				03D374B629153C5C00AA0F58 /* DividerLineView.swift */,
+				03D374C02917DBD100AA0F58 /* AlertBuilder.swift */,
+				03F64C14291C1C1200DEBE9B /* ImageButton.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		57E2E23A1D0FD5E375BC9D97 /* Pods */ = {
