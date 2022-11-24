@@ -7,9 +7,20 @@
 
 import SnapKit
 
+final class EnableStackView: UIStackView {
+    override func hitTest(
+        _ point: CGPoint,
+        with event: UIEvent?
+    ) -> UIView? {
+        let hitView = super.hitTest(point, with: event)
+        if self == hitView { return nil }
+        return hitView
+    }
+}
+
 final class ImageButton: UIButton {
-    private let mainStackView: UIStackView = {
-        let stackView = UIStackView()
+    private let mainStackView: EnableStackView = {
+        let stackView = EnableStackView()
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .equalCentering
