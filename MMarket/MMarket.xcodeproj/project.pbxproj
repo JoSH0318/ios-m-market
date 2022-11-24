@@ -73,6 +73,7 @@
 		03FD0C62292BC183005B03CF /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C61292BC183005B03CF /* MyPageViewController.swift */; };
 		03FD0C65292BC1B9005B03CF /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C64292BC1B9005B03CF /* MyPageViewModel.swift */; };
 		03FD0C67292BDEDA005B03CF /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C66292BDEDA005B03CF /* MyPageView.swift */; };
+		03FD0C8F292F57E8005B03CF /* EndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FD0C8E292F57E8005B03CF /* EndpointTests.swift */; };
 		2DB94502D8BF5BA8A4E0A428 /* Pods_MMarketTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */; };
 		D2D9E82DCF3F75C40AEEC27B /* Pods_MMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 881C89472E0E5D687FD2FE99 /* Pods_MMarket.framework */; };
 /* End PBXBuildFile section */
@@ -157,6 +158,7 @@
 		03FD0C61292BC183005B03CF /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		03FD0C64292BC1B9005B03CF /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		03FD0C66292BDEDA005B03CF /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		03FD0C8E292F57E8005B03CF /* EndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointTests.swift; sourceTree = "<group>"; };
 		0FDDDE001ABC3E492C397C62 /* Pods_MMarketTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMarketTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BE5610BAEA2E7ED147ABABA /* Pods-MMarketTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.release.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.release.xcconfig"; sourceTree = "<group>"; };
 		436710F8F5A7036B70E6DDB4 /* Pods-MMarketTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMarketTests.debug.xcconfig"; path = "Target Support Files/Pods-MMarketTests/Pods-MMarketTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -521,10 +523,7 @@
 		03F64C24291D98DB00DEBE9B /* MMarketTests */ = {
 			isa = PBXGroup;
 			children = (
-				03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */,
-				03F64C32291E3A0300DEBE9B /* ProductRepositoryTests.swift */,
-				03F64C2E291D991D00DEBE9B /* MockURLProtocol.swift */,
-				03F64C30291D996800DEBE9B /* MockDataManager.swift */,
+				03FD0C8D292F57C0005B03CF /* Network */,
 			);
 			path = MMarketTests;
 			sourceTree = "<group>";
@@ -572,6 +571,26 @@
 				03F64C14291C1C1200DEBE9B /* ImageButton.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		03FD0C8D292F57C0005B03CF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				03FD0C90292FC2AC005B03CF /* Support */,
+				03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */,
+				03F64C32291E3A0300DEBE9B /* ProductRepositoryTests.swift */,
+				03F64C2E291D991D00DEBE9B /* MockURLProtocol.swift */,
+				03F64C30291D996800DEBE9B /* MockDataManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		03FD0C90292FC2AC005B03CF /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				03FD0C8E292F57E8005B03CF /* EndpointTests.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		57E2E23A1D0FD5E375BC9D97 /* Pods */ = {
@@ -831,6 +850,7 @@
 				03F64C26291D98DB00DEBE9B /* NetworkProviderTests.swift in Sources */,
 				03F64C31291D996800DEBE9B /* MockDataManager.swift in Sources */,
 				03F64C2F291D991E00DEBE9B /* MockURLProtocol.swift in Sources */,
+				03FD0C8F292F57E8005B03CF /* EndpointTests.swift in Sources */,
 				03F64C33291E3A0300DEBE9B /* ProductRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

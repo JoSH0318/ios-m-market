@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import RxSwift
+
+@testable import MMarket
 
 struct MockDataManager {
     func makeMockUrlSession() -> URLSession {
