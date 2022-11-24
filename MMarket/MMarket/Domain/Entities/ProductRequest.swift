@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductRequest: Encodable {
+struct ProductRequest: Codable, Equatable {
     let name: String?
     let price: Int?
     let discountedPrice: Int?
