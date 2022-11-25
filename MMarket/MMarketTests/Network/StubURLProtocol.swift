@@ -1,5 +1,5 @@
 //
-//  MockURLProtocol.swift
+//  StubURLProtocol.swift
 //  MMarketTests
 //
 //  Created by 조성훈 on 2022/11/11.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class MockURLProtocol: URLProtocol {
+final class StubURLProtocol: URLProtocol {
     static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
 
     override class func canInit(with request: URLRequest) -> Bool {
@@ -19,7 +19,7 @@ final class MockURLProtocol: URLProtocol {
     }
 
     override func startLoading() {
-        guard let handler = MockURLProtocol.requestHandler else {
+        guard let handler = StubURLProtocol.requestHandler else {
             return
         }
 
