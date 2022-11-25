@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductImageDTO: Decodable {
+struct ProductImageDTO: Codable, Equatable {
     let id: Int
     let url: String
     let thumbnailUrl: String

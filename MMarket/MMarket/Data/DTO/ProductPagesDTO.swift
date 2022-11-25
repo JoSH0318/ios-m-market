@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ProductPagesDTO: Decodable {
+struct ProductPagesDTO: Codable, Equatable {
     let pageNumber: Int
     let itemsPerPage: Int
     let totalCount: Int
