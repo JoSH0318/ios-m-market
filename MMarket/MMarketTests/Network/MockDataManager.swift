@@ -10,16 +10,16 @@ import RxSwift
 
 @testable import MMarket
 
-struct MockDataManager {
-    func makeMockUrlSession() -> URLSession {
+struct StubURLProtocolManager {
+    func makeSubUrlSession() -> URLSession {
         let configuration = URLSessionConfiguration.default
-        configuration.protocolClasses = [MockURLProtocol.self]
+        configuration.protocolClasses = [StubURLProtocol.self]
 
         return URLSession(configuration: configuration)
     }
 
-    func makeRequestSuccessResult() {
-        MockURLProtocol.requestHandler = { _ in
+    func makeSuccessRequest() {
+        StubURLProtocol.requestHandler = { _ in
             let url = URL(string: "test")!
             let httpResponse = HTTPURLResponse(
                 url: url,
@@ -33,8 +33,8 @@ struct MockDataManager {
         }
     }
 
-    func makeRequestFailureResult() {
-        MockURLProtocol.requestHandler = { _ in
+    func makeFailureRequest() {
+        StubURLProtocol.requestHandler = { _ in
             let url = URL(string: "test")!
             let httpResponse = HTTPURLResponse(
                 url: url,
