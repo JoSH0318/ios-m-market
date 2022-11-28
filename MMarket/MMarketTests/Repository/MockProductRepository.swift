@@ -62,14 +62,37 @@ final class MockProductRepository: ProductRepository {
     }
     
     func patchProduct(with productRequest: ProductRequest, _ productID: Int) -> Observable<Void> {
-        <#code#>
+        patchProductCallCount += 1
+        let data = Data()
+        let endpoint = APIEndpoints
+            .productEdition(data, 1)
+            .asEndpoint
+        
+        return networkProvider
+            .execute(endpoint: endpoint)
+            .map { _ in }
     }
     
     func searchDeleteURI(with password: String, _ productID: Int) -> Observable<Data> {
-        <#code#>
+        searchDeleteURICallCount += 1
+        let data = Data()
+        let endpoint = APIEndpoints
+            .deleteURISearch(data, 1)
+            .asEndpoint
+        
+        return networkProvider
+            .execute(endpoint: endpoint)
     }
     
     func deleteProduct(with deleteURI: String) -> Observable<Void> {
-        <#code#>
+        deleteProductCallCount += 1
+        let data = Data()
+        let endpoint = APIEndpoints
+            .deleteURISearch(data, 1)
+            .asEndpoint
+        
+        return networkProvider
+            .execute(endpoint: endpoint)
+            .map { _ in }
     }
 }
