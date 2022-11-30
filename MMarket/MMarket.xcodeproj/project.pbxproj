@@ -286,6 +286,16 @@
 			path = Coordinaotr;
 			sourceTree = "<group>";
 		};
+		035059EF29378FD500845449 /* DoubleTests */ = {
+			isa = PBXGroup;
+			children = (
+				03F64C30291D996800DEBE9B /* MockDataManager.swift */,
+				03F64C2E291D991D00DEBE9B /* StubURLProtocol.swift */,
+				030FA36B29310B4C00299603 /* StubNetworkProvider.swift */,
+			);
+			path = DoubleTests;
+			sourceTree = "<group>";
+		};
 		0350C8FC28E1FDE1007CCE4D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,9 +602,7 @@
 			children = (
 				03F64C25291D98DB00DEBE9B /* NetworkProviderTests.swift */,
 				03FD0C90292FC2AC005B03CF /* Support */,
-				03F64C30291D996800DEBE9B /* MockDataManager.swift */,
-				03F64C2E291D991D00DEBE9B /* StubURLProtocol.swift */,
-				030FA36B29310B4C00299603 /* StubNetworkProvider.swift */,
+				035059EF29378FD500845449 /* DoubleTests */,
 			);
 			path = Network;
 			sourceTree = "<group>";
